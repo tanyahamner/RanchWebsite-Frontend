@@ -1,3 +1,9 @@
+import { version, validate } from 'uuid';
+
+export function validateUUID(uuid_string) {
+    return validate(uuid_string) && version(uuid_string) === 4; // ⇨ false
+}
+
 function formatPhone(phoneNumber) {
     let cleaned = ('' + phoneNumber).replace(/\D/g, '');
 

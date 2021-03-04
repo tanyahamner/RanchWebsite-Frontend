@@ -1,12 +1,10 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
-import Logo from "../img/sonar_logo.svg"
-import LoginBg from '../components/particleBackground';
+import Logo from "../img/logo.svg"
 
 export default function ForgotPassword() {
     return (
         <div className='fp-page-wrapper'>
-            <LoginBg />
             <div className="forgot-password-wrapper">
                 <div className="logo">
                     <img src={Logo} alt="" height="32px"></img>

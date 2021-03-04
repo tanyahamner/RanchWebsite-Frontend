@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import LoginBg from '../components/particleBackground';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import Logo from "../img/sonar_logo.svg";
+import Logo from "../img/logo.svg";
 
 
 export default class TempPassword extends Component {
@@ -23,7 +22,6 @@ export default class TempPassword extends Component {
         return (
             <div className="fp-page-wrapper">
                 <div className="forgot-password-wrapper">
-                    <LoginBg />
                     <div className="logo">
                         <img src={Logo} alt="" height="32px"></img>
                     </div>

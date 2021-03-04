@@ -10,20 +10,12 @@ import OrganizationForm from "./organizationForm"
 import UserListPage from "./pages/userListPage"
 import UserForm from "./userForm"
 
-import DisplayListPage from "./pages/displayListPage"
-import DisplayForm from "./displayForm"
-import Display from "./displayGet"
-import DashboardListPage from "./pages/dashboardListPage"
-import DashboardForm from "./dashboardForm"
-import Dashboard from "./dashboardGet"
-
 import ProfileEdit from "./profilePageEdit"
 
 import UniversalSearch from "./universalSearch"
 
 import Cookies from 'js-cookie';
 import logout from "./util/logout";
-import DashboardLayoutPage from './pages/dashboardLayoutPage';
 
 const DefaultContainer = (props) => {
   const [searchTerm, setSearchTerm] = useState(null);
