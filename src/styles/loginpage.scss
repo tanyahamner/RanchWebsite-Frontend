@@ -1,0 +1,96 @@
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top:100px;
+
+    .login-wrapper {
+        display: flex;
+        flex-direction: column;
+        
+        img {
+            margin-bottom: 30px;
+        }
+
+        .form-wrapper {
+            width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            h2 {
+                color: $second-lightest;
+            }
+            
+            .form {
+                text-align: right;
+                width: 100%;
+                
+                .no-decoration {
+                    color: $second-lightest;
+                }
+
+                .login-button {
+                    margin-right: 0px;
+                }
+            }
+        }
+    }
+    
+    // .MuiButton-root {
+    Button.confirm-button {
+        height: 39px;
+        background-color: $second-lightest;
+        color: white;   
+    }
+    
+    Button.confirm-button:hover {
+        background-color: $second-darkest;
+    }
+
+    // .login-wrapper {
+    //     display: flex;
+    //     flex-direction: column;
+    //     justify-content: center;
+    //     align-items: center;
+    //     background-color: $second-darkest;
+    //     color: white; 
+    //     border: 6px solid $darkest;
+    //     border-radius: 15px;
+    //     width: 550px;
+    //     padding-top: 25px;
+    
+    //     .login {
+    //         display: grid;
+    //         grid-template-columns: 1fr 1fr;
+    //         width:100%;
+    //         padding: 25px;
+    
+    //         label {
+    //             text-align:right;
+    //             margin-top: 10px;
+    //             margin-right: 10px;
+    //         }
+        
+    //         input {
+    //             background-color: $lightest;
+    //             border-radius: 50px;
+    //             border: 2px solid $second-darkest;
+    //             margin: 5px;
+    //             padding: 5px;
+    //             width: 200px;
+    //         }
+        
+    //         button {
+    //             background-color: $darkest;
+    //             color: white;
+    //             border-radius: 10px;
+    //             align-self: center;
+    //             margin-top: 25px;
+    //             margin-bottom: 50px;
+    //             width: 200px;
+    //             line-height: 2em;
+    //         }
+    //     }
+    // }
+}

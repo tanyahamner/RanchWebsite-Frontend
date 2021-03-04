@@ -1,0 +1,22 @@
+
+ @import "variables.scss";
+ @import "modal.scss";
+ @import "header.scss";
+@import "theme.scss";
+@import "toggleSlider.scss";
+@import "loginpage.scss";
+@import "activeBadge.scss";
+@import "detailsPage.scss";
+@import "home.scss";
+@import "forgotPassword.scss";
+@import "universalSearch.scss";
+
+body {
+    margin: 0px;
+}
+
+.body-wrapper {
+    margin-top: 70px;
+    margin-left: 0px;
+}
+
