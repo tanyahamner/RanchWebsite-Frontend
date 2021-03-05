@@ -25,8 +25,8 @@ const userRolesAllowedByRole = {
 
 export default class UserRoleSelect extends Component {
    constructor(props) {
-      // super(props)
-
+      super()
+      
       let loggedInUsersRole = Cookies.get('user_role');
       this.allowedUserRoles = []
       if (typeof userRolesAllowedByRole[loggedInUsersRole] === 'undefined') {

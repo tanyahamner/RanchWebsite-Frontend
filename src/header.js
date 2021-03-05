@@ -115,8 +115,6 @@ export default class Header extends Component {
                         <NavLink exact to="/organizations"><div className="page-link nav-item">Organizations</div></NavLink>
                     </SecurityWrapper>
                     <NavLink exact to="/users"><div className="page-link nav-item">Users</div></NavLink>
-                    <NavLink exact to="/displays"><div className="page-link nav-item">Displays</div></NavLink>
-                    <NavLink exact to="/dashboards"><div className="page-link nav-item">Dashboards</div></NavLink>
                 </div>
                 {/* <Link to ="/organization">Organization</Link> */}
                 {/* <NavLink exact to="/organization"><div className="page-link">Org Detail</div></NavLink> */}

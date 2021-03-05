@@ -46,19 +46,7 @@ const DefaultContainer = (props) => {
         <Route name="organization-form" path="/organization-form/:org_id" component={OrganizationForm} />
         <Route name="organization-add" exact path="/organization-form/" component={OrganizationForm} />
 
-        <Route path="/displays" component={DisplayListPage} />
-        <Route name="display-detail" path="/display/:display_id" component={Display} />
-        <Route name="display-form" path="/display-form/:display_id" component={DisplayForm} />
-        <Route name="display-add" exact path="/display-form/" component={DisplayForm} />
-
-        <Route path="/dashboards" component={DashboardListPage} />
-        <Route name="dashboard-detail" path="/dashboard/:dashboard_id" component={Dashboard} />
-        <Route name="dashboard-form" path="/dashboard-form/:dashboard_id" component={DashboardForm} />
-        <Route name="dashboard-add" exact path="/dashboard-form/" component={DashboardForm} />
-
         <Route name="profile-edit" path="/profile/edit/:user_id" component={ProfileEdit} />
-
-        <Route name="default-layout" path="/layout" component={DashboardLayoutPage} />
 
         <Route name="universal-search" path="/universal-search" render={(props) => {
           return (<UniversalSearch {...props} searchTerm={searchTerm} authToken={props.authToken} />);

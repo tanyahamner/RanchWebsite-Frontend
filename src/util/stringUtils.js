@@ -1,7 +1,7 @@
-import { version, validate } from 'uuid';
+import { version as uuidVersion, validate as uuidValidate } from 'uuid';
 
 export function validateUUID(uuid_string) {
-    return validate(uuid_string) && version(uuid_string) === 4; // ⇨ false
+    return (uuidValidate(uuid_string) && (uuidVersion(uuid_string) === 4)); // ⇨ false
 }
 
 function formatPhone(phoneNumber) {
