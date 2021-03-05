@@ -106,7 +106,7 @@ export default class GetUser extends Component {
                                     </div>
                                     <div className="flex-row">
                                         <SecurityWrapper restrict_roles="user">
-                                            <Button className="confirm-button" onClick={() => this.redirectTo(`/user-form/${this.state.user.user_id}`)}>Edit</Button>
+                                            <Button className="confirm-button" onClick={() => this.redirectTo(`/user/edit/${this.state.user.user_id}`)}>Edit</Button>
                                             <ConfirmDelete objectType="user" id={this.state.user.user_id} redirectTo={this.redirectTo} />
                                         </SecurityWrapper>
                                     </div>
