@@ -7,7 +7,7 @@ import ConfirmDelete from "./confirmDelete";
 import { formatPhone } from "./util/stringUtils";
 import SecurityWrapper from "./components/security.js";
 
-import asyncAPICall from './util/asyncAPICall';
+import asyncAPICall from './util/apiWrapper';
 import logout from './util/logout';
 import { validateUUID } from './util/stringUtils';
 

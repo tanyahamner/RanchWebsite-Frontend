@@ -5,7 +5,7 @@ import Cookies from "js-cookie";
 // import TextMaskCustom from "./components/maskedInput";
 import Button from '@material-ui/core/Button';
 
-import asyncAPICall from './util/asyncAPICall';
+import asyncAPICall from './util/apiWrapper';
 import logout from './util/logout';
 
 export default class ProfileEdit extends Component {

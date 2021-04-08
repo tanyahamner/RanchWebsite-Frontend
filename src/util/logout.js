@@ -1,4 +1,4 @@
-import { awaitAPICall } from '../util/asyncAPICall';
+import { awaitAPICall } from './apiWrapper';
 import Cookies from 'js-cookie';
 
 export default function logout(props = null) {

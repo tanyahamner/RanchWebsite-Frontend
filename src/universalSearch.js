@@ -4,7 +4,7 @@ import UserList from './userList';
 import OrganizationList from './organizationList';
 import Button from '@material-ui/core/Button';
 
-import asyncAPICall from './util/asyncAPICall';
+import asyncAPICall from './util/apiWrapper';
 // import logout from './util/logout';
 
 export default class UniversalSearch extends Component {
@@ -61,9 +61,6 @@ export default class UniversalSearch extends Component {
                         this.setState({
                             organizations: data.organizations,
                             users: data.users,
-                            displays: data.displays,
-                            dashboards: data.dashboards,
-                            widgets: data.widgets,
                             searchTerm: searchTerm
                         })
                     },

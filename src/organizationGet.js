@@ -6,7 +6,7 @@ import UserList from './userList'
 import Button from '@material-ui/core/Button';
 import SecurityWrapper from "./components/security";
 
-import asyncAPICall from './util/asyncAPICall';
+import asyncAPICall from './util/apiWrapper';
 import logout from "./util/logout";
 import Cookies from "js-cookie";
 import { validateUUID } from './util/stringUtils';

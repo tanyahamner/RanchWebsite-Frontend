@@ -5,9 +5,9 @@ import Cookies from "js-cookie";
 import Paper from '@material-ui/core/Paper';
 import { Link } from 'react-router-dom';
 
-import Logo from "./img/logo.svg";
-import logout from './util/logout';
-import { awaitAPICall } from './util/asyncAPICall';
+import Logo from "../img/logo.svg";
+import logout from '../util/logout';
+import { awaitAPICall } from '../util/apiWrapper';
 
 export default class LoginPage extends Component {
     constructor(props) {

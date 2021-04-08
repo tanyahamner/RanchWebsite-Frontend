@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 import './styles/App.scss';
 
-import LoginPage from "./login"
+import LoginPage from "./pages/loginPage"
 import LoginContainer from "./loginContainer"
 import DefaultContainer from "./defaultContainer"
 

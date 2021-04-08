@@ -3,7 +3,7 @@ import { NavLink, Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import SearchBar from "material-ui-search-bar";
 
-import { awaitAPICall } from './util/asyncAPICall';
+import { awaitAPICall } from './util/apiWrapper';
 
 // import LoginLogoutButton from './components/loginLogoutButton';
 import Logo from "./img/logo.svg";

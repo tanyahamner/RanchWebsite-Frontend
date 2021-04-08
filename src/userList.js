@@ -7,7 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import SecurityWrapper from "./components/security";
 
-import asyncAPICall from './util/asyncAPICall';
+import asyncAPICall from './util/apiWrapper';
 import logout from "./util/logout.js";
 
 const columns = {
