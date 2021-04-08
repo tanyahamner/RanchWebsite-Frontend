@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
-import ConfirmDelete from "./confirmDelete";
-import { formatPhone } from "./util/stringUtils";
-import SecurityWrapper from "./components/security.js";
+import ConfirmDelete from "../confirmDelete";
+import { formatPhone } from "../util/stringUtils";
+import SecurityWrapper from "../components/security.js";
 
-import asyncAPICall from './util/apiWrapper';
-import logout from './util/logout';
-import { validateUUID } from './util/stringUtils';
+import asyncAPICall from '../util/apiWrapper';
+import logout from '../util/logout';
+import { validateUUID } from '../util/stringUtils';
 
 export default class GetUser extends Component {
     constructor(props) {

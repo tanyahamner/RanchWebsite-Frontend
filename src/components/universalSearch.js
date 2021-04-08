@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import Cookies from 'js-cookie';
-import UserList from './userList';
-import OrganizationList from './organizationList';
+import UserList from '../pages/userList';
+import OrganizationList from '../pages/organizationList';
 import Button from '@material-ui/core/Button';
 
-import asyncAPICall from './util/apiWrapper';
+import asyncAPICall from '../util/apiWrapper';
 // import logout from './util/logout';
 
 export default class UniversalSearch extends Component {

@@ -1,6 +1,6 @@
 import React from "react";
 import Cookies from "js-cookie";
-import OrganizationList from '../organizationList';
+import OrganizationList from './organizationList';
 import SecurityWrapper from '../components/security';
 
 export default function OrganizationListPage(props) {

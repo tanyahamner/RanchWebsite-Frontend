@@ -5,10 +5,9 @@ import SearchBar from "material-ui-search-bar";
 
 import { awaitAPICall } from './util/apiWrapper';
 
-// import LoginLogoutButton from './components/loginLogoutButton';
 import Logo from "./img/logo.svg";
 import SecurityWrapper from "./components/security";
-import ProfileMenu from "./profileMenu"
+import ProfileMenu from "./components/profileMenu"
 
 
 export default class Header extends Component {

@@ -3,8 +3,8 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Cookies from 'js-cookie';
 
-import asyncAPICall from './util/apiWrapper';
-import logout from "./util/logout";
+import asyncAPICall from '../util/apiWrapper';
+import logout from "../util/logout";
 
 export default class OrganizationSelect extends Component {
     constructor(props) {

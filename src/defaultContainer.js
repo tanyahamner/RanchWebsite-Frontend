@@ -3,16 +3,16 @@ import { Route } from 'react-router-dom';
 
 import Header from "./header"
 import Home from "./home"
-import Organization from "./organizationGet"
-import User from "./userGet"
+import Organization from "./pages/organizationGet"
+import User from "./pages/userGet"
 import OrganizationListPage from "./pages/organizationListPage"
-import OrganizationForm from "./organizationForm"
+import OrganizationForm from "./pages/organizationForm"
 import UserListPage from "./pages/userListPage"
-import UserForm from "./userForm"
+import UserForm from "./pages/userForm"
 
-import ProfileEdit from "./profilePageEdit"
+import ProfileEdit from "./pages/profileEditPage"
 
-import UniversalSearch from "./universalSearch"
+import UniversalSearch from "./components/universalSearch"
 
 import Cookies from 'js-cookie';
 import logout from "./util/logout";

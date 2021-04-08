@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import Paper from '@material-ui/core/Paper';
 
-import ConfirmDelete from "./confirmDelete"
+import ConfirmDelete from "../confirmDelete"
 import UserList from './userList'
 import Button from '@material-ui/core/Button';
-import SecurityWrapper from "./components/security";
+import SecurityWrapper from "../components/security";
 
-import asyncAPICall from './util/apiWrapper';
-import logout from "./util/logout";
+import asyncAPICall from '../util/apiWrapper';
+import logout from "../util/logout";
 import Cookies from "js-cookie";
-import { validateUUID } from './util/stringUtils';
+import { validateUUID } from '../util/stringUtils';
 
 export default class GetOrganization extends Component {
     constructor(props) {

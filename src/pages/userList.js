@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import DataTable from 'react-data-table-component';
-import ActiveBadge from './components/activeBadge.js';
-import { formatPhone } from "./util/stringUtils";
+import ActiveBadge from '../components/activeBadge.js';
+import { formatPhone } from "../util/stringUtils";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import SecurityWrapper from "./components/security";
+import SecurityWrapper from "../components/security";
 
-import asyncAPICall from './util/apiWrapper';
-import logout from "./util/logout.js";
+import asyncAPICall from '../util/apiWrapper';
+import logout from "../util/logout.js";
 
 const columns = {
     "first_name": {

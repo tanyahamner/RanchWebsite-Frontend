@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import Cookies from "js-cookie";
-import OrganizationSelect from "./organizationSelect";
-import UserRoleSelect from "./components/userRoleSelect";
+import OrganizationSelect from "../components/organizationSelect";
+import UserRoleSelect from "../components/userRoleSelect";
 // import TextMaskCustom from "./components/maskedInput";
 import Button from '@material-ui/core/Button';
-import SecurityWrapper from "./components/security";
+import SecurityWrapper from "../components/security";
 
-import asyncAPICall from './util/apiWrapper';
-import logout from './util/logout';
+import asyncAPICall from '../util/apiWrapper';
+import logout from '../util/logout';
 
 export default class UserForm extends Component {
     constructor(props) {

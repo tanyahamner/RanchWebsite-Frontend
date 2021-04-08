@@ -4,8 +4,8 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 // import TextMaskCustom from "./components/maskedInput";
 
-import asyncAPICall from './util/apiWrapper';
-import logout from "./util/logout";
+import asyncAPICall from '../util/apiWrapper';
+import logout from "../util/logout";
 
 export default class OrganizationForm extends Component {
     constructor(props) {
@@ -78,17 +78,6 @@ export default class OrganizationForm extends Component {
             },
             null
         )
-
-        // fetch(`http://127.0.0.1:5000/organization/${fetch_url}`, {
-        //     method: "POST",
-        //     headers: { "content-type": "application/json" },
-        //     body: JSON.stringify(Object.fromEntries(form_body))
-        // })
-        //     .then(response => response.json())
-        //     .then(data => {
-        //         this.props.history.push(`/organizations`);
-        //     })
-        //     .catch(error => console.log(error));
     }
 
     redirectTo(path) {
