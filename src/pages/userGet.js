@@ -17,7 +17,8 @@ export default class GetUser extends Component {
 
         this.state = {
             user: {},
-            buttonLabel: ""
+            buttonLabel: "",
+            cannotChangeActiveState: false
         }
 
         this.redirectTo = this.redirectTo.bind(this)
@@ -31,8 +32,10 @@ export default class GetUser extends Component {
 
         let auth_ok = asyncAPICall(`/user/get/${user_id}`, "GET", null, null,
             data => {
+                let cannotChangeActiveState = (data.user_id === user_id);
                 this.setState({
-                    user: data
+                    user: data,
+                    cannotChangeActiveState: cannotChangeActiveState
                 })
             },
             null, this.props
@@ -72,15 +75,15 @@ export default class GetUser extends Component {
                                     <SecurityWrapper restrict_roles="user">
                                         <div className="switch-wrapper">
                                             Active:
-                                        <label className="switch">
-                                                <input type="checkbox" onClick={() => this.handleActivation()} defaultChecked={this.state.user.active} />
+                                            <label className="switch">
+                                                <input type="checkbox" disabled={this.state.cannotChangeActiveState} onClick={() => this.handleActivation()} defaultChecked={this.state.user.active} />
                                                 <span className="slider round" >
                                                     <span>
                                                         On
-                                                </span>
+                                                    </span>
                                                     <span>
                                                         Off
-                                                </span>
+                                                    </span>
                                                 </span>
                                             </label>
                                         </div>
