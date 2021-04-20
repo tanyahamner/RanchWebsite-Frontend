@@ -6,7 +6,7 @@ import SearchBar from "material-ui-search-bar";
 import { awaitAPICall } from './util/apiWrapper';
 
 import Logo from "./img/logo.svg";
-import SecurityWrapper from "./components/security";
+import SecurityWrapper from "./util/securityWrapper";
 import ProfileMenu from "./components/profileMenu"
 
 

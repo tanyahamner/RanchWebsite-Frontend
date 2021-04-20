@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 
 import ConfirmDelete from "../confirmDelete";
 import { formatPhone } from "../util/stringUtils";
-import SecurityWrapper from "../components/security.js";
+import SecurityWrapper from "../util/securityWrapper";
 
 import asyncAPICall from '../util/apiWrapper';
 import logout from '../util/logout';

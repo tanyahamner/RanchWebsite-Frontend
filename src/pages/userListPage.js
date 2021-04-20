@@ -1,7 +1,7 @@
 import React from "react";
 import UserList from './userList';
 import Cookies from "js-cookie";
-import SecurityWrapper from "../components/security";
+import SecurityWrapper from "../util/securityWrapper";
 import logout from '../util/logout';
 
 export default function UserListPage(props) {

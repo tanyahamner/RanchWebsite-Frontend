@@ -6,7 +6,7 @@ import OrganizationSelect from "../components/organizationSelect";
 import UserRoleSelect from "../components/userRoleSelect";
 // import TextMaskCustom from "./components/maskedInput";
 import Button from '@material-ui/core/Button';
-import SecurityWrapper from "../components/security";
+import SecurityWrapper from "../util/securityWrapper";
 
 import asyncAPICall from '../util/apiWrapper';
 import logout from '../util/logout';

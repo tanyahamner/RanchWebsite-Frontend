@@ -5,7 +5,7 @@ import ActiveBadge from '../components/activeBadge.js';
 import { formatPhone } from "../util/stringUtils";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import SecurityWrapper from "../components/security";
+import SecurityWrapper from "../util/securityWrapper";
 
 import asyncAPICall from '../util/apiWrapper';
 import logout from "../util/logout.js";

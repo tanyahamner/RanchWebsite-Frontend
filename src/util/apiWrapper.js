@@ -1,6 +1,13 @@
 import Cookies from 'js-cookie';
 import logout from './logout';
 
+export const api_host = process.env.REACT_APP_API_HOST
+  ? process.env.REACT_APP_API_HOST
+  : "localhost";
+export const api_port = process.env.REACT_APP_API_PORT
+  ? process.env.REACT_APP_API_PORT
+  : "5000";
+  
 export default function asyncAPICall(
    api_endpoint,
    method = "GET",
@@ -8,10 +15,11 @@ export default function asyncAPICall(
    response_callback_method = null,
    data_callback_method = null,
    catch_callback_method = null,
-   require_auth_token = true
+   require_auth_token = true,
+   headers = null,
+   doNotStringifyBody = false
 ) {
    let auth_token = Cookies.get('auth_token');
-
 
    if (!require_auth_token) {
       auth_token = "not_required"
@@ -29,10 +37,21 @@ export default function asyncAPICall(
    }
 
    if (auth_token) {
-
-      let payload = { method: method, headers: { "content-type": "application/json", "auth_token": auth_token } }
+      if (!headers) {
+         headers = { "content-type": "application/json", auth_token: auth_token };
+         } else {
+         if (!("auth_token" in headers)) {
+            headers["auth_token"] = auth_token;
+            // console.log(headers);
+         }
+      }
+      let payload = { method: method, headers: headers };
       if (method === "POST") {
-         payload.body = JSON.stringify(body)
+         if (doNotStringifyBody) {
+            payload.body = body;
+         } else {
+            payload.body = JSON.stringify(body)
+         }
       }
       let response_function = response => {
          if (response.ok) {
@@ -56,10 +75,10 @@ export default function asyncAPICall(
          catch_function = catch_callback_method
       }
       // TODO : Replace host and port with config variables
-      fetch(`http://127.0.0.1:5000${api_endpoint}`, payload)
-         .then(response_function)
-         .then(data_function)
-         .catch(catch_function)
+      fetch(`http://${api_host}:${api_port}${api_endpoint}`, payload)
+         .then((response) => response_function(response))
+         .then((response) => data_function(response))
+         .catch((response) => catch_function(response));
 
       return true
    } else {
@@ -84,7 +103,6 @@ export function awaitAPICall(
       return false;
    }
 
-
    if (!require_auth_token) {
       auth_token = "not_required"
    }
@@ -98,7 +116,7 @@ export function awaitAPICall(
             return response.json();
          } else if (response.status === 403 || response.status === 401) {
             // Cookies.remove('auth_token');
-            return false;
+            logout();
          }
          let error = new Error(response.statusText)
          error.response = response
@@ -119,14 +137,14 @@ export function awaitAPICall(
       let fetchFromAPI = async () => {
          try {
             // TODO : Replace host and port with config variables
-            let response = await fetch(`http://127.0.0.1:5000${api_endpoint}`, payload);
+            let response = await fetch(`http://${api_host}:${api_port}${api_endpoint}`, payload);
             let results = await response_function(response);
             await data_function(results);
          } catch (error) {
             catch_function(error)
             return false;
          }
-      }
+      };
 
       fetchFromAPI();
 
