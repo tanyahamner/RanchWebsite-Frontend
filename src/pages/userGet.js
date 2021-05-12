@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
+
 import ConfirmDelete from "../confirmDelete";
 import { formatPhone } from "../util/stringUtils";
 import SecurityWrapper from "../util/securityWrapper";
@@ -32,7 +33,7 @@ export default class GetUser extends Component {
 
         let auth_ok = asyncAPICall(`/user/get/${user_id}`, "GET", null, null,
             data => {
-                let cannotChangeActiveState = (data.user_id === user_id);
+                let cannotChangeActiveState = false;
                 this.setState({
                     user: data,
                     cannotChangeActiveState: cannotChangeActiveState
@@ -52,9 +53,10 @@ export default class GetUser extends Component {
                     user: data
                 })
             },
-            null, this.props
+            (error) => {
+                console.log('Unable to deactivate your own user')
+            }, this.props
         );
-        if (!auth_ok) { logout(this.props); }
     }
 
     redirectTo(path) {
