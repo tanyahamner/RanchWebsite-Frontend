@@ -19,7 +19,6 @@ const ForgotPassword = (props) => {
   const handleChange = (e) => {
     if (e.target.name === "email") {
       setEmail(e.target.value);
-      console.log(email);
     }
   };
 
@@ -27,7 +26,7 @@ const ForgotPassword = (props) => {
     e.preventDefault();
 
     asyncAPICall(
-      "/user/pwchangerequest",
+      "/user/pw_change_request",
       "POST",
       {
         email: email,
@@ -55,9 +54,9 @@ const ForgotPassword = (props) => {
           </div>
           <hr color="#6C8CB5" />
           <div>Don't worry, it happens to the best of us.</div>
-          <form className="recovery-form" onSubmit={handleSubmit}>
             <TextField
               required
+              name="email"
               type="email"
               variant="outlined"
               size="small"
@@ -67,11 +66,11 @@ const ForgotPassword = (props) => {
             <Button
               className="confirm-button send-recovery"
               type="submit"
-              onClick={() => redirectTo(`/login/email/sent`)}
+              onClick={handleSubmit}
+            //   onClick={() => redirectTo(`/login/email/sent`)}
             >
               send me recovery link
             </Button>
-          </form>
         </Paper>
       </div>
     </div>
