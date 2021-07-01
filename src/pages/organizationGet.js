@@ -127,7 +127,7 @@ export default class GetOrganization extends Component {
                                         <div>
                                             <p className="address">
                                                 {this.state.organization.address}<br />
-                                                {this.state.organization.city}, {this.state.organization.state} &nbsp;{this.state.organization.zip_code}
+                                                {this.state.organization.city}{this.state.organization.city && this.state.organization.state ? "," : ""} {this.state.organization.state} &nbsp;{this.state.organization.zip_code}
                                             </p>
                                             <p className="phone">
                                                 {this.formatPhone(this.state.organization.phone)}
