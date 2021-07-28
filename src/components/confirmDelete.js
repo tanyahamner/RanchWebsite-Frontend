@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import ReactModal from "react-modal"
 import Button from '@material-ui/core/Button';
 
-import { awaitAPICall } from './util/apiWrapper';
-import logout from './util/logout';
+import { awaitAPICall } from '../util/apiWrapper';
+import logout from '../util/logout';
 
 ReactModal.setAppElement('#root');
 

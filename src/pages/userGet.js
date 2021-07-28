@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
 
-import ConfirmDelete from "../confirmDelete";
+import ConfirmDelete from "../components/confirmDelete";
 import { formatPhone } from "../util/stringUtils";
 import SecurityWrapper from "../util/securityWrapper";
 
