@@ -1,136 +1,127 @@
-import React, { Component } from "react";
-import { NavLink, Link } from 'react-router-dom';
-import Cookies from 'js-cookie';
+import React, { useEffect, useState } from "react";
+import { NavLink, Link, useHistory } from "react-router-dom";
+import Cookies from "js-cookie";
 import SearchBar from "material-ui-search-bar";
 
-import { awaitAPICall } from './util/apiWrapper';
-
+import { awaitAPICall } from "./util/apiWrapper";
 import Logo from "./img/logo.svg";
 import SecurityWrapper from "./util/securityWrapper";
-import ProfileMenu from "./components/profileMenu"
+import ProfileMenu from "./components/profileMenu";
 
+export default function Header(props) {
+  const [userName, setUserName] = useState("");
+  const [orgIdCookie, setOrgIdCookie] = useState("");
+  const [userFullName, setUserFullName] = useState("");
+  const [orgName, setOrgName] = useState("");
+  const [userID, setUserID] = useState("");
+  const [menuOpen, setMenuOpen] = useState(false);
 
-export default class Header extends Component {
-    constructor(props) {
-        super(props);
+  const history = useHistory();
+  let justClosed = false;
+  let timer = null;
 
-        this.state = {
-            userName: "",
-            orgIdCookie: "",
-            searchTerm: "",
-            userFullName: "",
-            orgName: "",
-            userID: "",
-            menuOpen: false
+  useEffect(() => {
+    let auth_token_from_cookie = Cookies.get("auth_token");
+    if (auth_token_from_cookie) {
+      props.setAuthToken(auth_token_from_cookie);
+    } else {
+      props.setAuthToken(null);
+    }
+
+    awaitAPICall(
+      "/user/get/me",
+      "GET",
+      null,
+      null,
+      (data) => {
+        if (data) {
+          setUserFullName(data.first_name + " " + data.last_name);
+          setOrgName(data.organization.name);
+          setUserID(data.user_id);
+          setUserName(data.first_name);
+          setOrgIdCookie(data.org_id);
         }
+      },
+      null
+    );
+  }, []);
 
-        this.justClosed = false;
-        this.timer = null;
+  useEffect(() => {
+    return () => {
+      if (timer) clearInterval(timer);
+    };
+  }, [timer]);
 
-        this.getSearchResults = this.getSearchResults.bind(this)
-        this.handleMenuOpenClose = this.handleMenuOpenClose.bind(this)
-        this.handleMenuClick = this.handleMenuClick.bind(this)
+  const redirectTo = (path) => {
+    history.push(path);
+  };
+
+  const getSearchResults = () => {
+    redirectTo(`/universal-search/${props.searchTerm}`);
+  };
+
+  const handleMenuOpenClose = (fromWhere) => {
+    if (!justClosed) {
+      setMenuOpen(!menuOpen);
     }
 
-    componentDidMount() {
-        let auth_token_from_cookie = Cookies.get('auth_token');
-        if (auth_token_from_cookie) {
-            this.props.setAuthToken(auth_token_from_cookie)
-        } else {
-            this.props.setAuthToken(null)
-        }
-
-
-        awaitAPICall("/user/get/me", "GET", null,
-            null,
-            data => {
-                if (data) {
-                    let userFullName = data.first_name + " " + data.last_name
-                    let orgName = data.organization.name
-                    let userID = data.user_id
-                    let userName = data.first_name
-                    let orgIdCookie = data.org_id
-
-                    this.setState({
-                        userName: userName,
-                        orgIdCookie: orgIdCookie,
-                        userFullName: userFullName,
-                        orgName: orgName,
-                        userID: userID
-                    })
-                }
-            },
-            null
-        );
-
-
+    if (fromWhere === "FromBlur") {
+      justClosed = true;
+      timer = setTimeout(() => {
+        justClosed = false;
+      }, 500);
     }
+  };
 
-    componentWillUnmount() {
-        if (this.timer) {
-            clearInterval(this.timer)
-        }
+  const handleMenuClick = () => {
+    if (!menuOpen) {
+      handleMenuOpenClose("MenuClick");
     }
+  };
 
-    redirectTo(path) {
-        this.props.history.push(path);
-    }
+  return (
+    <div className="navbar-wrapper">
+      <div className="left-column">
+        <Link className="logo-wrapper nav-item" to="/home">
+          <img src={Logo} alt="" height="18px"></img>
+        </Link>
+        <SecurityWrapper roles="super-admin">
+          <NavLink exact to="/organizations">
+            <div className="page-link nav-item">Organizations</div>
+          </NavLink>
+        </SecurityWrapper>
+        <NavLink exact to="/users">
+          <div className="page-link nav-item">Users</div>
+        </NavLink>
+      </div>
+      {/* <Link to ="/organization">Organization</Link> */}
+      {/* <NavLink exact to="/organization"><div className="page-link">Org Detail</div></NavLink> */}
+      <div className="right-column">
+        <SearchBar
+          value={props.searchTerm}
+          onChange={(newValue) => props.setSearchTerm(newValue)}
+          onRequestSearch={getSearchResults}
+          style={{ height: "30px", lineHeight: "normal" }}
+        />
 
-    getSearchResults() {
-        this.props.setSearchTerm(this.props.searchTerm);
-        this.redirectTo(`/universal-search/${this.props.searchTerm}`);
-    }
-
-    handleMenuOpenClose(fromWhere) {
-        if (!this.justClosed) {
-            this.setState({
-                menuOpen: !this.state.menuOpen
-            })
-        }
-        if (fromWhere === 'FromBlur') {
-            this.justClosed = true;
-            this.timer = setTimeout(
-                () => {
-                    this.justClosed = false;
-                }
-                , 500)
-        }
-
-
-    }
-
-    handleMenuClick() {
-        if (!this.state.menuOpen) {
-            this.handleMenuOpenClose("MenuClick");
-        }
-    }
-
-    render() {
-        return (
-            <div className="navbar-wrapper">
-                <div className="left-column">
-                    <Link className="logo-wrapper nav-item" to="/home"><img src={Logo} alt="" height="18px"></img></Link>
-                    <SecurityWrapper roles="super-admin" >
-                        <NavLink exact to="/organizations"><div className="page-link nav-item">Organizations</div></NavLink>
-                    </SecurityWrapper>
-                    <NavLink exact to="/users"><div className="page-link nav-item">Users</div></NavLink>
-                </div>
-                {/* <Link to ="/organization">Organization</Link> */}
-                {/* <NavLink exact to="/organization"><div className="page-link">Org Detail</div></NavLink> */}
-                <div className="right-column">
-                    <SearchBar
-                        value={this.state.searchTerm}
-                        onChange={(newValue) => this.props.setSearchTerm(newValue)}
-                        onRequestSearch={this.getSearchResults}
-                        style={{ height: "30px", lineHeight: "normal" }}
-                    />
-                    {/* <div className="dropdown-menu"> */}
-                    <div onClick={this.handleMenuClick} className="users_name">{this.state.userName}&nbsp;&nbsp;<i className={`fas fa-chevron-${(this.state.menuOpen) ? 'up' : 'down'}`}></i></div>
-                    {this.state.menuOpen ? <ProfileMenu {...this.props} userFullName={this.state.userFullName} orgName={this.state.orgName} orgId={this.state.orgIdCookie} userID={this.state.userID} handleMenuOpenClose={this.handleMenuOpenClose} parent={this} /> : ""}
-                    {/* </div> */}
-                    {/* <LoginLogoutButton authToken={this.props.authToken} setAuthToken={this.props.setAuthToken} history={this.props.history} /> */}
-                </div>
-            </div>
-        )
-    }
+        <div onClick={handleMenuClick} className="users_name">
+          {userName}&nbsp;&nbsp;
+          <i className={`fas fa-chevron-${menuOpen ? "up" : "down"}`}></i>
+        </div>
+        {menuOpen ? (
+          <ProfileMenu
+            {...props}
+            userFullName={userFullName}
+            orgName={orgName}
+            orgId={orgIdCookie}
+            userID={userID}
+            handleMenuOpenClose={handleMenuOpenClose}
+            menuOpen={menuOpen}
+          />
+        ) : (
+          ""
+        )}
+      </div>
+    </div>
+  );
 }

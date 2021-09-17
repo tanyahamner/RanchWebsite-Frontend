@@ -18,7 +18,7 @@ import Cookies from 'js-cookie';
 import logout from "./util/logout";
 
 const DefaultContainer = (props) => {
-  const [searchTerm, setSearchTerm] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     let auth_token_from_cookie = Cookies.get('auth_token');

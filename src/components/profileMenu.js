@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 
 
 export default class ProfileMenu extends Component {
@@ -10,12 +10,13 @@ export default class ProfileMenu extends Component {
         }
 
         this.handleLinkClick = this.handleLinkClick.bind(this)
+        this.menuRef = createRef()
     }
 
     componentDidMount() {
-        let menuOpen = this.props.parent.state.menuOpen
+        let menuOpen = this.props.menuOpen
         if (menuOpen) {
-            document.getElementById('dropdown-menu-wrapper').focus();
+            this.menuRef.current.focus();
         }
     }
 
@@ -26,7 +27,7 @@ export default class ProfileMenu extends Component {
 
     render() {
         return (
-            <div onBlur={() => this.props.handleMenuOpenClose("FromBlur")} id="dropdown-menu-wrapper" className="dropdown-menu-wrapper" tabIndex="0">
+            <div onBlur={() => this.props.handleMenuOpenClose("FromBlur")} ref={this.menuRef} id="dropdown-menu-wrapper" className="dropdown-menu-wrapper" tabIndex="0">
                 <h3>{this.props.userFullName}</h3>
                 <div onClick={() => this.handleLinkClick(`/organization/${this.props.orgId}`)} className="org">{this.props.orgName}</div>
                 <div onClick={() => this.handleLinkClick(`/profile/edit/${this.props.userID}`)} className="link">My Profile</div>

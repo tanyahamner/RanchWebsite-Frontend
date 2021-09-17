@@ -1,108 +1,116 @@
-import React, { Component } from 'react';
-import Cookies from 'js-cookie';
-import UserList from '../pages/userList';
-import OrganizationList from '../pages/organizationList';
-import Button from '@material-ui/core/Button';
+// TODO: Results to one array of objects for easy conditional rendering
+import { useCallback, useEffect, useRef, useState } from "react";
+import Cookies from "js-cookie";
 
-import asyncAPICall from '../util/apiWrapper';
+import UserList from "../pages/userList";
+import OrganizationList from "../pages/organizationList";
+import Button from "@material-ui/core/Button";
+import asyncAPICall from "../util/apiWrapper";
+import useDebounce from "./hooks/useDebounce";
+import Loading from "./loading";
 // import logout from './util/logout';
 
-export default class UniversalSearch extends Component {
+export default function UniversalSearch(props) {
+  const searchDebounce = useDebounce(props.searchTerm);
+  const results = useRef(false);
 
+  const [organizations, setOrganizations] = useState([]);
+  const [users, setUsers] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
 
-    constructor(props) {
-        super(props)
-
-        this.state = {
-            organizations: [],
-            users: [],
-            displays: [],
-            dashboards: [],
-            widgets: [],
-            searchTerm: props.searchTerm,
-        }
-
-        this.results = false;
-
-        this.renderOrganizations = this.renderOrganizations.bind(this)
-        this.renderUsers = this.renderUsers.bind(this)
+  const loadResults = useCallback(() => {
+    const auth_token = Cookies.get("auth_token");
+    if (auth_token) {
+      asyncAPICall(
+        `/search/${searchDebounce}`,
+        "GET",
+        null,
+        null,
+        (data) => {
+					results.current = true
+          setOrganizations(data.organizations);
+          setUsers(data.users);
+          setIsSearching(false);
+        },
+        (err) => console.error("loadResults Error: ", err)
+      );
     }
+  }, [searchDebounce]);
 
-    //0========[====================================>
-
-    componentDidMount() {
-        this.loadResults(this.props.searchTerm)
+  const renderOrganizations = () => {
+    if (organizations.length) {
+      return (
+        <OrganizationList
+          showFilter="false"
+          showAddButton="false"
+          columns="name,city,state,phone,active"
+          orgList={organizations}
+        />
+      );
     }
+    return false;
+  };
 
-    static getDerivedStateFromProps(props, state) {
-        if (props.searchTerm !== state.searchTerm) {
-            return {
-                searchTerm: props.searchTerm
-            }
-        }
-        return null;
+  const renderUsers = () => {
+    if (users.length) {
+      return (
+        <UserList
+          showFilter="false"
+          showAddButton="false"
+          columns="first_name,last_name,email,phone,active"
+          userList={users}
+        />
+      );
     }
+    return false;
+  };
 
-    componentDidUpdate(prevProps, prevState) {
-        if (this.props.searchTerm !== prevProps.searchTerm) {
-            this.results = false
-            this.loadResults(this.props.searchTerm)
-        }
+  useEffect(() => {
+    if (props.searchTerm === "") setIsSearching(false);
+    else setIsSearching(true);
+  }, [props.searchTerm]);
+
+  useEffect(() => {
+    results.current = false;
+    if (searchDebounce) {
+      loadResults(searchDebounce);
+    } else {
+      setOrganizations([]);
+      setUsers([]);
+      setIsSearching(false);
     }
+  }, [searchDebounce, loadResults]);
 
-    loadResults(searchTerm) {
-        let auth_token = Cookies.get('auth_token');
-        // console.log(`auth_token: ${auth_token}`)
-        if (auth_token) {
-            // console.log(`search_term: ${searchTerm}`)
-            if (searchTerm && searchTerm !== '') {
-                asyncAPICall(`/search/${searchTerm}`, "GET", null, null,
-                    data => {
-                        this.setState({
-                            organizations: data.organizations,
-                            users: data.users,
-                            searchTerm: searchTerm
-                        })
-                    },
-                    null, this.props
-                );
-                //if (!auth_ok) { logout(this.props); }
-            }
-        }
-    }
-
-    renderOrganizations() {
-        if (this.state.organizations && this.state.organizations.length > 0) {
-            this.results = true;
-            return (<OrganizationList showFilter="false" showAddButton="false" columns="name,city,state,phone,active" orgList={this.state.organizations} />)
-        }
-        return ''
-    }
-
-    renderUsers() {
-        if (this.state.users && this.state.users.length > 0) {
-            this.results = true;
-            return (<UserList showFilter="false" showAddButton="false" columns="first_name,last_name,email,phone,active" userList={this.state.users} />)
-        }
-        return ''
-    }
-
-    render() {
-        return (
-            <div className="search-data-wrapper">
-                <Button className="confirm-button back-button search-title" onClick={() => this.props.history.goBack()}><i className="fas fa-chevron-left button-icon"></i> Back</Button>
-                <h1 className="search-title">Search Results</h1>
-                <div className="organizations">
-                    {this.renderOrganizations()}
-                </div>
-                <div className="users">
-                    {this.renderUsers()}
-                </div>
-                {(this.results) ? "" : <h4 className="no-results">There are no records to display</h4>}
-                <div className="vertical-spacing">
-                    <br /><br /><br />
-                </div>
-            </div>
-        )
-    };
+  return (
+    <div className="search-data-wrapper">
+      <Button
+        className="confirm-button back-button search-title"
+        onClick={() => props.history.goBack()}
+      >
+        <i className="fas fa-chevron-left button-icon"></i> Back
+      </Button>
+      <h1 className="search-title">Search Results</h1>
+			
+      {isSearching ? 
+        <Loading content="Searching...." styles={{
+          height: "50%",
+          width: "80%",
+					backgroundColor: "white",
+				}} />
+       : 
+				results.current ? 
+        <>
+          <div className="organizations">{renderOrganizations()}</div>
+          <div className="users">{renderUsers()}</div>
+        </>
+       : 
+        <h4 className="no-results">There are no records to display</h4>
+			}
+      <div className="vertical-spacing">
+        <br />
+        <br />
+        <br />
+      </div>
+    </div>
+  );
 }
