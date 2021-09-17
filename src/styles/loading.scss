@@ -29,23 +29,23 @@
   @keyframes circle {
     0% {
       transform: translateX(50%) translateY(0);
-      background-color: #bad89b;
+      background-color: grey;
     }
     25% {
       transform: translateX(100%) translateY(50%);
-      background-color: #dafeb7;
+      background-color: #3E5168;
     }
     50% {
       transform: translateX(50%) translateY(100%);
-      background-color: #f0fae4;
+      background-color: #6C8CB5;
     }
     75% {
       transform: translateX(0%) translateY(50%);
-      background-color: #dafeb7;
+      background-color: #8AB3E8;
     }
     100% {
       transform: translateX(50%) translateY(0%);
-      background-color: #bad89b;
+      background-color: gray;
     }
   }
   
