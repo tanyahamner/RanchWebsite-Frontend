@@ -1,4 +1,3 @@
-// TODO: Results to one array of objects for easy conditional rendering
 import { useCallback, useEffect, useRef, useState } from "react";
 import Cookies from "js-cookie";
 
