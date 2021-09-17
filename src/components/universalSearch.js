@@ -26,7 +26,13 @@ export default function UniversalSearch(props) {
         null,
         null,
         (data) => {
-					results.current = true
+					for(let result in data){
+						if(data[result].length) {
+							results.current = true;
+							break
+						}
+					}
+
           setOrganizations(data.organizations);
           setUsers(data.users);
           setIsSearching(false);
