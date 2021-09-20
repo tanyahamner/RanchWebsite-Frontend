@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
+
 import asyncAPICall from "../util/apiWrapper";
 
 import Paper from "@material-ui/core/Paper";
@@ -8,18 +8,10 @@ import Button from "@material-ui/core/Button";
 import Logo from "../img/logo.svg";
 
 const ForgotPassword = (props) => {
-  const history = useHistory();
   const [email, setEmail] = useState("");
 
-  const routeChange = (e, route = "/login") => {
-    e.preventDefault();
-    history.push(route);
-  };
-
-  const handleChange = (e) => {
-    if (e.target.name === "email") {
-      setEmail(e.target.value);
-    }
+  const routeChange = (route = "/login") => {
+    props.history.push(route);
   };
 
   const handleSubmit = (e) => {
@@ -32,15 +24,11 @@ const ForgotPassword = (props) => {
         email: email,
       },
       null,
-      routeChange(e, "/login/email/sent"),
+      routeChange("/login/email/sent"),
       null,
       false
     );
   };
-
-  function redirectTo(path) {
-    props.history.push(path);
-  }
 
   return (
     <div className="fp-page-wrapper">
@@ -56,18 +44,16 @@ const ForgotPassword = (props) => {
           <div>Don't worry, it happens to the best of us.</div>
             <TextField
               required
-              name="email"
               type="email"
               variant="outlined"
               size="small"
               placeholder="Your email here..."
-              onChange={handleChange}
+              onChange={(e) => setEmail(e.target.value)}
             />
             <Button
               className="confirm-button send-recovery"
               type="submit"
               onClick={handleSubmit}
-            //   onClick={() => redirectTo(`/login/email/sent`)}
             >
               send me recovery link
             </Button>

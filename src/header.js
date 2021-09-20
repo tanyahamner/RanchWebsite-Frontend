@@ -44,7 +44,7 @@ export default function Header(props) {
       },
       null
     );
-  }, []);
+  }, [props]);
 
   useEffect(() => {
     return () => {

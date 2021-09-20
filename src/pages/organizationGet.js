@@ -12,16 +12,17 @@ import Cookies from "js-cookie";
 import { validateUUID, formatPhone } from "../util/stringUtils";
 import { successfulToast } from "../util/toastNotifications";
 
-import EditTitle from "../components/editTitle"
+import EditTitle from "../components/editTitle";
 
 export default function GetOrganization(props) {
   const [organization, setOrganization] = useState(null);
-  const [buttonLable, setButtonLable] = useState("");
   const [orgName, setOrgName] = useState(null);
   const [orgId, setOrgId] = useState(null);
   const [userOrgId, setUserOrgId] = useState(null);
-  const[title, setTitle] = useState(null);
+  const [title, setTitle] = useState(null);
   const [oldTitle, setOldTitle] = useState("");
+  const [switchStyle, setSwitchStyle] = useState("slider round");
+  const [disableButtons, setDisableButtons] = useState(false);
 
   useEffect(() => {
     let org_id = props.match.params.org_id;
@@ -41,8 +42,15 @@ export default function GetOrganization(props) {
         setOrgName(data.name);
         setOrgId(org_id);
         setUserOrgId(user_org_id);
-        setTitle(data.name)
-        setOldTitle(data.name)
+        setTitle(data.name);
+        setOldTitle(data.name);
+
+        let disableButtons = data.org_id === data.user_org_id ? true : false;
+
+        if (disableButtons) {
+          setSwitchStyle("slider round disable-switch");
+        }
+        setDisableButtons(disableButtons);
       },
       null,
       props
@@ -50,13 +58,12 @@ export default function GetOrganization(props) {
     if (!auth_ok) {
       logout(props);
     }
-  },[] )
+  }, [props]);
 
   const organizationActivateToast = () => {
     if (organization.active) {
       successfulToast("Organization Successfully Deactivated!");
-    }
-    else {
+    } else {
       successfulToast("Organization Successfully Activated!");
     }
   };
@@ -69,7 +76,7 @@ export default function GetOrganization(props) {
       null,
       null,
       (data) => {
-        organizationActivateToast()
+        organizationActivateToast();
         setOrganization(data);
       },
       null
@@ -79,30 +86,33 @@ export default function GetOrganization(props) {
   function redirectTo(path) {
     props.history.push(path);
   }
+
   if (!organization) {
     return <div />;
   }
-  let disableButtons =
-    orgId === userOrgId ? true : false;
-  let switchStyle = "slider round";
-  if (disableButtons) {
-    switchStyle = "slider round disable-switch";
-    }
 
-    let org_name = orgName;
   return (
     <div className="get-wrapper">
       <div className="get-detail-wrapper">
         <Button
-          className="confirm-button back-button" onClick={() => props.history.goBack()}
-          >
+          className="confirm-button back-button"
+          onClick={() => props.history.goBack()}
+        >
           <i className="fas fa-chevron-left button-icon"></i> Back
         </Button>
         <div className="detail-wrapper wrapper">
           <Paper className="form-wrapper" elevation={3}>
             <div className="details">
               <div className="top-section">
-                <EditTitle title_name={title} set_title={setTitle} set_old_title={setOldTitle} old_title={oldTitle} type="organization" id={organization.org_id} data={organization}/>
+                <EditTitle
+                  title_name={title}
+                  set_title={setTitle}
+                  set_old_title={setOldTitle}
+                  old_title={oldTitle}
+                  type="organization"
+                  id={organization.org_id}
+                  data={organization}
+                />
                 <SecurityWrapper roles="super-admin">
                   <div className="switch-wrapper">
                     Active:
@@ -131,13 +141,10 @@ export default function GetOrganization(props) {
                     <p className="address">
                       {organization.address}
                       <br />
-                      {organization.city}{" "}
-                      {organization.state} &nbsp;
+                      {organization.city} {organization.state} &nbsp;
                       {organization.zip_code}
                     </p>
-                    <p className="phone">
-                      {formatPhone(organization.phone)}
-                    </p>
+                    <p className="phone">{formatPhone(organization.phone)}</p>
                   </div>
                 </div>
                 <div className="flex-row">
@@ -145,20 +152,14 @@ export default function GetOrganization(props) {
                     <Button
                       className="confirm-button"
                       onClick={() =>
-                        redirectTo(
-                          `/organization-form/${organization.org_id}`
-                        )
+                        redirectTo(`/organization-form/${organization.org_id}`)
                       }
                     >
                       Edit
                     </Button>
                     <SecurityWrapper restrict_roles="admin">
                       <ConfirmDelete
-                        disabled={
-                          orgId === userOrgId
-                            ? true
-                            : false
-                        }
+                        disabled={orgId === userOrgId ? true : false}
                         objectType="organization"
                         id={organization.org_id}
                         redirectTo={redirectTo}
