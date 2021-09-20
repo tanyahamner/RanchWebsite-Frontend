@@ -16,11 +16,10 @@ import EditTitle from "../components/editTitle"
 
 export default function GetOrganization(props) {
   const [organization, setOrganization] = useState(null);
-  const [buttonLable, setButtonLable] = useState("");
   const [orgName, setOrgName] = useState(null);
   const [orgId, setOrgId] = useState(null);
   const [userOrgId, setUserOrgId] = useState(null);
-  const[title, setTitle] = useState(null);
+  const [title, setTitle] = useState(null);
   const [oldTitle, setOldTitle] = useState("");
 
   useEffect(() => {
@@ -50,7 +49,7 @@ export default function GetOrganization(props) {
     if (!auth_ok) {
       logout(props);
     }
-  },[] )
+  }, [props])
 
   const organizationActivateToast = () => {
     if (organization.active) {
