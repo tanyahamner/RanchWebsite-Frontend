@@ -22,7 +22,7 @@ export default function GetOrganization(props) {
   const [title, setTitle] = useState(null);
   const [oldTitle, setOldTitle] = useState("");
   const [switchStyle, setSwitchStyle] = useState("slider round");
-  const [disableButtons, setDisableButtons] = useState(false)
+  const [disableButtons, setDisableButtons] = useState(false);
 
   useEffect(() => {
     let org_id = props.match.params.org_id;
@@ -50,8 +50,7 @@ export default function GetOrganization(props) {
         if (disableButtons) {
           setSwitchStyle("slider round disable-switch");
         }
-        setDisableButtons(disableButtons)
-        
+        setDisableButtons(disableButtons);
       },
       null,
       props
