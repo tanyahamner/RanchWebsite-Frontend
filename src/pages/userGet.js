@@ -47,7 +47,7 @@ export default class GetUser extends Component {
 
     handleActivation() {
         let endpoint = (this.state.user.active) ? "deactivate" : "activate";
-        let auth_ok = asyncAPICall(`/user/${endpoint}/${this.state.user.user_id}`, "PUT", null, null,
+        asyncAPICall(`/user/${endpoint}/${this.state.user.user_id}`, "PUT", null, null,
             data => {
                 this.setState({
                     user: data
