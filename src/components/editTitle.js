@@ -8,10 +8,6 @@ export default function EditTitle(props) {
   const [beingEdited, setBeingEdited] = useState(false);
   const [errorMsg, setErrorMsg] = useState(false);
 
-  function onClick() {
-    setBeingEdited(true);
-  }
-
   function onBlur() {
     if (props.title_name === "") {
       setErrorMsg("Please do not leave the title empty.");
@@ -92,7 +88,7 @@ export default function EditTitle(props) {
             />
           </div>
         ) : (
-          <h1 onClick={onClick}>{props.title_name}</h1>
+          <h1 onClick={() => setBeingEdited(true)}>{props.title_name}</h1>
         )}
       </SecurityWrapper>
       <SecurityWrapper roles="user">
