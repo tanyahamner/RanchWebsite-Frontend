@@ -1,21 +1,20 @@
-import React, { Component } from 'react';
-import Cookies from 'js-cookie';
+import { useEffect } from "react";
+import Cookies from "js-cookie";
 
+const Home = (props) => {
+  useEffect(() => {
+    let auth_token = Cookies.get("auth_token");
 
-export default class Home extends Component {
-    componentDidMount() {
-        let auth_token = Cookies.get("auth_token");
-        if (!auth_token) {
-            this.props.history.push('/login');
-        }
+    if (!auth_token) {
+      props.history.push("/login");
     }
+  }, [props.history]);
 
-    render(){
-        return(
-            <div className='home-wrapper'>
-                <div>Welcome to Foundation</div>
-                
-            </div>
-        )
-    }
-}
+  return (
+    <div className="home-wrapper">
+      <div>Welcome to Foundation</div>
+    </div>
+  );
+};
+
+export default Home;

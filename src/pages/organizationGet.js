@@ -23,6 +23,7 @@ export default function GetOrganization(props) {
   const [oldTitle, setOldTitle] = useState("");
   const [switchStyle, setSwitchStyle] = useState("slider round");
   const [disableButtons, setDisableButtons] = useState(false);
+  const [users, setUsers] = useState([])
 
   useEffect(() => {
     let org_id = props.match.params.org_id;
@@ -31,7 +32,7 @@ export default function GetOrganization(props) {
     }
 
     let user_org_id = Cookies.get("org_id");
-
+    // /user/get/organization/<org_id>
     let auth_ok = asyncAPICall(
       `/organization/get/${org_id}`,
       "GET",
@@ -55,6 +56,13 @@ export default function GetOrganization(props) {
       null,
       props
     );
+
+    asyncAPICall(`/user/get/organization/${org_id}`, "GET", null, null, 
+      data => setUsers(data),
+      err => console.error("Get Org Users Error: ", err),
+      true
+    )
+
     if (!auth_ok) {
       logout(props);
     }
@@ -178,6 +186,7 @@ export default function GetOrganization(props) {
                 columns="first_name,last_name,email,phone,active"
                 org_name={orgName}
                 org_id={props.match.params.org_id}
+                userList ={users}
               />
             </div>
           </Paper>

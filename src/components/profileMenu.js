@@ -1,40 +1,54 @@
-import React, { Component, createRef } from 'react';
+import { useRef, useEffect } from "react";
 
+const ProfileMenu = (props) => {
+  const menuRef = useRef();
 
-export default class ProfileMenu extends Component {
-    constructor(props) {
-        super(props)
+  useEffect(() => {
+    const menuOpen = props.menuOpen;
 
-
-        this.state = {
-        }
-
-        this.handleLinkClick = this.handleLinkClick.bind(this)
-        this.menuRef = createRef()
+    if (menuOpen) {
+      menuRef.current.focus();
     }
+  }, [props.menuOpen]);
 
-    componentDidMount() {
-        let menuOpen = this.props.menuOpen
-        if (menuOpen) {
-            this.menuRef.current.focus();
-        }
-    }
+  const handleLinkClick = (link) => {
+    props.handleMenuOpenClose();
+    props.history.push(link);
+  };
 
-    handleLinkClick(link) {
-        this.props.handleMenuOpenClose()
-        this.props.history.push(link)
-    }
+  return (
+    <div
+      onBlur={() => props.handleMenuOpenClose("FromBlur")}
+      ref={menuRef}
+      id="dropdown-menu-wrapper"
+      className="dropdown-menu-wrapper"
+      tabIndex="0"
+    >
+      <h3>{props.userFullName}</h3>
+      <div
+        onClick={() => handleLinkClick(`/organization/${props.orgId}`)}
+        className="org"
+      >
+        {props.orgName}
+      </div>
+      <div
+        onClick={() => handleLinkClick(`/profile/edit/${props.userID}`)}
+        className="link"
+      >
+        My Profile
+      </div>
+      <div
+        onClick={() => handleLinkClick(`/organization/${props.orgId}`)}
+        className="link"
+      >
+        My Account
+      </div>
+      <hr></hr>
+      <div onClick={() => handleLinkClick(`/login`)} className="link">
+        Sign Out
+      </div>
+    </div>
+  );
+};
 
-    render() {
-        return (
-            <div onBlur={() => this.props.handleMenuOpenClose("FromBlur")} ref={this.menuRef} id="dropdown-menu-wrapper" className="dropdown-menu-wrapper" tabIndex="0">
-                <h3>{this.props.userFullName}</h3>
-                <div onClick={() => this.handleLinkClick(`/organization/${this.props.orgId}`)} className="org">{this.props.orgName}</div>
-                <div onClick={() => this.handleLinkClick(`/profile/edit/${this.props.userID}`)} className="link">My Profile</div>
-                <div onClick={() => this.handleLinkClick(`/organization/${this.props.orgId}`)} className="link">My Account</div>
-                <hr></hr>
-                <div onClick={() => this.handleLinkClick(`/login`)} className="link">Sign Out</div>
-            </div>
-        );
-    }
-}
+export default ProfileMenu;

@@ -1,118 +1,173 @@
-import React, { Component } from "react";
-import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
-// import TextMaskCustom from "./components/maskedInput";
+import { useState, useEffect } from "react";
+import TextField from "@material-ui/core/TextField";
+import Paper from "@material-ui/core/Paper";
+import Button from "@material-ui/core/Button";
 
-import asyncAPICall from '../util/apiWrapper';
+import asyncAPICall from "../util/apiWrapper";
 import logout from "../util/logout";
 
-export default class OrganizationForm extends Component {
-    constructor(props) {
-        super(props)
+const OrganizationForm = (props) => {
+  const [org_id, setOrgId] = useState("");
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [zip_code, setZipCode] = useState("");
+  const [phone, setPhone] = useState("");
+  const [editing, setEditing] = useState(false);
+  const [title, setTitle] = useState("");
 
-        this.state = {
-            formData: {},
-            org_id: '',
-            name: '',
-            address: '',
-            city: '',
-            state: '',
-            zip_code: '',
-            phone: '',
-            active: 1,
-            editing: false
-        }
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-        this.handleSubmit = this.handleSubmit.bind(this)
-        this.handleChange = this.handleChange.bind(this)
+    let fetch_url = "add";
+    const form_body = new FormData(e.target);
+    const body = Object.fromEntries(form_body);
+
+    if (editing) {
+      fetch_url = "update";
     }
 
-    componentDidMount() {
-        let org_id = this.props.match.params.org_id
+    asyncAPICall(
+      `/organization/${fetch_url}`,
+      "POST",
+      body,
+      null,
+      (data) => {
+        props.history.push(`/organizations`);
+      },
+      null
+    );
+  };
 
-        if (org_id) {
-            let auth_ok = asyncAPICall(`/organization/get/${org_id}`, "GET", null, null,
-                data => {
-                    if (!data.org_id) {
-                        console.log("ERROR: organization not found")
-                    }
-                    else {
-                        this.setState({
-                            org_id: data.org_id,
-                            name: data.name,
-                            address: data.address,
-                            city: data.city,
-                            state: data.state,
-                            zip_code: data.zip_code,
-                            phone: data.phone,
-                            active: data.active,
-                            editing: true
-                        })
-                    }
-                },
-                null, this.props
-            );
-            if (!auth_ok) { logout(this.props); }
-        }
+  useEffect(() => {
+    const org_id = props.match.params.org_id;
+
+    if (org_id) {
+      const auth_ok = asyncAPICall(
+        `/organization/get/${org_id}`,
+        "GET",
+        null,
+        null,
+        (data) => {
+          if (!data.org_id) {
+            console.log("ERROR: organization not found");
+          } else {
+            setOrgId(data.org_id);
+            setName(data.name);
+            setAddress(data.address);
+            setCity(data.city);
+            setState(data.state);
+            setZipCode(data.zip_code);
+            setPhone(data.phone);
+            setEditing(true);
+          }
+        },
+        null,
+        props
+      );
+      if (!auth_ok) {
+        logout(props);
+      }
     }
+  }, [props]);
 
-    handleChange(event) {
-        this.setState({ [event.target.name]: event.target.value });
-    }
+  useEffect(() => {
+    const title = editing ? "Edit Organization" : "Add Organization";
 
-    handleSubmit(event) {
-        event.preventDefault();
+    setTitle(title);
+  }, [editing]);
 
-        let fetch_url = 'add'
-        let form_body = new FormData(event.target)
+  return (
+    <div className="wrapper">
+      <div className="form-field-wrapper">
+        <Paper className="form-wrapper" elevation={3}>
+          <h2>{title}</h2>
+          <form className="form" onSubmit={handleSubmit} method="POST">
+            <label htmlFor="name">Organization Name *</label>
+            <TextField
+              required
+              id="name"
+              name="name"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              variant="outlined"
+              size="small"
+            />
 
-        if (this.state.editing) {
-            fetch_url = 'update'
-        }
+            <label htmlFor="address">Address</label>
+            <TextField
+              id="address"
+              name="address"
+              type="text"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              variant="outlined"
+              size="small"
+            />
 
-        let body = Object.fromEntries(form_body)
-        asyncAPICall(`/organization/${fetch_url}`, "POST", body, null,
-            data => {
-                this.props.history.push(`/organizations`);
-            },
-            null
-        )
-    }
+            <label htmlFor="city">City</label>
+            <TextField
+              id="city"
+              name="city"
+              type="text"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              variant="outlined"
+              size="small"
+            />
 
-    redirectTo(path) {
-        this.props.history.push(path);
-    }
+            <label htmlFor="state">State</label>
+            <TextField
+              id="state"
+              name="state"
+              type="text"
+              value={state}
+              onChange={(e) => setState(e.target.value)}
+              variant="outlined"
+              size="small"
+            />
 
-    render() {
-        let title = (this.state.editing) ? "Edit Organization" : "Add Organization";
-        return (
+            <label htmlFor="zip_code">Zip Code</label>
+            <TextField
+              id="zip_code"
+              name="zip_code"
+              type="text"
+              value={zip_code}
+              onChange={(e) => setZipCode(e.target.value)}
+              variant="outlined"
+              size="small"
+            />
 
-            <div className="wrapper">
-                <div className="form-field-wrapper">
-                    <Paper className="form-wrapper" elevation={3}>
-                        <h2>{title}</h2>
-                        <form className="form" onSubmit={this.handleSubmit} method="POST">
-                            <label htmlFor="name">Organization Name *</label>
-                            <TextField required id="name" name="name" type="text" value={this.state.name} onChange={this.handleChange} variant='outlined' size='small' />
-                            <label htmlFor="address">Address</label>
-                            <TextField id="address" name="address" type="text" value={this.state.address} onChange={this.handleChange} variant='outlined' size='small' />
-                            <label htmlFor="city">City</label>
-                            <TextField id="city" name="city" type="text" value={this.state.city} onChange={this.handleChange} variant='outlined' size='small' />
-                            <label htmlFor="state">State</label>
-                            <TextField id="state" name="state" type="text" value={this.state.state} onChange={this.handleChange} variant='outlined' size='small' />
-                            <label htmlFor="zip_code">Zip Code</label>
-                            <TextField id="zip_code" name="zip_code" type="text" value={this.state.zip_code} onChange={this.handleChange} variant='outlined' size='small' />
-                            <label htmlFor="phone">Phone</label>
-                            <TextField id="phone" name="phone" type="text" value={this.state.phone} onChange={this.handleChange} variant='outlined' size='small' />
-                            <Button className="cancel-button" type="button" onClick={() => this.props.history.goBack()}>Cancel</Button>
-                            <Button className="confirm-button" type="submit">{title}</Button>
-                            {(this.state.org_id) ? <input type="hidden" name="org_id" value={this.state.org_id} /> : ""}
-                        </form>
-                    </Paper>
-                </div>
-            </div>
-        )
-    }
-}
+            <label htmlFor="phone">Phone</label>
+            <TextField
+              id="phone"
+              name="phone"
+              type="text"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              variant="outlined"
+              size="small"
+            />
 
+            <Button
+              className="cancel-button"
+              type="button"
+              onClick={() => props.history.goBack()}
+            >
+              Cancel
+            </Button>
+            <Button className="confirm-button" type="submit">
+              {title}
+            </Button>
+
+            {org_id ? <input type="hidden" name="org_id" value={org_id} /> : ""}
+          </form>
+        </Paper>
+      </div>
+    </div>
+  );
+};
+
+export default OrganizationForm;
