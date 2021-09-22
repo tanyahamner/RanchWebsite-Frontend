@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Paper from "@material-ui/core/Paper";
+import Button from "@material-ui/core/Button";
+import Cookies from "js-cookie";
 
 import ConfirmDelete from "../components/confirmDelete";
+import EditTitle from "../components/editTitle";
 import UserList from "./userList";
-import Button from "@material-ui/core/Button";
-import SecurityWrapper from "../util/securityWrapper";
-
-import asyncAPICall from "../util/apiWrapper";
-import logout from "../util/logout";
-import Cookies from "js-cookie";
 import { validateUUID, formatPhone } from "../util/stringUtils";
 import { successfulToast } from "../util/toastNotifications";
-
-import EditTitle from "../components/editTitle";
+import SecurityWrapper from "../util/securityWrapper";
+import asyncAPICall from "../util/apiWrapper";
+import logout from "../util/logout";
 
 export default function GetOrganization(props) {
   const [organization, setOrganization] = useState(null);
