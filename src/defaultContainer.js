@@ -36,7 +36,7 @@ const DefaultContainer = (props) => {
     });
 
     useEffect(() => {
-        setTimeout('',5000);
+        // setTimeout('',5000);
         awaitAPICall(
             "/user/get/me",
             "GET",
