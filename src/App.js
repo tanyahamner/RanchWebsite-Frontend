@@ -10,8 +10,8 @@ import LoginContainer from "./loginContainer"
 import DefaultContainer from "./defaultContainer"
 
 function App() {
-
   const [authToken, setAuthToken] = useState(null);
+
 
   return (
     <div className="App">

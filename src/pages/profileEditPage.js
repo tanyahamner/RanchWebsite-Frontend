@@ -52,7 +52,7 @@ const ProfileEdit = (props) => {
       }
     }
   }, [props]);
-
+  
   const handleSubmit = (e) => {
     let auth_token = Cookies.get("auth_token");
     if (auth_token == null) {

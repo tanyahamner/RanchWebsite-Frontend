@@ -27,7 +27,6 @@ const UserForm = (props) => {
   const [newUser, setNewUser] = useState(false);
   const [error_msg, setErrorMsg] = useState("");
   const [title, setTitle] = useState("");
-
   const handleOrgValues = (org) => {
     setOrgId(org.value);
     setOrgName(org.name);

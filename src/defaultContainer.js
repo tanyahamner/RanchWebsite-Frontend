@@ -9,6 +9,7 @@ import OrganizationListPage from "./pages/organizationListPage";
 import OrganizationForm from "./pages/organizationForm";
 import UserListPage from "./pages/userListPage";
 import UserForm from "./pages/userForm";
+import Loading from "./components/loading"
 
 import ProfileEdit from "./pages/profileEditPage";
 
@@ -23,7 +24,7 @@ export const MeContext = createContext();
 const DefaultContainer = (props) => {
     const [searchTerm, setSearchTerm] = useState("");
     const [me, setMe] = useState({});
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         let auth_token_from_cookie = Cookies.get("auth_token");
@@ -36,7 +37,6 @@ const DefaultContainer = (props) => {
     });
 
     useEffect(() => {
-        // setTimeout('',5000);
         awaitAPICall(
             "/user/get/me",
             "GET",
@@ -56,6 +56,10 @@ const DefaultContainer = (props) => {
             setIsLoading(false);
         }
     }, [me]);
+
+    if (isLoading) {
+      return <Loading />;
+    }
 
     return (
         <div className="container">
