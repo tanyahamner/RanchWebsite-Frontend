@@ -17,7 +17,6 @@ const OrganizationSelect = (props) => {
       props.handleOrgValues(value)
     }
   };
-
   useEffect(() => {
     let auth_token = Cookies.get("auth_token");
 

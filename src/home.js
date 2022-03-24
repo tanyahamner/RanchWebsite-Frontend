@@ -4,6 +4,7 @@ import Cookies from "js-cookie";
 const Home = (props) => {
   useEffect(() => {
     let auth_token = Cookies.get("auth_token");
+    console.log('rendered home');
 
     if (!auth_token) {
       props.history.push("/login");

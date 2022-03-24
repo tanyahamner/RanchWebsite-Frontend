@@ -42,7 +42,6 @@ export default function asyncAPICall(
          } else {
          if (!("auth_token" in headers)) {
             headers["auth_token"] = auth_token;
-            // console.log(headers);
          }
       }
       let payload = { method: method, headers: headers };

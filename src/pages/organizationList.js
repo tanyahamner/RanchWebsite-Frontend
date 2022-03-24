@@ -96,7 +96,6 @@ const OrganizationList = (props) => {
     }
   }, [props])
 
-
   useEffect(() => {
     let selected;
 
