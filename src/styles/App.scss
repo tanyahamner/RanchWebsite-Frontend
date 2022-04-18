@@ -1,3 +1,5 @@
+@import "util/variables.scss";
+@import "util/mixins.scss";
 @import "theme.scss";
 @import "loading.scss";
 @import "modal.scss";
@@ -13,11 +15,10 @@
 @import "toastNotifications.scss";
 
 body {
-    margin: 0px;
+  margin: 0px;
 }
 
 .body-wrapper {
-    margin-top: 70px;
-    margin-left: 0px;
+  margin-top: 70px;
+  margin-left: 0px;
 }
-

@@ -1,200 +1,185 @@
-$darkest: black;
-$second-darkest: #3E5168;
-$second-lightest: #6C8CB5;
-$lightest: #8AB3E8;
-$light-grey: #cccccc;
-$dark-grey: #aaaaaa;
-$rose: #a2666f;
-$coral: #f49390;
-
-$lava: #c42021;
-$green: #6Da34d;
-$orange: #ee9433;
-
-Button.MuiButton-root {
-   padding-left: 20px;
-   padding-right: 20px;
-   text-decoration: none;
-   border-radius: 4px;
-   font-size: .9em;
-   margin-right: 10px;
-   margin-top: 10px;
-   margin-bottom: 10px;
-   cursor: pointer;
+button {
+  padding-left: 20px;
+  padding-right: 20px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.9em;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
 
-Button.delete-button {
-   background-color: $lava;
-   color: white;
+.delete-button {
+  background-color: $lava;
+  color: white;
 }
 
-Button.delete-button:hover {
-   background-color: $coral;
+.delete-button:hover {
+  background-color: $coral;
 }
 
-Button.delete-button:disabled {
-   background-color: $dark-grey;
-   color: $light-grey;
+.delete-button:disabled {
+  background-color: $dark-grey;
+  color: $light-grey;
 }
 
-Button.confirm-button {
-   background-color: $second-lightest;
-   color: white;
+.confirm-button {
+  background-color: $second-lightest;
+  color: white;
 }
 
-Button.confirm-button:hover {
-   background-color: $second-darkest;
+.confirm-button:hover {
+  background-color: $second-darkest;
 }
 
-.wrapper Button.confirm-button:disabled {
-   background-color: $dark-grey;
-   color: $light-grey;
+.wrapper .confirm-button:disabled {
+  background-color: $dark-grey;
+  color: $light-grey;
 }
 
-Button.cancel-button {
-   background-color: $light-grey;
-   color: black;
+.cancel-button {
+  background-color: $light-grey;
+  color: black;
 }
 
-Button.cancel-button:hover {
-   background-color: $dark-grey;
+.cancel-button:hover {
+  background-color: $dark-grey;
 }
 
 body {
-   font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
-.button-icon{
-   margin-right: 10px;
-   margin-bottom: 1px;
+.button-icon {
+  margin-right: 10px;
+  margin-bottom: 1px;
 }
 
 .body-wrapper {
-   margin: 30px 50px;
+  margin: 30px 50px;
 }
 
 div.rdt_Table a {
-   text-decoration:none;
-   color: white;
+  text-decoration: none;
+  color: white;
 }
 
-
 div.rdt_Table a.table-link {
-   color: $second-darkest;
+  color: $second-darkest;
 }
 
 .flex-row {
-   display: flex;
+  display: flex;
 }
 
 .detail-wrapper {
-   margin-left: 100px;
+  margin-left: 100px;
 }
 
 .list-wrapper {
-   margin-left: 100px;
+  margin-left: 100px;
 }
 
 p.address {
-   font-size: 1.2em;
+  font-size: 1.2em;
 }
 
 p.phone {
-   font-size: 1.1em;
-   color: $second-darkest
+  font-size: 1.1em;
+  color: $second-darkest;
 }
 
 h2 {
-   font-weight: 400;
-   font-size: 22px;
-   color: rgba(0,0,0,0.87);
+  font-weight: 400;
+  font-size: 22px;
+  color: rgba(0, 0, 0, 0.87);
 }
 
 a.no-decoration {
-   text-decoration: none;
-   color: black;
+  text-decoration: none;
+  color: black;
 }
 
 .form-wrapper {
-   width:700px;
-   padding: 25px 50px;
+  width: 700px;
+  padding: 25px 50px;
+  box-shadow: 0px 3px 3px -2px rgb(0 0 0 / 20%),
+    0px 3px 4px 0px rgb(0 0 0 / 14%), 0px 1px 8px 0px rgb(0 0 0 / 12%);
 
-   .form {
-      display: grid;
-      grid-template-columns: 1fr 3fr;
-      grid-gap: 10px;
-      // background-color: $second-darkest;
-      // color: white; 
-      // border: 6px solid $darkest;
-      // border-radius: 15px;
-      // width:100%;
-      // padding-top: 25px;
+  .form {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-gap: 10px;
+    // background-color: $second-darkest;
+    // color: white;
+    // border: 6px solid $darkest;
+    // border-radius: 15px;
+    // width:100%;
+    // padding-top: 25px;
 
-      label {
-         text-align:right;
-         margin-top: 10px;
-         margin-right: 10px;
+    label {
+      text-align: right;
+      margin-top: 10px;
+      margin-right: 10px;
+    }
+    label.drop-down-label {
+      margin-top: 18px;
+    }
 
-         
-      }
-      label.drop-down-label {
-         margin-top: 18px;
-      }
-   
-      input {
-         // background-color: $lightest;
-         // border-radius: 50px;
-         // border: 2px solid $second-darkest;
-         margin: 5px;
-         padding: 5px;
-      }
-   
-      // button {
-      //    background-color: $darkest;
-      //    color: white;
-      //    border-radius: 10px;
-      //    align-self: center;
-      //    margin-top: 25px;
-      //    margin-bottom: 50px;
-      //    width: 200px;
-      //    line-height: 2em;
-      // }
-   }
+    input {
+      // background-color: $lightest;
+      // border-radius: 50px;
+      // border: 2px solid $second-darkest;
+      margin: 5px;
+      padding: 5px;
+    }
+
+    // button {
+    //    background-color: $darkest;
+    //    color: white;
+    //    border-radius: 10px;
+    //    align-self: center;
+    //    margin-top: 25px;
+    //    margin-bottom: 50px;
+    //    width: 200px;
+    //    line-height: 2em;
+    // }
+  }
 }
 .bordered-icon {
-   border: 2px solid black;
-   border-radius: 5px;
-   margin-right: 5px;
+  border: 2px solid black;
+  border-radius: 5px;
+  margin-right: 5px;
 
-   i {
-      margin: -5px 5px;
-   }
+  i {
+    margin: -5px 5px;
+  }
 }
 
 .list-page {
-   margin-left: 0px;
-   margin-top: 12px;
-   margin-right: 100px;
-   
-   .button-and-search {
-      display: flex;
-      flex-direction: row-reverse;
-      align-items: center;
-      justify-content: space-between;
-   
-      a {
-         text-decoration: none;
-      }
-   }
+  margin-left: 0px;
+  margin-top: 12px;
+  margin-right: 100px;
+
+  .button-and-search {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+
+    a {
+      text-decoration: none;
+    }
+  }
 }
 
 .seperator {
-   margin: 15px;
+  margin: 15px;
 }
 
 .error-message {
-   margin-bottom: 13px;
-   color: $lava;
-   margin-left: 100px;
+  margin-bottom: 13px;
+  color: $lava;
+  margin-left: 100px;
 }
-

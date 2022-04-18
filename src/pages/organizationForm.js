@@ -1,7 +1,4 @@
 import { useState, useEffect } from "react";
-import TextField from "@material-ui/core/TextField";
-import Paper from "@material-ui/core/Paper";
-import Button from "@material-ui/core/Button";
 
 import asyncAPICall from "../util/apiWrapper";
 import logout from "../util/logout";
@@ -81,90 +78,80 @@ const OrganizationForm = (props) => {
   return (
     <div className="wrapper">
       <div className="form-field-wrapper">
-        <Paper className="form-wrapper" elevation={3}>
+        <div className="form-wrapper">
           <h2>{title}</h2>
+
           <form className="form" onSubmit={handleSubmit} method="POST">
             <label htmlFor="name">Organization Name *</label>
-            <TextField
+            <input
               required
               id="name"
               name="name"
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              variant="outlined"
-              size="small"
             />
 
             <label htmlFor="address">Address</label>
-            <TextField
+            <input
               id="address"
               name="address"
               type="text"
               value={address}
               onChange={(e) => setAddress(e.target.value)}
-              variant="outlined"
-              size="small"
             />
 
             <label htmlFor="city">City</label>
-            <TextField
+            <input
               id="city"
               name="city"
               type="text"
               value={city}
               onChange={(e) => setCity(e.target.value)}
-              variant="outlined"
-              size="small"
             />
 
             <label htmlFor="state">State</label>
-            <TextField
+            <input
               id="state"
               name="state"
               type="text"
               value={state}
               onChange={(e) => setState(e.target.value)}
-              variant="outlined"
-              size="small"
             />
 
             <label htmlFor="zip_code">Zip Code</label>
-            <TextField
+            <input
               id="zip_code"
               name="zip_code"
               type="text"
               value={zip_code}
               onChange={(e) => setZipCode(e.target.value)}
-              variant="outlined"
-              size="small"
             />
 
             <label htmlFor="phone">Phone</label>
-            <TextField
+            <input
               id="phone"
               name="phone"
               type="text"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              variant="outlined"
-              size="small"
             />
 
-            <Button
+            <button
               className="cancel-button"
               type="button"
               onClick={() => props.history.goBack()}
             >
               Cancel
-            </Button>
-            <Button className="confirm-button" type="submit">
+            </button>
+
+            <button className="confirm-button" type="submit">
               {title}
-            </Button>
+            </button>
 
             {org_id ? <input type="hidden" name="org_id" value={org_id} /> : ""}
           </form>
-        </Paper>
+        </div>
       </div>
     </div>
   );
