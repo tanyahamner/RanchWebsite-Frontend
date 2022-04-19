@@ -76,6 +76,7 @@ const DefaultContainer = (props) => {
             />
           )}
         />
+
         <div className="body-wrapper">
           <Route path="/home" component={Home}></Route>
           <Route exact path="/user/:user_id" component={User} />
