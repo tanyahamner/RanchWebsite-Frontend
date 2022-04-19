@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Paper from "@material-ui/core/Paper";
-import Button from "@material-ui/core/Button";
 
 import ConfirmDelete from "../components/confirmDelete";
 import { formatPhone, validateUUID } from "../util/stringUtils";
@@ -62,19 +60,21 @@ const GetUser = (props) => {
   return (
     <div className="get-wrapper">
       <div className="get-detail-wrapper">
-        <Button
+        <button
           className="confirm-button back-button"
           onClick={() => props.history.goBack()}
         >
           <i className="fas fa-chevron-left button-icon"></i> Back
-        </Button>
+        </button>
+
         <div className="detail-wrapper wrapper">
-          <Paper className="form-wrapper narrow-paper" elevation={3}>
+          <div className="form-wrapper narrow-paper">
             <div className="details">
               <div className="top-section">
                 <h1>
                   {user.first_name} {user.last_name}
                 </h1>
+
                 <SecurityWrapper restrict_roles="user">
                   <div className="switch-wrapper">
                     Active:
@@ -85,6 +85,7 @@ const GetUser = (props) => {
                         onClick={handleActivation}
                         defaultChecked={user.active}
                       />
+
                       <span className="slider round">
                         <span>On</span>
                         <span>Off</span>
@@ -97,6 +98,7 @@ const GetUser = (props) => {
               <div className="middle-section">
                 <div className="icon-and-details">
                   <i className="fas fa-user"></i>
+
                   <div>
                     <Link
                       className="no-decoration"
@@ -106,9 +108,11 @@ const GetUser = (props) => {
                         {user.organization ? user.organization.name : "unknown"}
                       </h3>
                     </Link>
+
                     <SecurityWrapper restrict_roles="user">
                       <p className="role">{user.role}</p>
                     </SecurityWrapper>
+
                     <p className="email">{user.email}</p>
                     <p className="phone">{formatPhone(user.phone)}</p>
                   </div>
@@ -116,12 +120,13 @@ const GetUser = (props) => {
 
                 <div className="flex-row">
                   <SecurityWrapper restrict_roles="user">
-                    <Button
+                    <button
                       className="confirm-button"
                       onClick={() => redirectTo(`/user/edit/${user.user_id}`)}
                     >
                       Edit
-                    </Button>
+                    </button>
+
                     <ConfirmDelete
                       objectType="user"
                       id={user.user_id}
@@ -131,7 +136,7 @@ const GetUser = (props) => {
                 </div>
               </div>
             </div>
-          </Paper>
+          </div>
         </div>
       </div>
     </div>

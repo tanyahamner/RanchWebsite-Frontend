@@ -1,7 +1,4 @@
 import { useState, useEffect } from "react";
-import TextField from "@material-ui/core/TextField";
-import Paper from "@material-ui/core/Paper";
-import Button from "@material-ui/core/Button";
 import Cookies from "js-cookie";
 
 import OrganizationSelect from "../components/organizationSelect";
@@ -126,12 +123,14 @@ const UserForm = (props) => {
   if (!org_id && !newUser) {
     return <div />;
   }
+
   return (
     <div className="wrapper">
       <div className="form-field-wrapper">
-        <Paper className="form-wrapper" elevation={3}>
+        <div className="form-wrapper">
           <h2>{title}</h2>
           <div className="error-message">{error_msg}</div>
+
           <form className="form" onSubmit={handleSubmit} method="POST">
             <SecurityWrapper roles="super-admin">
               <label htmlFor="org_name" className="drop-down-label">
@@ -165,88 +164,81 @@ const UserForm = (props) => {
             <UserRoleSelect role={role} />
 
             <label htmlFor="first_name">First Name *</label>
-            <TextField
+            <input
               required
               id="first_name"
               name="first_name"
               type="text"
               value={first_name}
               onChange={(e) => setFirstName(e.target.value)}
-              variant="outlined"
-              size="small"
             />
 
             <label htmlFor="last_name">Last Name *</label>
-            <TextField
+            <input
               required
               id="last_name"
               name="last_name"
               type="text"
               value={last_name}
               onChange={(e) => setLastName(e.target.value)}
-              variant="outlined"
-              size="small"
             />
 
             <label htmlFor="email">Email *</label>
-            <TextField
+            <input
               required
               id="email"
               name="email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              variant="outlined"
-              size="small"
               autoComplete="email"
             />
+
             {newUser ? (
               <>
                 <label htmlFor="password">Password *</label>
-                <TextField
+                <input
                   required
                   id="password"
                   name="password"
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  variant="outlined"
-                  size="small"
                   autoComplete="current-password"
                 />
               </>
             ) : null}
-            <label htmlFor="phone">Phone</label>
 
-            <TextField
+            <label htmlFor="phone">Phone</label>
+            <input
               id="phone"
               name="phone"
               type="phone"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               inputProps={{ minLength: 10 }}
-              variant="outlined"
-              size="small"
               phone={phone}
             />
 
-            <Button
+            <button
               className="cancel-button"
               type="button"
               onClick={() => props.history.goBack()}
             >
               Cancel
-            </Button>
-            <Button className="confirm-button" type="submit">
+            </button>
+
+            <button className="confirm-button" type="submit">
               {title}
-            </Button>
+            </button>
+
             {user_id ? (
               <input type="hidden" name="user_id" value={user_id} />
             ) : (
               ""
             )}
           </form>
-        </Paper>
+        </div>
       </div>
     </div>
   );

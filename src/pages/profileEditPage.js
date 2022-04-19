@@ -1,7 +1,4 @@
 import { useState, useEffect } from "react";
-import TextField from "@material-ui/core/TextField";
-import Paper from "@material-ui/core/Paper";
-import Button from "@material-ui/core/Button";
 import Cookies from "js-cookie";
 
 import asyncAPICall from "../util/apiWrapper";
@@ -86,72 +83,66 @@ const ProfileEdit = (props) => {
   return (
     <div className="wrapper">
       <div className="form-field-wrapper">
-        <Paper className="form-wrapper" elevation={3}>
+        <div className="form-wrapper">
           <h2>Edit My Profile</h2>
+
           <form className="form" onSubmit={handleSubmit} method="POST">
             <input type="hidden" name="org_id" value={org_id} />
             <input type="hidden" name="role" value={role} />
+
             <label htmlFor="first_name">First Name *</label>
-            <TextField
+            <input
               required
               id="first_name"
               name="first_name"
               type="text"
               value={first_name}
               onChange={(e) => setFirstName(e.target.value)}
-              variant="outlined"
-              size="small"
             />
 
             <label htmlFor="last_name">Last Name *</label>
-            <TextField
+            <input
               required
               id="last_name"
               name="last_name"
               type="text"
               value={last_name}
               onChange={(e) => setLastName(e.target.value)}
-              variant="outlined"
-              size="small"
             />
 
             <label htmlFor="email">Email *</label>
-            <TextField
+            <input
               required
               id="email"
               name="email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              variant="outlined"
-              size="small"
               autoComplete="email"
             />
 
             <label htmlFor="phone">Phone</label>
-            <TextField
+            <input
               id="phone"
               name="phone"
               type="phone"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               inputProps={{ minLength: 10 }}
-              variant="outlined"
-              size="small"
               phone={phone}
             />
 
-            <Button
+            <button
               className="cancel-button"
               type="button"
               onClick={() => props.history.goBack()}
             >
               Cancel
-            </Button>
+            </button>
 
-            <Button className="confirm-button" type="submit">
+            <button className="confirm-button" type="submit">
               Edit My Profile
-            </Button>
+            </button>
 
             {user_id ? (
               <input type="hidden" name="user_id" value={user_id} />
@@ -159,7 +150,7 @@ const ProfileEdit = (props) => {
               ""
             )}
           </form>
-        </Paper>
+        </div>
       </div>
     </div>
   );

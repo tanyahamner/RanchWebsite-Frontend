@@ -22,16 +22,19 @@ export default function loginContainer(props) {
             />
           )}
         />
+
         <Route
           exact
           path="/login/password/recovery"
           component={ForgotPassword}
         />
+
         <Route
           exact
           path="/login/password/temporary"
           component={TempPassword}
         />
+
         <Route exact path="/login/password/change" component={ChangePassword} />
         <Route exact path="/login/email/sent" component={EmailSent} />
       </div>

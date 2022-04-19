@@ -9,7 +9,7 @@ import OrganizationListPage from "./pages/organizationListPage";
 import OrganizationForm from "./pages/organizationForm";
 import UserListPage from "./pages/userListPage";
 import UserForm from "./pages/userForm";
-import Loading from "./components/loading"
+import Loading from "./components/loading";
 
 import ProfileEdit from "./pages/profileEditPage";
 
@@ -22,126 +22,124 @@ import awaitAPICall from "./util/apiWrapper";
 export const MeContext = createContext();
 
 const DefaultContainer = (props) => {
-    const [searchTerm, setSearchTerm] = useState("");
-    const [me, setMe] = useState({});
-    const [isLoading, setIsLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [me, setMe] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(() => {
-        let auth_token_from_cookie = Cookies.get("auth_token");
-        let expiration = Cookies.get("auth_expires");
-        let is_expired = Date.parse(expiration) < Date.now();
-        // console.log('UseEffect in default Container', auth_token_from_cookie, is_expired)
-        if (!auth_token_from_cookie || is_expired) {
-            logout(props);
-        }
-    });
-
-    useEffect(() => {
-        awaitAPICall(
-            "/user/get/me",
-            "GET",
-            null,
-            null,
-            (data) => {
-                if (data) {
-                    setMe(data);
-                }
-            },
-            null
-        );
-    }, [isLoading]);
-
-    useEffect(() => {
-        if (me?.user_id) {
-            setIsLoading(false);
-        }
-    }, [me]);
-
-    if (isLoading) {
-      return <Loading />;
+  useEffect(() => {
+    let auth_token_from_cookie = Cookies.get("auth_token");
+    let expiration = Cookies.get("auth_expires");
+    let is_expired = Date.parse(expiration) < Date.now();
+    // console.log('UseEffect in default Container', auth_token_from_cookie, is_expired)
+    if (!auth_token_from_cookie || is_expired) {
+      logout(props);
     }
+  });
 
-    return (
-        <div className="container">
-            <MeContext.Provider value={me}>
-                <Route
-                    path="/"
-                    render={(props) => (
-                        <Header
-                            {...props}
-                            searchTerm={searchTerm}
-                            setSearchTerm={setSearchTerm}
-                            // authToken={props.authToken}
-                            // setAuthToken={props.setAuthToken}
-                        />
-                    )}
-                />
-                <div className="body-wrapper">
-                    <Route path="/home" component={Home}></Route>
-                    <Route exact path="/user/:user_id" component={User} />
-                    <Route path="/users" component={UserListPage} />
-                    <Route
-                        name="user-edit"
-                        path="/user/edit/:user_id"
-                        component={UserForm}
-                    />
-                    <Route
-                        name="user-add"
-                        exact
-                        path="/user-add/:org_id/:org_name"
-                        component={UserForm}
-                    />
-                    <Route
-                        name="user-add"
-                        exact
-                        path="/user-add/"
-                        component={UserForm}
-                    />
-
-                    <Route
-                        path="/organizations"
-                        component={OrganizationListPage}
-                    />
-                    <Route
-                        name="organization-detail"
-                        path="/organization/:org_id"
-                        component={Organization}
-                    />
-                    <Route
-                        name="organization-form"
-                        path="/organization-form/:org_id"
-                        component={OrganizationForm}
-                    />
-                    <Route
-                        name="organization-add"
-                        exact
-                        path="/organization-form/"
-                        component={OrganizationForm}
-                    />
-
-                    <Route
-                        name="profile-edit"
-                        path="/profile/edit/:user_id"
-                        component={ProfileEdit}
-                    />
-
-                    <Route
-                        name="universal-search"
-                        path="/universal-search"
-                        render={(props) => {
-                            return (
-                                <UniversalSearch
-                                    {...props}
-                                    searchTerm={searchTerm}
-                                    authToken={props.authToken}
-                                />
-                            );
-                        }}
-                    />
-                </div>
-            </MeContext.Provider>
-        </div>
+  useEffect(() => {
+    awaitAPICall(
+      "/user/get/me",
+      "GET",
+      null,
+      null,
+      (data) => {
+        if (data) {
+          setMe(data);
+        }
+      },
+      null
     );
+  }, [isLoading]);
+
+  useEffect(() => {
+    if (me?.user_id) {
+      setIsLoading(false);
+    }
+  }, [me]);
+
+  if (isLoading) {
+    return <Loading />;
+  }
+
+  return (
+    <div className="container">
+      <MeContext.Provider value={me}>
+        <Route
+          path="/"
+          render={(props) => (
+            <Header
+              {...props}
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
+              // authToken={props.authToken}
+              // setAuthToken={props.setAuthToken}
+            />
+          )}
+        />
+        <div className="body-wrapper">
+          <Route path="/home" component={Home}></Route>
+          <Route exact path="/user/:user_id" component={User} />
+          <Route path="/users" component={UserListPage} />
+
+          <Route
+            name="user-edit"
+            path="/user/edit/:user_id"
+            component={UserForm}
+          />
+
+          <Route
+            name="user-add"
+            exact
+            path="/user-add/:org_id/:org_name"
+            component={UserForm}
+          />
+
+          <Route name="user-add" exact path="/user-add/" component={UserForm} />
+
+          <Route path="/organizations" component={OrganizationListPage} />
+
+          <Route
+            name="organization-detail"
+            path="/organization/:org_id"
+            component={Organization}
+          />
+
+          <Route
+            name="organization-form"
+            path="/organization-form/:org_id"
+            component={OrganizationForm}
+          />
+
+          <Route
+            name="organization-add"
+            exact
+            path="/organization-form/"
+            component={OrganizationForm}
+          />
+
+          <Route
+            name="profile-edit"
+            path="/profile/edit/:user_id"
+            component={ProfileEdit}
+          />
+
+          <Route
+            name="universal-search"
+            path="/universal-search"
+            render={(props) => {
+              return (
+                <UniversalSearch
+                  {...props}
+                  searchTerm={searchTerm}
+                  authToken={props.authToken}
+                />
+              );
+            }}
+          />
+        </div>
+      </MeContext.Provider>
+    </div>
+  );
 };
 
 export default DefaultContainer;

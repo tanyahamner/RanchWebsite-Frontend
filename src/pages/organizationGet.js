@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Paper from "@material-ui/core/Paper";
-import Button from "@material-ui/core/Button";
 import Cookies from "js-cookie";
 
 import ConfirmDelete from "../components/confirmDelete";
@@ -21,7 +19,7 @@ export default function GetOrganization(props) {
   const [oldTitle, setOldTitle] = useState("");
   const [switchStyle, setSwitchStyle] = useState("slider round");
   const [disableButtons, setDisableButtons] = useState(false);
-  const [users, setUsers] = useState([])
+  const [users, setUsers] = useState([]);
   useEffect(() => {
     let org_id = props.match.params.org_id;
     if (!validateUUID(org_id)) {
@@ -54,11 +52,15 @@ export default function GetOrganization(props) {
       props
     );
 
-    asyncAPICall(`/user/get/organization/${org_id}`, "GET", null, null, 
-      data => setUsers(data),
-      err => console.error("Get Org Users Error: ", err),
+    asyncAPICall(
+      `/user/get/organization/${org_id}`,
+      "GET",
+      null,
+      null,
+      (data) => setUsers(data),
+      (err) => console.error("Get Org Users Error: ", err),
       true
-    )
+    );
 
     if (!auth_ok) {
       logout(props);
@@ -99,14 +101,15 @@ export default function GetOrganization(props) {
   return (
     <div className="get-wrapper">
       <div className="get-detail-wrapper">
-        <Button
+        <button
           className="confirm-button back-button"
           onClick={() => props.history.goBack()}
         >
           <i className="fas fa-chevron-left button-icon"></i> Back
-        </Button>
+        </button>
+
         <div className="detail-wrapper wrapper">
-          <Paper className="form-wrapper" elevation={3}>
+          <div className="form-wrapper">
             <div className="details">
               <div className="top-section">
                 <EditTitle
@@ -118,6 +121,7 @@ export default function GetOrganization(props) {
                   id={organization.org_id}
                   data={organization}
                 />
+
                 <SecurityWrapper roles="super-admin">
                   <div className="switch-wrapper">
                     Active:
@@ -128,6 +132,7 @@ export default function GetOrganization(props) {
                         onClick={() => handleActivation()}
                         defaultChecked={organization.active}
                       />
+
                       <span className={switchStyle}>
                         <span>On</span>
                         <span>Off</span>
@@ -135,6 +140,7 @@ export default function GetOrganization(props) {
                     </label>
                   </div>
                 </SecurityWrapper>
+
                 <SecurityWrapper restrict_roles="super-admin">
                   <h2>Active</h2>
                 </SecurityWrapper>
@@ -142,6 +148,7 @@ export default function GetOrganization(props) {
               <div className="middle-section">
                 <div className="icon-and-details">
                   <i className="far fa-building"></i>
+
                   <div>
                     <p className="address">
                       {organization.address}
@@ -152,16 +159,18 @@ export default function GetOrganization(props) {
                     <p className="phone">{formatPhone(organization.phone)}</p>
                   </div>
                 </div>
+
                 <div className="flex-row">
                   <SecurityWrapper restrict_roles="user">
-                    <Button
+                    <button
                       className="confirm-button"
                       onClick={() =>
                         redirectTo(`/organization-form/${organization.org_id}`)
                       }
                     >
                       Edit
-                    </Button>
+                    </button>
+
                     <SecurityWrapper restrict_roles="admin">
                       <ConfirmDelete
                         disabled={orgId === userOrgId ? true : false}
@@ -174,7 +183,9 @@ export default function GetOrganization(props) {
                 </div>
               </div>
             </div>
+
             <br />
+
             <div className="user-list">
               <UserList
                 {...props}
@@ -183,10 +194,10 @@ export default function GetOrganization(props) {
                 columns="first_name,last_name,email,phone,active"
                 org_name={orgName}
                 org_id={props.match.params.org_id}
-                userList ={users}
+                userList={users}
               />
             </div>
-          </Paper>
+          </div>
         </div>
       </div>
     </div>

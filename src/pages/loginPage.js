@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import Cookies from "js-cookie";
-import Paper from "@material-ui/core/Paper";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
 
 import Logo from "../img/logo.svg";
 import logout from "../util/logout";
@@ -14,9 +11,9 @@ const LoginPage = (props) => {
   const [from, setFrom] = useState("");
 
   useEffect(() => {
-      setFrom(props.from || "/home")
-      logout()
-    }, [props.from]);
+    setFrom(props.from || "/home");
+    logout();
+  }, [props.from]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,7 +27,6 @@ const LoginPage = (props) => {
       (response) => {
         if (response.ok) {
           return response.json();
-
         } else if (response.status === 401) {
           const error_msg = "Invalid Email/Password";
 
@@ -72,39 +68,27 @@ const LoginPage = (props) => {
     <div className="wrapper">
       <div className="login-wrapper">
         <img src={Logo} alt="" height="32px"></img>
-        <Paper className="form-wrapper" elevation={3}>
+
+        <div className="form-wrapper">
           <h2>Please log in</h2>
           <div className="error-message">{errorMsg}</div>
+
           <form className="form" onSubmit={handleSubmit} method="POST">
             <label htmlFor="email">Email</label>
-            <TextField
-              id="email"
-              name="email"
-              type="email"
-              variant="outlined"
-              size="small"
-              autoComplete="email"
-              width="10px"
-            />
+            <input id="email" name="email" type="email" width="10px" />
+
             <label htmlFor="password">Password</label>
-            <TextField
-              id="password"
-              name="password"
-              type="password"
-              variant="outlined"
-              size="small"
-              autoComplete="current-password"
-            />
-            <div />
+            <input id="password" name="password" type="password" />
+
             <Link className="no-decoration" to="/login/password/recovery">
               Forgot Password?
             </Link>
-            <div />
-            <Button className="confirm-button login-button" type="submit">
+
+            <button className="confirm-button login-button" type="submit">
               Login
-            </Button>
+            </button>
           </form>
-        </Paper>
+        </div>
       </div>
     </div>
   );

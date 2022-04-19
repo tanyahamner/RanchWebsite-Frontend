@@ -1,8 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import DataTable from "react-data-table-component";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
 
 import ActiveBadge from "../components/activeBadge.js";
 import { formatPhone } from "../util/stringUtils";
@@ -57,13 +55,12 @@ const columns = {
     sortable: false,
     cell: (row) => (
       <Link to={{ pathname: `/organization-form/${row.org_id}` }}>
-        <Button className="confirm-button">Edit</Button>
+        <button className="confirm-button">Edit</button>
       </Link>
     ),
     width: "150px",
   },
 };
-
 
 const OrganizationList = (props) => {
   const [selectedColumns, setSelectedColumns] = useState([]);
@@ -94,7 +91,7 @@ const OrganizationList = (props) => {
         logout(props);
       }
     }
-  }, [props])
+  }, [props]);
 
   useEffect(() => {
     let selected;
@@ -144,36 +141,36 @@ const OrganizationList = (props) => {
       <div className="button-and-search">
         {!props.showAddButton || props.showAddButton === false ? (
           <Link to="/organization-form">
-            <Button className="confirm-button">
+            <button className="confirm-button">
               <i className="fas fa-plus button-icon"></i> Add New Organization
-            </Button>
+            </button>
           </Link>
         ) : (
           <div />
         )}
+
         {!props.showFilter || props.showFilter === false ? (
-          <TextField
+          <input
             id="search"
             type="text"
             placeholder="Filter results..."
             value={filterText}
             onChange={handleFilter}
-            variant="outlined"
-            size="small"
           />
         ) : (
           <div />
         )}
       </div>
+
       <div className="seperator"></div>
       <DataTable
+        columns={selectedColumns}
+        data={filteredList}
         title={
           <span>
             <i className="far fa-building"></i> Organizations
           </span>
         }
-        columns={selectedColumns}
-        data={filteredList}
       />
     </div>
   );

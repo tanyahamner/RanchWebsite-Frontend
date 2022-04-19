@@ -1,8 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import DataTable from "react-data-table-component";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
 
 import ActiveBadge from "../components/activeBadge.js";
 import { formatPhone } from "../util/stringUtils";
@@ -66,7 +64,7 @@ const columns = {
     sortable: false,
     cell: (row) => (
       <Link to={{ pathname: `/user/edit/${row.user_id}` }}>
-        <Button className="confirm-button">Edit</Button>
+        <button className="confirm-button">Edit</button>
       </Link>
     ),
     width: "150px",
@@ -91,7 +89,6 @@ const UserList = (props) => {
       setFilteredList(props.filteredList || props.userList);
     } else {
       let fetchUrl = "/user/get";
-
       if (props.org_id) {
         fetchUrl = `/user/get/organization/${props.org_id}`;
       }
@@ -104,7 +101,7 @@ const UserList = (props) => {
         (data) => {
           setList(data);
           setFilterText("");
-          setFilteredList(data);
+          // setFilteredList(data);
         },
         null,
         props
@@ -176,43 +173,45 @@ const UserList = (props) => {
       <div className="button-and-search">
         <SecurityWrapper restrict_roles="user">
           {!props.showAddButton || props.showAddButton === false ? (
-            <Button
+            <button
               disabled={props.disableAddUser}
               onClick={() => props.history.push(linkToAddUser)}
               className="confirm-button"
             >
               <i className="fas fa-plus button-icon"></i>Add New User
-            </Button>
+            </button>
           ) : (
             <div />
           )}
         </SecurityWrapper>
+
         <SecurityWrapper roles="user">
           <div />
         </SecurityWrapper>
+
         {!props.showFilter || props.showFilter === false ? (
-          <TextField
+          <input
             id="search"
             type="text"
             placeholder="Filter results..."
             value={filterText}
             onChange={handleFilter}
-            variant="outlined"
-            size="small"
           />
         ) : (
           <div />
         )}
       </div>
+
       <div className="seperator"></div>
+
       <DataTable
+        columns={selectedColumns}
+        data={filteredList}
         title={
           <span>
             <i className="fas fa-user"></i> Users
           </span>
         }
-        columns={selectedColumns}
-        data={filteredList}
       />
     </div>
   );

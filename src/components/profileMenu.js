@@ -25,25 +25,30 @@ const ProfileMenu = (props) => {
       tabIndex="0"
     >
       <h3>{props.userFullName}</h3>
+
       <div
         onClick={() => handleLinkClick(`/organization/${props.orgId}`)}
         className="org"
       >
         {props.orgName}
       </div>
+
       <div
         onClick={() => handleLinkClick(`/profile/edit/${props.userID}`)}
         className="link"
       >
         My Profile
       </div>
+
       <div
         onClick={() => handleLinkClick(`/organization/${props.orgId}`)}
         className="link"
       >
         My Account
       </div>
-      <hr></hr>
+
+      <hr />
+
       <div onClick={() => handleLinkClick(`/login`)} className="link">
         Sign Out
       </div>

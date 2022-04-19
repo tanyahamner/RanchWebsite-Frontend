@@ -78,6 +78,7 @@ export default function EditTitle(props) {
         {beingEdited ? (
           <div>
             <div className="error-msg">{errorMsg}</div>
+
             <input
               onKeyPress={handleKeyDown}
               onBlur={onBlur}
@@ -91,6 +92,7 @@ export default function EditTitle(props) {
           <h1 onClick={() => setBeingEdited(true)}>{props.title_name}</h1>
         )}
       </SecurityWrapper>
+
       <SecurityWrapper roles="user">
         <h2>{props.title_name}</h2>
       </SecurityWrapper>

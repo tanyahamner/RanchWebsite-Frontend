@@ -10,6 +10,16 @@ button {
   cursor: pointer;
 }
 
+h2 {
+  font-weight: 400;
+  font-size: 22px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
 .delete-button {
   background-color: $lava;
   color: white;
@@ -45,10 +55,6 @@ button {
 
 .cancel-button:hover {
   background-color: $dark-grey;
-}
-
-body {
-  font-family: "Roboto", sans-serif;
 }
 
 .button-icon {
@@ -90,12 +96,6 @@ p.phone {
   color: $second-darkest;
 }
 
-h2 {
-  font-weight: 400;
-  font-size: 22px;
-  color: rgba(0, 0, 0, 0.87);
-}
-
 a.no-decoration {
   text-decoration: none;
   color: black;
@@ -123,6 +123,7 @@ a.no-decoration {
       margin-top: 10px;
       margin-right: 10px;
     }
+
     label.drop-down-label {
       margin-top: 18px;
     }

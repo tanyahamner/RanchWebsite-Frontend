@@ -1,7 +1,4 @@
-import Paper from "@material-ui/core/Paper";
-import Button from "@material-ui/core/Button";
 import Logo from "../img/logo.svg";
-import TextField from "@material-ui/core/TextField";
 
 const ChangePassword = () => {
   return (
@@ -10,34 +7,34 @@ const ChangePassword = () => {
         <div className="logo">
           <img src={Logo} alt="" height="32px"></img>
         </div>
-        <Paper className="recovery-paper" elevation={3}>
+
+        <div className="recovery-paper">
           <h2>Change Password</h2>
+
           <form className="recovery-form">
-            <TextField
+            <input
               required
               className="send-recovery"
               type="password"
-              variant="outlined"
-              size="small"
               placeholder="New Password"
             />
-            <TextField
+
+            <input
               required
               className="send-recovery"
               type="password"
-              variant="outlined"
-              size="small"
               placeholder="Re-enter Your New Password"
             />
-            <Button
+
+            <button
               className="confirm-button send-recovery"
               type="submit"
               onClick={() => this.redirectTo(`/home`)}
             >
               Change Password
-            </Button>
+            </button>
           </form>
-        </Paper>
+        </div>
       </div>
     </div>
   );
