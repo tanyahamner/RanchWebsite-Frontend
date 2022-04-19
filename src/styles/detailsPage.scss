@@ -1,109 +1,103 @@
 .narrow-paper {
-    width: 550px;
+  width: 550px;
 }
 
 .get-wrapper {
-    display: flex;
-    height: 100%;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    
-    .get-detail-wrapper {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-        .back-button {
-            display: flex;
-            justify-content: flex-start;
-            margin-bottom: 30px;
-        }
-
-        .detail-wrapper {
-            margin: 0px;
-            
-            .form-wrapper {
-                display: flex;
-                flex-direction: column;
-                
-                .details {
-                    display: flex;
-                    flex-direction: column;
-                    
-                    .top-section {
-                        display: flex;
-                        justify-content: space-between;
-
-                        h1 {
-                            width: 375px;
-                            white-space: nowrap;
-                            overflow: hidden;
-                            text-overflow: ellipsis;
-                        }
-                        
-                        .switch-wrapper {
-                            display: flex;
-                            align-items: center;
-                        }
-                    }
-                    
-                    .middle-section {
-                        display: flex;
-                        justify-content: space-between;
-                        
-                        .icon-and-details {
-                            display: flex;
-                            justify-content: flex-start;
-                            align-items: center;
-                            width: 100%;
-                            height: 130px;
-
-                            i {
-                                color: $second-lightest;
-                                font-size: 80px;
-                                margin-right: 30px;
-            
-                            }
-                            .bordered-icon {
-                                display: flex;
-                                justify-content: flex-end;
-                                align-items: center;
-                                border: 5px solid $second-lightest;
-                                border-radius: 13px;
-                                margin-right: 13px;
-                                
-                                i {
-                                    margin: -5px 5px;
-                                }
-                            }
-                            
-                            .role {
-                                text-transform: capitalize;
-                            }
-                        }
-                        
-                        .flex-row {
-                            justify-content: flex-end;
-                            align-items: flex-end;
-                            height: 190px;
-                            
-                            button {
-                                margin-left: 10px;
-                                margin-right: 0px;
-                                height: 35px;
-                            }
-                        }
-                    }
-
-                    
-                }
-                
-            }
-        }
-
-        .user-list {
-
-            .list-page {
-                margin: 0px;
-            }
-        }
+  .get-detail-wrapper {
+    .back-button {
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 30px;
     }
+
+    .detail-wrapper {
+      margin: 0px;
+
+      .form-wrapper {
+        display: flex;
+        flex-direction: column;
+
+        .details {
+          display: flex;
+          flex-direction: column;
+
+          .top-section {
+            display: flex;
+            justify-content: space-between;
+
+            h1 {
+              width: 375px;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+
+            .switch-wrapper {
+              display: flex;
+              align-items: center;
+            }
+          }
+
+          .middle-section {
+            display: flex;
+            justify-content: space-between;
+
+            .icon-and-details {
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
+              width: 100%;
+              height: 130px;
+
+              i {
+                color: $second-lightest;
+                font-size: 80px;
+                margin-right: 30px;
+              }
+              .bordered-icon {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                border: 5px solid $second-lightest;
+                border-radius: 13px;
+                margin-right: 13px;
+
+                i {
+                  margin: -5px 5px;
+                }
+              }
+
+              .role {
+                text-transform: capitalize;
+              }
+            }
+
+            .flex-row {
+              justify-content: flex-end;
+              align-items: flex-end;
+              height: 190px;
+
+              button {
+                margin-left: 10px;
+                margin-right: 0px;
+                height: 35px;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .user-list {
+      .list-page {
+        margin: 0px;
+      }
+    }
+  }
 }

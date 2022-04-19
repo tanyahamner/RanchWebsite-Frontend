@@ -48,6 +48,7 @@ const ForgotPassword = (props) => {
             onChange={(e) => setEmail(e.target.value)}
           />
 
+          {/* TODO: Disable button if no email */}
           <button
             className="confirm-button send-recovery"
             type="submit"

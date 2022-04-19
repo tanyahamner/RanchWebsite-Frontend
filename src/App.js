@@ -86,6 +86,7 @@ function App() {
           <Redirect exact from="/" to="/login" />
 
           <Route
+            exact
             render={(props) => (
               <DefaultContainer
                 {...props}

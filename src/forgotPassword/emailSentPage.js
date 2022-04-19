@@ -10,7 +10,7 @@ const ForgotPassword = () => {
           <img src={Logo} alt="" height="32px"></img>
         </div>
 
-        <div className="recovery-paper" elevation={3}>
+        <div className="recovery-paper">
           <div>
             <h2>Recover Password</h2>
           </div>

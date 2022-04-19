@@ -1,5 +1,6 @@
 import React, { useState, useEffect, createContext } from "react";
 import { Route } from "react-router-dom";
+import Cookies from "js-cookie";
 
 import Header from "./header";
 import Home from "./home";
@@ -10,12 +11,8 @@ import OrganizationForm from "./pages/organizationForm";
 import UserListPage from "./pages/userListPage";
 import UserForm from "./pages/userForm";
 import Loading from "./components/loading";
-
 import ProfileEdit from "./pages/profileEditPage";
-
 import UniversalSearch from "./components/universalSearch";
-
-import Cookies from "js-cookie";
 import logout from "./util/logout";
 import awaitAPICall from "./util/apiWrapper";
 
@@ -79,53 +76,26 @@ const DefaultContainer = (props) => {
 
         <div className="body-wrapper">
           <Route path="/home" component={Home}></Route>
-          <Route exact path="/user/:user_id" component={User} />
+
           <Route path="/users" component={UserListPage} />
+          <Route path="/user/:user_id" component={User} />
+          <Route path="/user/edit/:user_id" component={UserForm} />
 
-          <Route
-            name="user-edit"
-            path="/user/edit/:user_id"
-            component={UserForm}
-          />
-
-          <Route
-            name="user-add"
-            exact
-            path="/user-add/:org_id/:org_name"
-            component={UserForm}
-          />
-
-          <Route name="user-add" exact path="/user-add/" component={UserForm} />
+          <Route path="/user-add/" component={UserForm} />
+          <Route path="/user-add/:org_id/:org_name" component={UserForm} />
 
           <Route path="/organizations" component={OrganizationListPage} />
+          <Route path="/organization/:org_id" component={Organization} />
 
+          <Route path="/organization-form/" component={OrganizationForm} />
           <Route
-            name="organization-detail"
-            path="/organization/:org_id"
-            component={Organization}
-          />
-
-          <Route
-            name="organization-form"
             path="/organization-form/:org_id"
             component={OrganizationForm}
           />
 
-          <Route
-            name="organization-add"
-            exact
-            path="/organization-form/"
-            component={OrganizationForm}
-          />
+          <Route path="/profile/edit/:user_id" component={ProfileEdit} />
 
           <Route
-            name="profile-edit"
-            path="/profile/edit/:user_id"
-            component={ProfileEdit}
-          />
-
-          <Route
-            name="universal-search"
             path="/universal-search"
             render={(props) => {
               return (

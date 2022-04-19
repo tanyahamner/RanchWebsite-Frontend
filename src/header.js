@@ -27,20 +27,21 @@ export default function Header(props) {
         </Link>
 
         <SecurityWrapper roles="super-admin">
-          <NavLink exact to="/organizations">
+          <NavLink to="/organizations">
             <div className="page-link nav-item">Organizations</div>
           </NavLink>
         </SecurityWrapper>
 
-        <NavLink exact to="/users">
+        <NavLink to="/users">
           <div className="page-link nav-item">Users</div>
         </NavLink>
       </div>
 
       {/* <Link to ="/organization">Organization</Link> */}
-      {/* <NavLink exact to="/organization"><div className="page-link">Org Detail</div></NavLink> */}
+      {/* <NavLink to ="/organization"><div className="page-link">Org Detail</div></NavLink> */}
 
       <div className="right-column">
+        {/* TODO Look into Search bar */}
         <input
           type="search"
           value={props.searchTerm}

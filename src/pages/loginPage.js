@@ -84,6 +84,7 @@ const LoginPage = (props) => {
               Forgot Password?
             </Link>
 
+            {/* TODO: Disable button if no email */}
             <button className="confirm-button login-button" type="submit">
               Login
             </button>
