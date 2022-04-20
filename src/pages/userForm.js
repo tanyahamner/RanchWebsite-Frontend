@@ -150,6 +150,7 @@ const UserForm = (props) => {
                   <label htmlFor="org_name" className="drop-down-label">
                     Organization
                   </label>
+
                   <h3>{org_name}</h3>
                 </>
               ) : (

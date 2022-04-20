@@ -1,4 +1,3 @@
-import React from "react";
 import UserList from "./userList";
 import Cookies from "js-cookie";
 import SecurityWrapper from "../util/securityWrapper";

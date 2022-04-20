@@ -20,6 +20,7 @@ export default function GetOrganization(props) {
   const [switchStyle, setSwitchStyle] = useState("slider round");
   const [disableButtons, setDisableButtons] = useState(false);
   const [users, setUsers] = useState([]);
+
   useEffect(() => {
     let org_id = props.match.params.org_id;
     if (!validateUUID(org_id)) {

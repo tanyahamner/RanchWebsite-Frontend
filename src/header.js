@@ -59,7 +59,7 @@ export default function Header(props) {
           <ProfileMenu
             {...props}
             userFullName={me.first_name + " " + me.last_name}
-            // orgName={me.organization.name}
+            orgName={me.organization?.name}
             orgId={me.org_id}
             userID={me.user_id}
             setMenuOpen={setMenuOpen}

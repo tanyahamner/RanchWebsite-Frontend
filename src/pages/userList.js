@@ -185,9 +185,9 @@ const UserList = (props) => {
           )}
         </SecurityWrapper>
 
-        <SecurityWrapper roles="user">
+        {/* <SecurityWrapper roles="user">
           <div />
-        </SecurityWrapper>
+        </SecurityWrapper> */}
 
         {!props.showFilter || props.showFilter === false ? (
           <input
@@ -198,11 +198,11 @@ const UserList = (props) => {
             onChange={handleFilter}
           />
         ) : (
-          <div />
+          ""
         )}
       </div>
 
-      <div className="seperator"></div>
+      <div className="seperator" />
 
       <DataTable
         columns={selectedColumns}

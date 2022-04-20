@@ -12,7 +12,7 @@ export default function OrganizationListPage(props) {
 
   //  function redirectTo(path) {
   //      props.history.push(path);
-  //  }
+  //  } X
 
   return (
     <div className="list-wrapper">
