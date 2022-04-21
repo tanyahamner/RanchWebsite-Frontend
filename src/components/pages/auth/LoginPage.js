@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 
-import Logo from "../img/logo.svg";
-import logout from "../util/logout";
-import { awaitAPICall } from "../util/apiWrapper";
+import Logo from "../../../static/images/logo.svg";
+import logout from "../../../util/logout";
+import { awaitAPICall } from "../../../util/apiWrapper";
 
 const LoginPage = (props) => {
   const [errorMsg, setErrorMsg] = useState("");

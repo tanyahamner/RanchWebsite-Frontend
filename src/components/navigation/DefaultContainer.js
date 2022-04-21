@@ -1,20 +1,20 @@
-import React, { useState, useEffect, createContext } from "react";
+import { useState, useEffect, createContext } from "react";
 import { Route } from "react-router-dom";
 import Cookies from "js-cookie";
 
-import Header from "./header";
-import Home from "./home";
-import Organization from "./pages/organizationGet";
-import User from "./pages/userGet";
-import OrganizationListPage from "./pages/organizationListPage";
-import OrganizationForm from "./pages/organizationForm";
-import UserListPage from "./pages/userListPage";
-import UserForm from "./pages/userForm";
-import Loading from "./components/loading";
-import ProfileEdit from "./pages/profileEditPage";
-import UniversalSearch from "./components/universalSearch";
-import logout from "./util/logout";
-import awaitAPICall from "./util/apiWrapper";
+import Home from "../pages/Home";
+import Header from "../pages/Header";
+import Organization from "../pages/organization/OrganizationGet";
+import User from "../pages/user/UserGet";
+import OrganizationListPage from "../pages/organization/OrganizationListPage";
+import OrganizationForm from "../pages/organization/OrganizationForm";
+import UserListPage from "../pages/user/UserListPage";
+import UserForm from "../pages/user/UserForm";
+import Loading from "../../util/Loading";
+import ProfileEditPage from "../pages/ProfileEditPage";
+import UniversalSearch from "../pages/UniversalSearch";
+import logout from "../../util/logout";
+import awaitAPICall from "../../util/apiWrapper";
 
 export const MeContext = createContext();
 
@@ -93,7 +93,7 @@ const DefaultContainer = (props) => {
             component={OrganizationForm}
           />
 
-          <Route path="/profile/edit/:user_id" component={ProfileEdit} />
+          <Route path="/profile/edit/:user_id" component={ProfileEditPage} />
 
           <Route
             path="/universal-search"

@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 
-import OrganizationSelect from "../components/organizationSelect";
-import UserRoleSelect from "../components/userRoleSelect";
-import SecurityWrapper from "../util/securityWrapper";
-import asyncAPICall from "../util/apiWrapper";
-import logout from "../util/logout";
+import UserRoleSelect from "./UserRoleSelect";
+import SecurityWrapper from "../../auth/SecurityWrapper";
+import asyncAPICall from "../../../util/apiWrapper";
+import logout from "../../../util/logout";
+import OrganizationSelect from "../organization/OrganizationSelect";
 
 const orgIdCookie = Cookies.get("org_id");
 
@@ -121,7 +121,7 @@ const UserForm = (props) => {
   }, [editing]);
 
   if (!org_id && !newUser) {
-    return <div />;
+    return null;
   }
 
   return (

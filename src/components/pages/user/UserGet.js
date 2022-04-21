@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-import ConfirmDelete from "../components/confirmDelete";
-import { formatPhone, validateUUID } from "../util/stringUtils";
-import SecurityWrapper from "../util/securityWrapper";
-import asyncAPICall from "../util/apiWrapper";
-import logout from "../util/logout";
+import ConfirmDelete from "../../modals/ConfirmDelete";
+import { formatPhone, validateUUID } from "../../../util/stringUtils";
+import SecurityWrapper from "../../auth/SecurityWrapper";
+import asyncAPICall from "../../../util/apiWrapper";
+import logout from "../../../util/logout";
 
 const GetUser = (props) => {
   const [user, setUser] = useState({});

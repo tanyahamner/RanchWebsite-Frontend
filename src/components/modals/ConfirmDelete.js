@@ -1,8 +1,8 @@
 import { useState } from "react";
 import ReactModal from "react-modal";
 
-import { awaitAPICall } from "../util/apiWrapper";
-import logout from "../util/logout";
+import { awaitAPICall } from "../../util/apiWrapper";
+import logout from "../../util/logout";
 
 ReactModal.setAppElement("#root");
 

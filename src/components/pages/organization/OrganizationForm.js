@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
-import asyncAPICall from "../util/apiWrapper";
-import logout from "../util/logout";
+import asyncAPICall from "../../../util/apiWrapper";
+import logout from "../../../util/logout";
 
 const OrganizationForm = (props) => {
   const [org_id, setOrgId] = useState("");

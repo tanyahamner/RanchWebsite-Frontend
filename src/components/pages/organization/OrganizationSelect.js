@@ -3,8 +3,8 @@ import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import Cookies from "js-cookie";
 
-import asyncAPICall from "../util/apiWrapper";
-import logout from "../util/logout";
+import asyncAPICall from "../../../util/apiWrapper";
+import logout from "../../../util/logout";
 
 const OrganizationSelect = (props) => {
   const [organizations, setOrganizations] = useState([
@@ -14,7 +14,7 @@ const OrganizationSelect = (props) => {
 
   const handleChange = (e, value) => {
     if (value) {
-      props.handleOrgValues(value)
+      props.handleOrgValues(value);
     }
   };
   useEffect(() => {
@@ -48,7 +48,6 @@ const OrganizationSelect = (props) => {
       }
     }
   }, [props]);
-
 
   return (
     <div>

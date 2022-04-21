@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Cookies from "js-cookie";
 
-import UserList from "../pages/userList";
-import OrganizationList from "../pages/organizationList";
-import asyncAPICall from "../util/apiWrapper";
-import useDebounce from "./hooks/useDebounce";
-import Loading from "./loading";
+import UserList from "./user/UserList";
+import OrganizationList from "./organization/OrganizationList";
+import asyncAPICall from "../../util/apiWrapper";
+import useDebounce from "../hooks/useDebounce";
+import Loading from "../../util/Loading";
 // import logout from './util/logout';
 
 export default function UniversalSearch(props) {

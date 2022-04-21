@@ -1,8 +1,8 @@
 import { useState } from "react";
 
-import asyncAPICall from "../util/apiWrapper";
-import SecurityWrapper from "../util/securityWrapper";
-import { successfulToast } from "../util/toastNotifications";
+import asyncAPICall from "../../util/apiWrapper";
+import SecurityWrapper from "../auth/SecurityWrapper";
+import { successfulToast } from "../../util/toastNotifications";
 
 export default function EditTitle(props) {
   const [beingEdited, setBeingEdited] = useState(false);

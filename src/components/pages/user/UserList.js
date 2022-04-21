@@ -2,11 +2,11 @@ import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import DataTable from "react-data-table-component";
 
-import ActiveBadge from "../components/activeBadge.js";
-import { formatPhone } from "../util/stringUtils";
-import SecurityWrapper from "../util/securityWrapper";
-import asyncAPICall from "../util/apiWrapper";
-import logout from "../util/logout.js";
+import ActiveBadge from "../../custom-components/ActiveBadge";
+import { formatPhone } from "../../../util/stringUtils";
+import SecurityWrapper from "../../auth/SecurityWrapper";
+import asyncAPICall from "../../../util/apiWrapper";
+import logout from "../../../util/logout";
 
 const columns = {
   first_name: {
@@ -180,14 +180,8 @@ const UserList = (props) => {
             >
               <i className="fas fa-plus button-icon"></i>Add New User
             </button>
-          ) : (
-            <div />
-          )}
+          ) : null}
         </SecurityWrapper>
-
-        {/* <SecurityWrapper roles="user">
-          <div />
-        </SecurityWrapper> */}
 
         {!props.showFilter || props.showFilter === false ? (
           <input
@@ -197,9 +191,7 @@ const UserList = (props) => {
             value={filterText}
             onChange={handleFilter}
           />
-        ) : (
-          ""
-        )}
+        ) : null}
       </div>
 
       <div className="seperator" />

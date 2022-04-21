@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-import asyncAPICall from "../util/apiWrapper";
-import Logo from "../img/logo.svg";
+import asyncAPICall from "../../../util/apiWrapper";
+import Logo from "../../../static/images/logo.svg";
 
 const ForgotPassword = (props) => {
   const [email, setEmail] = useState("");

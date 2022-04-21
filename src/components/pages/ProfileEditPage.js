@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 
-import asyncAPICall from "../util/apiWrapper";
-import logout from "../util/logout";
+import asyncAPICall from "../../util/apiWrapper";
+import logout from "../../util/logout";
 
 const ProfileEdit = (props) => {
   const [user_id, setUserId] = useState("");

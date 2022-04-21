@@ -1,7 +1,7 @@
-import UserList from "./userList";
+import UserList from "./UserList";
 import Cookies from "js-cookie";
-import SecurityWrapper from "../util/securityWrapper";
-import logout from "../util/logout";
+import SecurityWrapper from "../../auth/SecurityWrapper";
+import logout from "../../../util/logout";
 
 export default function UserListPage(props) {
   const authToken = Cookies.get("auth_token");

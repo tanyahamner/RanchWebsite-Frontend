@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 
-import ConfirmDelete from "../components/confirmDelete";
-import EditTitle from "../components/editTitle";
-import UserList from "./userList";
-import { validateUUID, formatPhone } from "../util/stringUtils";
-import { successfulToast } from "../util/toastNotifications";
-import SecurityWrapper from "../util/securityWrapper";
-import asyncAPICall from "../util/apiWrapper";
-import logout from "../util/logout";
+import ConfirmDelete from "../../modals/ConfirmDelete";
+import EditTitle from "../../custom-components/EditTitle";
+import UserList from "../user/UserList";
+import { validateUUID, formatPhone } from "../../../util/stringUtils";
+import { successfulToast } from "../../../util/toastNotifications";
+import SecurityWrapper from "../../auth/SecurityWrapper";
+import asyncAPICall from "../../../util/apiWrapper";
+import logout from "../../../util/logout";
 
 export default function GetOrganization(props) {
   const [organization, setOrganization] = useState(null);
@@ -96,7 +96,7 @@ export default function GetOrganization(props) {
   }
 
   if (!organization) {
-    return <div />;
+    return null;
   }
 
   return (

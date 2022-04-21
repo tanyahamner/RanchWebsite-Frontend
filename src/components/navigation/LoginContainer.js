@@ -1,11 +1,11 @@
 import React from "react";
 import { Route } from "react-router-dom";
 
-import ForgotPassword from "./forgotPassword/forgotPasswordPage";
-import EmailSent from "./forgotPassword/emailSentPage";
-import TempPassword from "./forgotPassword/tempPassword";
-import ChangePassword from "./forgotPassword/changePassword";
-import LoginPage from "./pages/loginPage";
+import ForgotPassword from "../auth/forgotPassword/ForgotPasswordPage";
+import EmailSent from "../auth/forgotPassword/EmailSentPage";
+import TempPassword from "../auth/forgotPassword/TempPassword";
+import ChangePassword from "../auth/forgotPassword/ChangePassword";
+import LoginPage from "../pages/auth/LoginPage";
 
 export default function loginContainer(props) {
   return (

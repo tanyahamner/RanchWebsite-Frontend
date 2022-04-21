@@ -1,6 +1,4 @@
-import React from "react";
-
-import Logo from "../img/logo.svg";
+import Logo from "../../../static/images/logo.svg";
 
 const ForgotPassword = () => {
   return (

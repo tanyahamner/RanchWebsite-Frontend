@@ -1,10 +1,10 @@
-import React, { useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { NavLink, Link, useHistory } from "react-router-dom";
 
-import Logo from "./img/logo.svg";
-import SecurityWrapper from "./util/securityWrapper";
-import ProfileMenu from "./components/profileMenu";
-import { MeContext } from "./defaultContainer";
+import Logo from "../../static/images/logo.svg";
+import SecurityWrapper from "../auth/SecurityWrapper";
+import ProfileMenu from "../navigation/ProfileMenu";
+import { MeContext } from "../navigation/DefaultContainer";
 
 export default function Header(props) {
   const me = useContext(MeContext);
@@ -13,6 +13,7 @@ export default function Header(props) {
 
   const redirectTo = (path) => {
     history.push(path);
+    // props.history.push(path)
   };
 
   const getSearchResults = () => {

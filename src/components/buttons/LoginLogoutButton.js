@@ -1,6 +1,4 @@
-import React from "react";
-
-import logout from "../util/logout";
+import logout from "../../util/logout";
 
 export default function LoginLogoutButton(props) {
   return (

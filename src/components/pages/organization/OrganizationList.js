@@ -2,10 +2,10 @@ import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import DataTable from "react-data-table-component";
 
-import ActiveBadge from "../components/activeBadge.js";
-import { formatPhone } from "../util/stringUtils";
-import asyncAPICall from "../util/apiWrapper";
-import logout from "../util/logout.js";
+import ActiveBadge from "../../custom-components/ActiveBadge";
+import { formatPhone } from "../../../util/stringUtils";
+import asyncAPICall from "../../../util/apiWrapper";
+import logout from "../../../util/logout";
 
 const columns = {
   name: {
@@ -145,9 +145,7 @@ const OrganizationList = (props) => {
               <i className="fas fa-plus button-icon"></i> Add New Organization
             </button>
           </Link>
-        ) : (
-          <div />
-        )}
+        ) : null}
 
         {!props.showFilter || props.showFilter === false ? (
           <input
@@ -157,9 +155,7 @@ const OrganizationList = (props) => {
             value={filterText}
             onChange={handleFilter}
           />
-        ) : (
-          <div />
-        )}
+        ) : null}
       </div>
 
       <div className="seperator"></div>

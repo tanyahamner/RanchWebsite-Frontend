@@ -1,8 +1,7 @@
-import React from "react";
 import Cookies from "js-cookie";
 
-import OrganizationList from "./organizationList";
-import SecurityWrapper from "../util/securityWrapper";
+import OrganizationList from "./OrganizationList";
+import SecurityWrapper from "../../auth/SecurityWrapper";
 
 export default function OrganizationListPage(props) {
   const authToken = Cookies.get("auth_token");

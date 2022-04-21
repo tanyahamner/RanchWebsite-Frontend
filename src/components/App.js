@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
-import "./styles/App.scss";
-import LoginPage from "./pages/loginPage";
-import LoginContainer from "./loginContainer";
-import DefaultContainer from "./defaultContainer";
+import "../styles/App.scss";
+import LoginPage from "./pages/auth/LoginPage";
+import LoginContainer from "./navigation/LoginContainer";
+import DefaultContainer from "./navigation/DefaultContainer";
 
 function App() {
   const [authToken, setAuthToken] = useState(null);
