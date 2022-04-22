@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Cookies from "js-cookie";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import UserList from "./user/UserList";
 import OrganizationList from "./organization/OrganizationList";
@@ -91,7 +92,8 @@ export default function UniversalSearch(props) {
         className="confirm-button back-button search-title"
         onClick={() => props.history.goBack()}
       >
-        <i className="fas fa-chevron-left button-icon"></i> Back
+        {/* <i className="fas fa-chevron-left button-icon"></i> Back */}
+        {/* <FontAwesomeIcon icon="fas fa-chevron-left" /> */}
       </button>
 
       <h1 className="search-title">Search Results</h1>

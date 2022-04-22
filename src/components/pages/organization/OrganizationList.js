@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import DataTable from "react-data-table-component";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import ActiveBadge from "../../custom-components/ActiveBadge";
 import { formatPhone } from "../../../util/stringUtils";
@@ -142,7 +143,8 @@ const OrganizationList = (props) => {
         {!props.showAddButton || props.showAddButton === false ? (
           <Link to="/organization-form">
             <button className="confirm-button">
-              <i className="fas fa-plus button-icon"></i> Add New Organization
+              <FontAwesomeIcon icon="fas fa-plus" /> Add New Organization
+              {/* <i className="fas fa-plus button-icon"></i> Add New Organization */}
             </button>
           </Link>
         ) : null}
