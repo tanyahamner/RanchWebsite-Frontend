@@ -78,15 +78,13 @@ const DefaultContainer = (props) => {
           <Route path="/home" component={Home}></Route>
 
           <Route path="/users" component={UserListPage} />
+          <Route path="/user-add/" component={UserForm} />
           <Route path="/user/:user_id" component={User} />
           <Route path="/user/edit/:user_id" component={UserForm} />
-
-          <Route path="/user-add/" component={UserForm} />
           <Route path="/user-add/:org_id/:org_name" component={UserForm} />
 
           <Route path="/organizations" component={OrganizationListPage} />
           <Route path="/organization/:org_id" component={Organization} />
-
           <Route path="/organization-form/" component={OrganizationForm} />
           <Route
             path="/organization-form/:org_id"

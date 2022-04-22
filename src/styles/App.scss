@@ -1,24 +1,21 @@
-@import "common/variables.scss";
-@import "common/mixins.scss";
-@import "Theme.scss";
-@import "Loading.scss";
-@import "Modal.scss";
-@import "Header.scss";
-@import "ToggleSlider.scss";
-@import "LoginPage.scss";
-@import "ActiveBadge.scss";
-@import "DetailsPage.scss";
-@import "EditTitle.scss";
-@import "Home.scss";
-@import "ForgotPassword.scss";
-@import "UniversalSearch.scss";
-@import "ToastNotifications.scss";
+@import "./common/variables.scss";
+@import "./common/mixins.scss";
+@import "./common/common.scss";
+@import "./common/theme.scss";
 
-body {
-  margin: 0px;
-}
+@import "./util/Loading.scss";
+@import "./util/toggleSlider.scss";
+@import "./util/toastNotifications.scss";
 
-.body-wrapper {
-  margin-top: 70px;
-  margin-left: 0px;
-}
+@import "./auth/ForgotPassword.scss";
+
+@import "./pages/Home.scss";
+@import "./pages/Header.scss";
+@import "./pages/DetailsPage.scss";
+@import "./pages//auth/Loginpage.scss";
+@import "./pages/UniversalSearch.scss";
+
+@import "./custom-components/ActiveBadge.scss";
+@import "./custom-components/EditTitle.scss";
+
+@import "./modals/Modal.scss";

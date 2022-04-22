@@ -208,7 +208,9 @@ const UserForm = (props) => {
                   autoComplete="current-password"
                 />
               </>
-            ) : null}
+            ) : (
+              ""
+            )}
 
             <label htmlFor="phone">Phone</label>
             <input

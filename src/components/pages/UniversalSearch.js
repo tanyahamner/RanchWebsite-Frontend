@@ -115,6 +115,7 @@ export default function UniversalSearch(props) {
       )}
 
       <div className="vertical-spacing">
+        {/* REFACTOR FOR A SPACE */}
         <br />
         <br />
         <br />

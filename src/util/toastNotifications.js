@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import "../styles/toastNotifications.scss";
+import "../styles/util/toastNotifications.scss";
 
 toast.configure();
 
