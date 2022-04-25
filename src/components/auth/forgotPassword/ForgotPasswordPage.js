@@ -26,16 +26,14 @@ const ForgotPassword = (props) => {
   };
 
   return (
-    <div className="fp-page-wrapper">
+    <div className="forgot-password-container">
       <div className="forgot-password-wrapper">
         <div className="logo">
-          <img src={Logo} alt="" height="32px"></img>
+          <img src={Logo} alt="Logo" height="32px" />
         </div>
 
-        <div className="recovery-paper">
-          <div>
-            <h2>Recover Password</h2>
-          </div>
+        <div className="recovery-wrapper">
+          <h2>Recover Password</h2>
 
           <hr color="#6C8CB5" />
 
@@ -49,11 +47,7 @@ const ForgotPassword = (props) => {
           />
 
           {/* TODO: Disable button if no email */}
-          <button
-            className="confirm-button send-recovery"
-            type="submit"
-            onClick={handleSubmit}
-          >
+          <button className="recovery-btn" type="submit" onClick={handleSubmit}>
             send me recovery link
           </button>
         </div>

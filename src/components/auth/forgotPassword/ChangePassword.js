@@ -2,13 +2,13 @@ import Logo from "../../../static/images/logo.svg";
 
 const ChangePassword = () => {
   return (
-    <div className="fp-page-wrapper">
+    <div className="forgot-password-container">
       <div className="forgot-password-wrapper">
         <div className="logo">
-          <img src={Logo} alt="" height="32px"></img>
+          <img src={Logo} alt="Logo" height="32px" />
         </div>
 
-        <div className="recovery-paper">
+        <div className="recovery-wrapper">
           <h2>Change Password</h2>
 
           <form className="recovery-form">
@@ -27,7 +27,7 @@ const ChangePassword = () => {
             />
 
             <button
-              className="confirm-button send-recovery"
+              className="recovery-btn"
               type="submit"
               onClick={() => this.redirectTo(`/home`)}
             >

@@ -9,13 +9,13 @@ const TempPassword = (props) => {
   };
 
   return (
-    <div className="fp-page-wrapper">
+    <div className="forgot-password-container">
       <div className="forgot-password-wrapper">
         <div className="logo">
-          <img src={Logo} alt="" height="32px"></img>
+          <img src={Logo} alt="Logo" height="32px" />
         </div>
 
-        <div className="recovery-paper">
+        <div className="recovery-wrapper" style={{ width: "500px" }}>
           <h2>Password Reset</h2>
           <div>Your temporary password for {username} is:</div>
           <h2>{tempPassword}</h2>
@@ -25,10 +25,7 @@ const TempPassword = (props) => {
             new password
           </div>
 
-          <button
-            className="confirm-button"
-            onClick={() => redirectTo(`/login`)}
-          >
+          <button className="recovery-btn" onClick={() => redirectTo(`/login`)}>
             Login
           </button>
         </div>

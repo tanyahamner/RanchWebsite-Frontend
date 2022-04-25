@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ReactModal from "react-modal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { awaitAPICall } from "../../util/apiWrapper";
 import logout from "../../util/logout";
@@ -43,7 +44,7 @@ const ConfirmDelete = (props) => {
 
       <ReactModal isOpen={modalOpen} className="delete-modal" style={styles}>
         <div className="icon">
-          <i className="fas fa-exclamation-triangle"></i>
+          <FontAwesomeIcon icon="fas fa-exclamation-triangle" />
         </div>
 
         <div className="are-you-sure">

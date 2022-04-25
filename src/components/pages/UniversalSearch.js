@@ -92,8 +92,7 @@ export default function UniversalSearch(props) {
         className="confirm-button back-button search-title"
         onClick={() => props.history.goBack()}
       >
-        {/* <i className="fas fa-chevron-left button-icon"></i> Back */}
-        {/* <FontAwesomeIcon icon="fas fa-chevron-left" /> */}
+        <FontAwesomeIcon icon="fas fa-chevron-left" /> Back
       </button>
 
       <h1 className="search-title">Search Results</h1>

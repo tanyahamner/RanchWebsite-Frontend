@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { NavLink, Link, useHistory } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import Logo from "../../static/images/logo.svg";
 import SecurityWrapper from "../auth/SecurityWrapper";
@@ -24,7 +25,7 @@ export default function Header(props) {
     <div className="navbar-wrapper">
       <div className="left-column">
         <Link className="logo-wrapper nav-item" to="/home">
-          <img src={Logo} alt="" height="18px"></img>
+          <img src={Logo} alt="logo" height="18px"></img>
         </Link>
 
         <SecurityWrapper roles="super-admin">
@@ -53,7 +54,9 @@ export default function Header(props) {
 
         <div onClick={() => setMenuOpen(!menuOpen)} className="users_name">
           {me.first_name}&nbsp;&nbsp;
-          <i className={`fas fa-chevron-${menuOpen ? "up" : "down"}`}></i>
+          <FontAwesomeIcon
+            icon={`fas fa-chevron-${menuOpen ? "up" : "down"}`}
+          />
         </div>
 
         {menuOpen ? (

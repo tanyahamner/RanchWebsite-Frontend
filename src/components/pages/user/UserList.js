@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import DataTable from "react-data-table-component";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import ActiveBadge from "../../custom-components/ActiveBadge";
 import { formatPhone } from "../../../util/stringUtils";
@@ -178,7 +179,9 @@ const UserList = (props) => {
               onClick={() => props.history.push(linkToAddUser)}
               className="confirm-button"
             >
-              <i className="fas fa-plus button-icon"></i>Add New User
+              {/* <i className="fas fa-plus button-icon"></i>Add New User */}
+              <FontAwesomeIcon icon="fas fa-plus" className="button-icon" />
+              Add New User
             </button>
           ) : null}
         </SecurityWrapper>
@@ -201,7 +204,7 @@ const UserList = (props) => {
         data={filteredList}
         title={
           <span>
-            <i className="fas fa-user"></i> Users
+            <FontAwesomeIcon icon="fas fa-user" /> Users
           </span>
         }
       />

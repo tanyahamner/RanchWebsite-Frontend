@@ -8,10 +8,11 @@ import DefaultContainer from "./navigation/DefaultContainer";
 import solidIcons from "../util/fontawesome-icons/solidIcons";
 import brandIcons from "../util/fontawesome-icons/brandIcons";
 
+solidIcons();
+brandIcons();
+
 function App() {
   const [authToken, setAuthToken] = useState(null);
-  solidIcons();
-  brandIcons();
 
   return (
     <div className="App">

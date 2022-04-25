@@ -17,9 +17,13 @@ import {
   faChevronRight,
   faUser,
   faCheck,
+  faCheckCircle,
   faBars,
   faPlus,
   faMinus,
+  faSquare,
+  faExclamationTriangle,
+  faBuilding,
 } from "@fortawesome/free-solid-svg-icons";
 
 const solidIcons = () => {
@@ -40,9 +44,13 @@ const solidIcons = () => {
     faChevronRight,
     faUser,
     faCheck,
+    faCheckCircle,
     faBars,
     faPlus,
-    faMinus
+    faMinus,
+    faSquare,
+    faExclamationTriangle,
+    faBuilding
   );
 };
 

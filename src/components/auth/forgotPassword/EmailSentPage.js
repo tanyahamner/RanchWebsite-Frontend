@@ -2,18 +2,16 @@ import Logo from "../../../static/images/logo.svg";
 
 const ForgotPassword = () => {
   return (
-    <div className="fp-page-wrapper">
+    <div className="forgot-password-container">
       <div className="forgot-password-wrapper">
         <div className="logo">
-          <img src={Logo} alt="" height="32px"></img>
+          <img src={Logo} alt="" height="32px" />
         </div>
 
-        <div className="recovery-paper">
-          <div>
-            <h2>Recover Password</h2>
-          </div>
+        <div className="recovery-wrapper" style={{ width: "500px" }}>
+          <h2>Recover Password</h2>
 
-          <div>
+          <div className="recovery-message">
             An email has been sent. Please click the link when you get it.
           </div>
         </div>

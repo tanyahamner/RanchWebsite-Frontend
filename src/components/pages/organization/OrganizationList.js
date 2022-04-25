@@ -8,6 +8,7 @@ import { formatPhone } from "../../../util/stringUtils";
 import asyncAPICall from "../../../util/apiWrapper";
 import logout from "../../../util/logout";
 
+const building = <FontAwesomeIcon icon="fas fa-building" />;
 const columns = {
   name: {
     name: "Name",
@@ -166,7 +167,7 @@ const OrganizationList = (props) => {
         data={filteredList}
         title={
           <span>
-            <i className="far fa-building"></i> Organizations
+            <FontAwesomeIcon icon="fas fa-building" /> Organizations
           </span>
         }
       />

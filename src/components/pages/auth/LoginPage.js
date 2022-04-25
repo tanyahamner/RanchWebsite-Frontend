@@ -65,27 +65,33 @@ const LoginPage = (props) => {
   };
 
   return (
-    <div className="wrapper">
-      <div className="login-wrapper">
-        <img src={Logo} alt="" height="32px"></img>
+    <div className="login-page-container">
+      <div className="login-page-wrapper">
+        <img src={Logo} alt="Logo" height="32px" />
 
         <div className="form-wrapper">
           <h2>Please log in</h2>
           <div className="error-message">{errorMsg}</div>
 
-          <form className="form" onSubmit={handleSubmit} method="POST">
-            <label htmlFor="email">Email</label>
-            <input id="email" name="email" type="email" width="10px" />
+          <form className="login-form" onSubmit={handleSubmit} method="POST">
+            <div className="email-wrapper">
+              <label htmlFor="email">Email</label>
+              <input id="email" name="email" type="email" width="10px" />
+            </div>
 
-            <label htmlFor="password">Password</label>
-            <input id="password" name="password" type="password" />
+            <div className="password-wrapper">
+              <label htmlFor="password">Password</label>
+              <input id="password" name="password" type="password" />
+            </div>
 
-            <Link className="no-decoration" to="/login/password/recovery">
-              Forgot Password?
-            </Link>
+            <div className="fp-login-link">
+              <Link className="no-decoration" to="/login/password/recovery">
+                Forgot Password?
+              </Link>
+            </div>
 
             {/* TODO: Disable button if no email */}
-            <button className="confirm-button login-button" type="submit">
+            <button className="login-button" type="submit">
               Login
             </button>
           </form>

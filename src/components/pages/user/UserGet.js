@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import ConfirmDelete from "../../modals/ConfirmDelete";
 import { formatPhone, validateUUID } from "../../../util/stringUtils";
@@ -64,7 +65,9 @@ const GetUser = (props) => {
           className="confirm-button back-button"
           onClick={() => props.history.goBack()}
         >
-          <i className="fas fa-chevron-left button-icon"></i> Back
+          {/* <i className="fas fa-chevron-left button-icon"></i> Back */}
+          <FontAwesomeIcon icon="fas fa-chevron-left" className="button-Icon" />
+          Back
         </button>
 
         <div className="detail-wrapper wrapper">
@@ -97,7 +100,8 @@ const GetUser = (props) => {
 
               <div className="middle-section">
                 <div className="icon-and-details">
-                  <i className="fas fa-user"></i>
+                  {/* <i className="fas fa-user"></i> */}
+                  <FontAwesomeIcon icon="fas fa-user" />
 
                   <div>
                     <Link

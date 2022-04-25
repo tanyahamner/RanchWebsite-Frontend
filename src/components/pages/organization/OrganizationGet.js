@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import ConfirmDelete from "../../modals/ConfirmDelete";
 import EditTitle from "../../custom-components/EditTitle";
@@ -106,7 +107,8 @@ export default function GetOrganization(props) {
           className="confirm-button back-button"
           onClick={() => props.history.goBack()}
         >
-          <i className="fas fa-chevron-left button-icon"></i> Back
+          <FontAwesomeIcon icon="fas fa-chevron-left" className="button-icon" />
+          Back
         </button>
 
         <div className="detail-wrapper wrapper">
@@ -148,7 +150,8 @@ export default function GetOrganization(props) {
               </div>
               <div className="middle-section">
                 <div className="icon-and-details">
-                  <i className="far fa-building"></i>
+                  {/* <i className="far fa-building"></i> */}
+                  <FontAwesomeIcon icon="fas fa-building" />
 
                   <div>
                     <p className="address">

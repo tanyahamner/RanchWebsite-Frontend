@@ -1,9 +1,9 @@
-.wrapper {
+.login-page-container {
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 3%;
 
-  .login-wrapper {
+  .login-page-wrapper {
     display: flex;
     flex-direction: column;
 
@@ -21,75 +21,52 @@
         color: $second-lightest;
       }
 
-      .form {
-        text-align: right;
+      .login-form {
         width: 100%;
+        text-align: right;
 
-        .no-decoration {
-          color: $second-lightest;
+        label {
+          text-align: right;
+          margin-right: 10px;
+        }
+
+        .email-wrapper,
+        .password-wrapper {
+          input {
+            height: 32px;
+            width: 72%;
+            border: solid thin rgb(191, 193, 197);
+            border-radius: 4px;
+            margin: 0;
+          }
+        }
+
+        .password-wrapper {
+          margin-top: 3%;
+        }
+
+        .fp-login-link {
+          margin: 2% 0;
+
+          .no-decoration {
+            color: $second-lightest;
+          }
         }
 
         .login-button {
+          color: white;
+          background-color: $second-lightest;
+          height: 39px;
+          width: 74%;
           margin-right: 0px;
+          transition: 0.3s ease-in-out;
+          border: 1px solid transparent;
+
+          &:hover {
+            background-color: $second-darkest;
+          }
         }
       }
     }
   }
-
-  // .MuiButton-root {
-  .confirm-button {
-    height: 39px;
-    background-color: $second-lightest;
-    color: white;
-  }
-
-  .confirm-button:hover {
-    background-color: $second-darkest;
-  }
-
-  //   .login-wrapper {
-  //     display: flex;
-  //     flex-direction: column;
-  //     justify-content: center;
-  //     align-items: center;
-  //     // background-color: $second-darkest;
-  //     // color: white;
-  //     // border: 6px solid $darkest;
-  //     border-radius: 15px;
-  //     width: 550px;
-  //     padding-top: 25px;
-
-  //     .login {
-  //       display: grid;
-  //       grid-template-columns: 1fr 1fr;
-  //       width: 100%;
-  //       padding: 25px;
-
-  //       label {
-  //         text-align: right;
-  //         margin-top: 10px;
-  //         margin-right: 10px;
-  //       }
-
-  //       input {
-  //         background-color: $lightest;
-  //         border-radius: 50px;
-  //         border: 2px solid $second-darkest;
-  //         margin: 5px;
-  //         padding: 5px;
-  //         width: 200px;
-  //       }
-
-  //       button {
-  //         background-color: $darkest;
-  //         color: white;
-  //         border-radius: 10px;
-  //         align-self: center;
-  //         margin-top: 25px;
-  //         margin-bottom: 50px;
-  //         width: 200px;
-  //         line-height: 2em;
-  //       }
-  //     }
-  //   }
 }

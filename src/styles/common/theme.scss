@@ -16,10 +16,6 @@ h2 {
   color: rgba(0, 0, 0, 0.87);
 }
 
-body {
-  font-family: "Roboto", sans-serif;
-}
-
 .delete-button {
   background-color: $lava;
   color: white;
@@ -160,7 +156,7 @@ a.no-decoration {
 
 .list-page {
   margin-left: 0px;
-  margin-top: 12px;
+  margin-top: 10%;
   margin-right: 100px;
 
   .button-and-search {
