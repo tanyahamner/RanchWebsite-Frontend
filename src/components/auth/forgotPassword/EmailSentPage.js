@@ -5,7 +5,7 @@ const ForgotPassword = () => {
     <div className="forgot-password-container">
       <div className="forgot-password-wrapper">
         <div className="logo">
-          <img src={Logo} alt="" height="32px" />
+          <img src={Logo} alt="Logo" height="32px" />
         </div>
 
         <div className="recovery-wrapper" style={{ width: "500px" }}>
