@@ -18,7 +18,6 @@ const ProfileMenu = (props) => {
 
   return (
     <div
-      onBlur={() => props.setMenuOpen(!props.menuOpen)}
       ref={menuRef}
       id="dropdown-menu-wrapper"
       className="dropdown-menu-wrapper"

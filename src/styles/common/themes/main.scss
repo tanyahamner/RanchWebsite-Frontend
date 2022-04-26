@@ -1,3 +1,5 @@
+@import "./forms.scss";
+
 button {
   padding-left: 20px;
   padding-right: 20px;
@@ -19,46 +21,62 @@ h2 {
 .delete-button {
   background-color: $lava;
   color: white;
+
+  &:hover {
+    background-color: $coral;
+  }
+
+  &:disabled {
+    background-color: $dark-grey;
+    color: $light-grey;
+  }
 }
 
-.delete-button:hover {
-  background-color: $coral;
-}
+// .delete-button:hover {
+// }
 
-.delete-button:disabled {
-  background-color: $dark-grey;
-  color: $light-grey;
-}
+// .delete-button:disabled {
+// }
 
 .confirm-button {
   background-color: $second-lightest;
   color: white;
+
+  &:hover {
+    background-color: $second-darkest;
+  }
+
+  &:disabled {
+    background-color: $dark-grey;
+    color: $light-grey;
+  }
 }
 
-.confirm-button:hover {
-  background-color: $second-darkest;
-}
+// .confirm-button:hover {
+// }
 
-.wrapper .confirm-button:disabled {
-  background-color: $dark-grey;
-  color: $light-grey;
-}
+// .wrapper .confirm-button:disabled {
+
+// }
 
 .cancel-button {
   background-color: $light-grey;
   color: black;
+
+  &:hover {
+    background-color: $dark-grey;
+  }
 }
 
-.cancel-button:hover {
-  background-color: $dark-grey;
-}
+// .cancel-button:hover {
+// }
 
 .button-icon {
   margin-right: 10px;
   margin-bottom: 1px;
 }
 
-.body-wrapper {
+.body-container {
   margin: 30px 50px;
 }
 

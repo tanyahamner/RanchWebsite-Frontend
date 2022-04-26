@@ -74,8 +74,8 @@ const DefaultContainer = (props) => {
           )}
         />
 
-        <div className="body-wrapper">
-          <Route path="/home" component={Home}></Route>
+        <div className="body-container">
+          <Route path="/home" component={Home} />
 
           <Route path="/users" component={UserListPage} />
           <Route path="/user-add/" component={UserForm} />

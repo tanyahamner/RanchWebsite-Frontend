@@ -5,6 +5,7 @@ import SecurityWrapper from "../../auth/SecurityWrapper";
 
 export default function OrganizationListPage(props) {
   const authToken = Cookies.get("auth_token");
+
   if (!authToken) {
     props.history.push("/login");
   }
@@ -14,7 +15,7 @@ export default function OrganizationListPage(props) {
   //  } X
 
   return (
-    <div className="list-wrapper">
+    <div className="organization-container">
       <SecurityWrapper roles="super-admin,admin">
         <OrganizationList {...props} authToken={authToken} />
       </SecurityWrapper>

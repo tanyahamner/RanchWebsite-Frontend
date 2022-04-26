@@ -8,7 +8,6 @@ import { formatPhone } from "../../../util/stringUtils";
 import asyncAPICall from "../../../util/apiWrapper";
 import logout from "../../../util/logout";
 
-const building = <FontAwesomeIcon icon="fas fa-building" />;
 const columns = {
   name: {
     name: "Name",
@@ -139,7 +138,7 @@ const OrganizationList = (props) => {
   };
 
   return (
-    <div className="list-wrapper list-page">
+    <div className="organization-list-container">
       <div className="button-and-search">
         {!props.showAddButton || props.showAddButton === false ? (
           <Link to="/organization-form">

@@ -28,17 +28,25 @@ const OrganizationSelect = (props) => {
         null,
         null,
         (data) => {
-          let options = [{ name: "Select an Organization", value: "" }];
-
-          data.forEach((element) => {
-            options.push({
-              name: element.name,
-              value: element.org_id,
-              active: element.active,
-            });
+          const options = data.map((option) => {
+            return {
+              name: option.name,
+              value: option.value,
+              active: option.active,
+            };
           });
+          // let options = [{ name: "Select an Organization", value: "" }];
 
-          setOrganizations(options);
+          // data.forEach((element) => {
+          //   options.push({
+          //     name: element.name,
+          //     value: element.org_id,
+          //     active: element.active,
+          //   });
+          // });
+
+          // setOrganizations(options);
+          setOrganizations((o) => [...o, ...options]);
           setLoaded(true);
         },
         null,
@@ -55,7 +63,10 @@ const OrganizationSelect = (props) => {
       onChange={handleChange}
       value={{ name: props.org_name, value: props.org_id }}
     >
+      {/* {isLoaded} */}
       <option>Select Organization</option>
+
+      {/* {allowedUserRoles} */}
     </select>
   );
 };

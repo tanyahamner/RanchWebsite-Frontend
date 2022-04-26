@@ -128,7 +128,6 @@ const ProfileEdit = (props) => {
               type="phone"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              inputProps={{ minLength: 10 }}
               phone={phone}
             />
 

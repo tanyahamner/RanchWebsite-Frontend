@@ -8,6 +8,7 @@ import ProfileMenu from "../navigation/ProfileMenu";
 import { MeContext } from "../navigation/DefaultContainer";
 
 export default function Header(props) {
+  // refactoring route props
   const me = useContext(MeContext);
   const [menuOpen, setMenuOpen] = useState(false);
   const history = useHistory();
@@ -17,12 +18,14 @@ export default function Header(props) {
     // props.history.push(path)
   };
 
-  const getSearchResults = () => {
+  const getSearchResults = (e) => {
+    e.preventDefault();
+
     redirectTo(`/universal-search/${props.searchTerm}`);
   };
 
   return (
-    <div className="navbar-wrapper">
+    <div className="navbar-container">
       <div className="left-column">
         <Link className="logo-wrapper nav-item" to="/home">
           <img src={Logo} alt="logo" height="18px" />
@@ -44,13 +47,15 @@ export default function Header(props) {
 
       <div className="right-column">
         {/* TODO Look into Search bar */}
-        <input
-          type="search"
-          value={props.searchTerm}
-          onChange={(newValue) => props.setSearchTerm(newValue)}
-          onRequestSearch={getSearchResults}
-          style={{ height: "30px", lineHeight: "normal" }}
-        />
+        <form onSubmit={getSearchResults}>
+          <input
+            type="search"
+            value={props.searchTerm}
+            onChange={(e) => props.setSearchTerm(e.target.value)}
+            // onRequestSearch={getSearchResults}
+            style={{ height: "30px", lineHeight: "normal" }}
+          />
+        </form>
 
         <div onClick={() => setMenuOpen(!menuOpen)} className="users_name">
           {me.first_name}&nbsp;&nbsp;

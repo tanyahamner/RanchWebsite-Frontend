@@ -81,7 +81,7 @@ const OrganizationForm = (props) => {
         <div className="form-wrapper">
           <h2>{title}</h2>
 
-          <form className="form" onSubmit={handleSubmit} method="POST">
+          <form className="form organization-form" onSubmit={handleSubmit}>
             <label htmlFor="name">Organization Name *</label>
             <input
               required

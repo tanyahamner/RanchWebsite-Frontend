@@ -1,26 +1,34 @@
 import { useEffect, useState } from "react";
-import TextField from "@material-ui/core/TextField";
-import Autocomplete from "@material-ui/lab/Autocomplete";
 import Cookies from "js-cookie";
 
-const userRoles = [
-  {
-    name: "Super Admin",
-    value: "super-admin",
-  },
-  {
-    name: "Admin",
-    value: "admin",
-  },
-  {
-    name: "User",
-    value: "user",
-  },
-];
-
 const userRolesAllowedByRole = {
-  "super-admin": ["super-admin", "admin", "user"],
-  admin: ["admin", "user"],
+  "super-admin": {
+    roles: ["super-admin", "admin", "user"],
+  },
+  admin: {
+    roles: ["admin", "user"],
+  },
+  user: {
+    roles: ["user"],
+  },
+  userRoles: [
+    {
+      name: "Select Role",
+      value: "",
+    },
+    {
+      name: "Super Admin",
+      value: "super-admin",
+    },
+    {
+      name: "Admin",
+      value: "admin",
+    },
+    {
+      name: "User",
+      value: "user",
+    },
+  ],
 };
 
 const UserRoleSelect = (props) => {
@@ -33,52 +41,50 @@ const UserRoleSelect = (props) => {
 
     if (typeof userRolesAllowedByRole[loggedInUsersRole] === "undefined") {
       // No allowed roles by user role
+      return;
     } else {
-      const roleNamesAllowed = userRolesAllowedByRole[loggedInUsersRole];
+      const loggedInUserObj = userRolesAllowedByRole[loggedInUsersRole];
+      const roleNamesAllowed = [...loggedInUserObj.roles];
+      const userRoleList = userRolesAllowedByRole.userRoles;
       const allowRoles = [];
 
-      userRoles.forEach((role) => {
+      return userRoleList.map((role) => {
         if (roleNamesAllowed.includes(role.value)) {
           allowRoles.push({
             name: role.name,
             value: role.value,
           });
         }
+        setAllowedUserRoles([...allowRoles]);
       });
-
-      setAllowedUserRoles(allowRoles);
     }
   }, []);
 
-  const handleChange = (e, value) => {
-    if (value) {
-      setRole(value.value);
-      setRoleName(value.name);
+  const handleChange = (e) => {
+    const optionIdx = e.target.options.selectedIndex;
+    const selectedUserRole = allowedUserRoles[optionIdx - 1];
+
+    if (e.target.value === "Select Role") {
+      setRoleName(e.target.value);
+    } else {
+      setRole(e.target.value);
+      setRoleName(selectedUserRole.name);
     }
   };
 
   return (
     <div>
-      <Autocomplete
-        id="role"
-        name="role"
-        options={allowedUserRoles}
-        getOptionLabel={(option) => option.name}
-        getOptionSelected={(option) => {
-          if (option.value) {
-            return option.value === role;
-          }
-          return false;
-        }}
-        style={{ width: 200 }}
-        onChange={handleChange}
-        renderInput={(params) => (
-          <TextField {...params} label="" variant="outlined" />
-        )}
-        size="small"
-        disableClearable
-        value={{ name: roleName, value: role }}
-      />
+      <select onChange={handleChange}>
+        <option value="Select Role">Select Role</option>
+
+        {allowedUserRoles.map((role) => {
+          return (
+            <option key={role.name} value={role.value}>
+              {role.name}
+            </option>
+          );
+        })}
+      </select>
       <input type="hidden" name="role" value={role} />
     </div>
   );
