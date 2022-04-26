@@ -15,7 +15,7 @@ const TempPassword = (props) => {
           <img src={Logo} alt="Logo" height="32px" />
         </div>
 
-        <div className="recovery-wrapper" style={{ width: "500px" }}>
+        <div className="recovery-wrapper" style={{ width: "600px" }}>
           <h2>Password Reset</h2>
           <div>Your temporary password for {username} is:</div>
           <h2>{tempPassword}</h2>

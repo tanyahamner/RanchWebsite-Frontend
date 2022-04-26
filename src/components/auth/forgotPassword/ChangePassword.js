@@ -27,6 +27,7 @@ const ChangePassword = () => {
             />
 
             <button
+              style={{ width: "100%", marginTop: "20px" }}
               className="recovery-btn"
               type="submit"
               onClick={() => this.redirectTo(`/home`)}
