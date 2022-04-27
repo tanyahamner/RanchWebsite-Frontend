@@ -12,11 +12,11 @@ const OrganizationSelect = (props) => {
   ]);
   const [loaded, setLoaded] = useState(false);
 
-  const handleChange = (e, value) => {
-    if (value) {
-      props.handleOrgValues(value);
-    }
-  };
+  // const handleChange = (e, value) => {
+  //   if (value) {
+  //     props.handleOrgValues(value);
+  //   }
+  // };
 
   useEffect(() => {
     let auth_token = Cookies.get("auth_token");
@@ -60,7 +60,7 @@ const OrganizationSelect = (props) => {
 
   return (
     <select
-      onChange={handleChange}
+      onChange={(e) => props.handleOrgValues(e.target.value)}
       value={{ name: props.org_name, value: props.org_id }}
     >
       {/* {isLoaded} */}
