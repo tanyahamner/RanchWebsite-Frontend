@@ -28,7 +28,7 @@ export default function Header(props) {
     <div className="navbar-container">
       <div className="left-column">
         <Link className="logo-wrapper nav-item" to="/home">
-          <img src={Logo} alt="Logo" height="18px" />
+          <img src={Logo} alt="logo" height="18px" />
         </Link>
 
         <SecurityWrapper roles="super-admin">
