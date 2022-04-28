@@ -160,7 +160,9 @@ const OrganizationList = (props) => {
         ) : null}
       </div>
 
-      <div className="seperator"></div>
+      <div className="seperator" />
+
+      {/* Refactor Datatable to be our own */}
       <DataTable
         columns={selectedColumns}
         data={filteredList}

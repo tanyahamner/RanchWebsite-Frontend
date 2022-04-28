@@ -35,10 +35,13 @@ export default function UniversalSearch(props) {
 
           setOrganizations(data.organizations);
           setUsers(data.users);
-          setIsSearching(false);
         },
-        (err) => console.error("loadResults Error: ", err)
+        (err) => {
+          console.error("loadResults Error: ", err);
+        }
       );
+
+      setIsSearching(false);
     }
   }, [searchDebounce]);
 

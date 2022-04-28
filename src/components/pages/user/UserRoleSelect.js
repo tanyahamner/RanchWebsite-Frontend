@@ -4,36 +4,24 @@ import Cookies from "js-cookie";
 const userRolesAllowedByRole = {
   "super-admin": {
     roles: ["super-admin", "admin", "user"],
+    name: "Super Admin",
+    value: "super-admin",
   },
   admin: {
     roles: ["admin", "user"],
+    name: "Admin",
+    value: "admin",
   },
   user: {
     roles: ["user"],
+    name: "User",
+    value: "user",
   },
-  userRoles: [
-    {
-      name: "Select Role",
-      value: "",
-    },
-    {
-      name: "Super Admin",
-      value: "super-admin",
-    },
-    {
-      name: "Admin",
-      value: "admin",
-    },
-    {
-      name: "User",
-      value: "user",
-    },
-  ],
 };
 
 const UserRoleSelect = (props) => {
   const [role, setRole] = useState(props.role);
-  const [roleName, setRoleName] = useState("Select Role");
+  // const [roleName, setRoleName] = useState("Select Role");
   const [allowedUserRoles, setAllowedUserRoles] = useState([]);
 
   useEffect(() => {
@@ -45,31 +33,35 @@ const UserRoleSelect = (props) => {
     } else {
       const loggedInUserObj = userRolesAllowedByRole[loggedInUsersRole];
       const roleNamesAllowed = [...loggedInUserObj.roles];
-      const userRoleList = userRolesAllowedByRole.userRoles;
+      // const userRoleList = userRolesAllowedByRole.userRoles;
       const allowRoles = [];
 
-      return userRoleList.map((role) => {
-        if (roleNamesAllowed.includes(role.value)) {
+      roleNamesAllowed.forEach((role) => {
+        if (userRolesAllowedByRole[role].value === role) {
           allowRoles.push({
-            name: role.name,
-            value: role.value,
+            name: userRolesAllowedByRole[role].name,
+            value: userRolesAllowedByRole[role].value,
           });
         }
-        setAllowedUserRoles([...allowRoles]);
       });
+
+      // debugger;
+
+      setAllowedUserRoles([...allowRoles]);
     }
   }, []);
 
   const handleChange = (e) => {
-    const optionIdx = e.target.options.selectedIndex;
-    const selectedUserRole = allowedUserRoles[optionIdx - 1];
+    console.log(e.target.options);
+    const selectedRole = e.target.options[e.target.options.selectedIndex].value;
+    console.log(selectedRole);
 
-    if (e.target.value === "Select Role") {
-      setRoleName(e.target.value);
-    } else {
-      setRole(e.target.value);
-      setRoleName(selectedUserRole.name);
-    }
+    // if (e.target.value === "Select Role") {
+    //   setRoleName(e.target.value);
+    // } else {
+    //   setRole(e.target.value);
+    //   // setRoleName(selectedUserRole.name);
+    // }
   };
 
   return (

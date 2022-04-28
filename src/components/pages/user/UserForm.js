@@ -132,7 +132,7 @@ const UserForm = (props) => {
           <h2>{title}</h2>
           <div className="error-message">{error_msg}</div>
 
-          <form className="form" onSubmit={handleSubmit} method="POST">
+          <form className="form" onSubmit={handleSubmit}>
             <SecurityWrapper roles="super-admin">
               <label htmlFor="org_name" className="drop-down-label">
                 Organization
