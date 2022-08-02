@@ -5,7 +5,7 @@ import UserList from "../pages/userList";
 import OrganizationList from "../pages/organizationList";
 import Button from "@material-ui/core/Button";
 import asyncAPICall from "../util/apiWrapper";
-import useDebounce from "./hooks/useDebounce";
+import useDebounce from "../hooks/useDebounce";
 import Loading from "./loading";
 // import logout from './util/logout';
 
@@ -26,12 +26,12 @@ export default function UniversalSearch(props) {
         null,
         null,
         (data) => {
-					for(let result in data){
-						if(data[result].length) {
-							results.current = true;
-							break
-						}
-					}
+          for (let result in data) {
+            if (data[result].length) {
+              results.current = true;
+              break;
+            }
+          }
 
           setOrganizations(data.organizations);
           setUsers(data.users);
@@ -95,22 +95,24 @@ export default function UniversalSearch(props) {
         <i className="fas fa-chevron-left button-icon"></i> Back
       </Button>
       <h1 className="search-title">Search Results</h1>
-			
-      {isSearching ? 
-        <Loading content="Searching...." styles={{
-          height: "50%",
-          width: "80%",
-					backgroundColor: "white",
-				}} />
-       : 
-				results.current ? 
+
+      {isSearching ? (
+        <Loading
+          content="Searching...."
+          styles={{
+            height: "50%",
+            width: "80%",
+            backgroundColor: "white",
+          }}
+        />
+      ) : results.current ? (
         <>
           <div className="organizations">{renderOrganizations()}</div>
           <div className="users">{renderUsers()}</div>
         </>
-       : 
+      ) : (
         <h4 className="no-results">There are no records to display</h4>
-			}
+      )}
       <div className="vertical-spacing">
         <br />
         <br />
