@@ -5,6 +5,7 @@ import Button from "@material-ui/core/Button";
 
 import asyncAPICall from "../util/apiWrapper";
 import logout from "../util/logout";
+import useAbortEffect from "../hooks/useAbortEffect";
 
 const OrganizationForm = (props) => {
   const [org_id, setOrgId] = useState("");
@@ -40,37 +41,41 @@ const OrganizationForm = (props) => {
     );
   };
 
-  useEffect(() => {
-    const org_id = props.match.params.org_id;
+  useAbortEffect(
+    (signal) => {
+      const org_id = props.match.params.org_id;
 
-    if (org_id) {
-      const auth_ok = asyncAPICall(
-        `/organization/get/${org_id}`,
-        "GET",
-        null,
-        null,
-        (data) => {
-          if (!data.org_id) {
-            console.log("ERROR: organization not found");
-          } else {
-            setOrgId(data.org_id);
-            setName(data.name);
-            setAddress(data.address);
-            setCity(data.city);
-            setState(data.state);
-            setZipCode(data.zip_code);
-            setPhone(data.phone);
-            setEditing(true);
-          }
-        },
-        null,
-        props
-      );
-      if (!auth_ok) {
-        logout(props);
+      if (org_id) {
+        const auth_ok = asyncAPICall(
+          `/organization/get/${org_id}`,
+          "GET",
+          null,
+          null,
+          (data) => {
+            if (!data.org_id) {
+              console.log("ERROR: organization not found");
+            } else {
+              setOrgId(data.org_id);
+              setName(data.name);
+              setAddress(data.address);
+              setCity(data.city);
+              setState(data.state);
+              setZipCode(data.zip_code);
+              setPhone(data.phone);
+              setEditing(true);
+            }
+          },
+          (err) => console.error("Error in Get Organization Effect: ", err),
+          signal
+        );
+
+        if (!auth_ok) {
+          logout(props);
+        }
       }
-    }
-  }, [props]);
+    },
+    [props]
+  );
 
   useEffect(() => {
     const title = editing ? "Edit Organization" : "Add Organization";

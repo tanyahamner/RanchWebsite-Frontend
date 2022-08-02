@@ -12,13 +12,13 @@ const ProfileMenu = (props) => {
   }, [props.menuOpen]);
 
   const handleLinkClick = (link) => {
-    props.handleMenuOpenClose();
+    props.setMenuOpen(!props.menuOpen);
     props.history.push(link);
   };
 
   return (
     <div
-      onBlur={() => props.handleMenuOpenClose("FromBlur")}
+      onBlur={() => props.setMenuOpen(!props.menuOpen)}
       ref={menuRef}
       id="dropdown-menu-wrapper"
       className="dropdown-menu-wrapper"
