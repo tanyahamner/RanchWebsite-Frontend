@@ -1,0 +1,23 @@
+@import "./common/variables.scss";
+@import "./common/mixins.scss";
+@import "./common/common.scss";
+@import "./common/themes/main.scss";
+
+@import "./util/Loading.scss";
+@import "./util/toggleSlider.scss";
+@import "./util/toastNotifications.scss";
+
+@import "./auth/forgot-password.scss";
+
+@import "./pages/home.scss";
+@import "./pages/header.scss";
+@import "./pages/details-page.scss";
+@import "./pages/auth/login-page.scss";
+@import "./pages/universal-search.scss";
+@import "./pages/organization/organization-list-page.scss";
+@import "./pages/organization/organization-list.scss";
+
+@import "./custom-components/active-badge.scss";
+@import "./custom-components/edit-title.scss";
+
+@import "./modals/modal.scss";
