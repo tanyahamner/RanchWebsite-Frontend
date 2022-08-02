@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
@@ -8,6 +8,7 @@ import { formatPhone, validateUUID } from "../util/stringUtils";
 import SecurityWrapper from "../util/securityWrapper";
 import asyncAPICall from "../util/apiWrapper";
 import logout from "../util/logout";
+import useAbortEffect from "../hooks/useAbortEffect";
 
 const GetUser = (props) => {
   const [user, setUser] = useState({});
@@ -35,29 +36,33 @@ const GetUser = (props) => {
     props.history.push(path);
   };
 
-  useEffect(() => {
-    const user_id = props.match.params.user_id;
+  useAbortEffect(
+    (signal) => {
+      const user_id = props.match.params.user_id;
 
-    if (!validateUUID(user_id)) {
-      props.history.push("/notfound");
-    }
+      if (!validateUUID(user_id)) {
+        props.history.push("/notfound");
+      }
 
-    let auth_ok = asyncAPICall(
-      `/user/get/${user_id}`,
-      "GET",
-      null,
-      null,
-      (data) => {
-        setUser(data);
-        setCannotChangeActiveState(false);
-      },
-      null,
-      props
-    );
-    if (!auth_ok) {
-      logout(props);
-    }
-  }, [props]);
+      let auth_ok = asyncAPICall(
+        `/user/get/${user_id}`,
+        "GET",
+        null,
+        null,
+        (data) => {
+          setUser(data);
+          setCannotChangeActiveState(false);
+        },
+        (err) => console.error("Get User effect error: ", err),
+        signal
+      );
+
+      if (!auth_ok) {
+        logout(props);
+      }
+    },
+    [props]
+  );
 
   return (
     <div className="get-wrapper">

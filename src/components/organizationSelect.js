@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import Cookies from "js-cookie";
 
 import asyncAPICall from "../util/apiWrapper";
-import logout from "../util/logout";
+import useAbortEffect from "../hooks/useAbortEffect";
 
 const OrganizationSelect = (props) => {
   const [organizations, setOrganizations] = useState([
@@ -14,14 +14,15 @@ const OrganizationSelect = (props) => {
 
   const handleChange = (e, value) => {
     if (value) {
-      props.handleOrgValues(value)
+      props.handleOrgValues(value);
     }
   };
-  useEffect(() => {
+
+  useAbortEffect((sig) => {
     let auth_token = Cookies.get("auth_token");
 
     if (auth_token) {
-      let auth_ok = asyncAPICall(
+      asyncAPICall(
         `/organization/get`,
         "GET",
         null,
@@ -41,14 +42,10 @@ const OrganizationSelect = (props) => {
           setLoaded(true);
         },
         null,
-        props
+        sig
       );
-      if (!auth_ok) {
-        logout(props);
-      }
     }
-  }, [props]);
-
+  }, []);
 
   return (
     <div>
