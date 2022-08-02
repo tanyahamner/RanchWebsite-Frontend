@@ -50,10 +50,15 @@ export default function Header(props) {
         <form onSubmit={getSearchResults}>
           <input
             type="search"
+            placeholder="Search &#xf002;"
             value={props.searchTerm}
             onChange={(e) => props.setSearchTerm(e.target.value)}
-            // onRequestSearch={getSearchResults}
-            style={{ height: "30px", lineHeight: "normal" }}
+            style={{
+              height: "30px",
+              lineHeight: "normal",
+              fontWeight: "900",
+              fontFamily: "Font Awesome 5 Free",
+            }}
           />
         </form>
 
