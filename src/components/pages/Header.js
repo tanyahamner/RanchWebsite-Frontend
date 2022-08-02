@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { NavLink, Link, useHistory } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import Logo from "../../static/images/logo.svg";
@@ -7,21 +7,19 @@ import SecurityWrapper from "../auth/SecurityWrapper";
 import ProfileMenu from "../navigation/ProfileMenu";
 import { MeContext } from "../navigation/DefaultContainer";
 
-export default function Header(props) {
-  // refactoring route props
-  const me = useContext(MeContext);
+const Header = (props) => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const history = useHistory();
+  const me = useContext(MeContext);
+  const { searchTerm, setSearchTerm, history } = props;
 
   const redirectTo = (path) => {
     history.push(path);
-    // props.history.push(path)
   };
 
   const getSearchResults = (e) => {
     e.preventDefault();
 
-    redirectTo(`/universal-search/${props.searchTerm}`);
+    redirectTo(`/universal-search/${searchTerm}`);
   };
 
   return (
@@ -42,24 +40,27 @@ export default function Header(props) {
         </NavLink>
       </div>
 
-      {/* <Link to ="/organization">Organization</Link> */}
-      {/* <NavLink to ="/organization"><div className="page-link">Org Detail</div></NavLink> */}
-
       <div className="right-column">
-        {/* TODO Look into Search bar */}
         <form onSubmit={getSearchResults}>
-          <input
-            type="search"
-            placeholder="Search &#xf002;"
-            value={props.searchTerm}
-            onChange={(e) => props.setSearchTerm(e.target.value)}
-            style={{
-              height: "30px",
-              lineHeight: "normal",
-              fontWeight: "900",
-              fontFamily: "Font Awesome 5 Free",
-            }}
-          />
+          <div className="search-bar-wrapper">
+            <input
+              type="search"
+              placeholder="Search"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              style={{
+                height: "30px",
+                lineHeight: "normal",
+              }}
+            />
+
+            {!searchTerm ? (
+              <FontAwesomeIcon
+                icon="fa-solid fa-magnifying-glass"
+                color="black"
+              />
+            ) : null}
+          </div>
         </form>
 
         <div onClick={() => setMenuOpen(!menuOpen)} className="users_name">
@@ -85,4 +86,6 @@ export default function Header(props) {
       </div>
     </div>
   );
-}
+};
+
+export default Header;

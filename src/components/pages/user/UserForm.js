@@ -19,7 +19,7 @@ const UserForm = (props) => {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [role, setRole] = useState("");
-  //   const [active, setActive] = useState(1);
+  // const [active, setActive] = useState(1);
   const [editing, setEditing] = useState(false);
   const [newUser, setNewUser] = useState(false);
   const [error_msg, setErrorMsg] = useState("");
@@ -163,7 +163,7 @@ const UserForm = (props) => {
             <label htmlFor="role" className="drop-down-label">
               Role
             </label>
-            <UserRoleSelect role={role} />
+            <UserRoleSelect />
 
             <label htmlFor="first_name">First Name *</label>
             <input

@@ -85,7 +85,7 @@ const DefaultContainer = (props) => {
 
           <Route path="/organizations" component={OrganizationListPage} />
           <Route path="/organization/:org_id" component={Organization} />
-          <Route path="/organization-form/" component={OrganizationForm} />
+          <Route exact path="/organization-form" component={OrganizationForm} />
           <Route
             path="/organization-form/:org_id"
             component={OrganizationForm}

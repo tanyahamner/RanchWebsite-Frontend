@@ -25,6 +25,7 @@ import {
   faExclamationTriangle,
   faBuilding,
   faMagnifyingGlass,
+  faX,
 } from "@fortawesome/free-solid-svg-icons";
 
 const solidIcons = () => {
@@ -52,7 +53,8 @@ const solidIcons = () => {
     faSquare,
     faExclamationTriangle,
     faBuilding,
-    faMagnifyingGlass
+    faMagnifyingGlass,
+    faX
   );
 };
 

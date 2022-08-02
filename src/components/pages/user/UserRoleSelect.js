@@ -19,9 +19,8 @@ const userRolesAllowedByRole = {
   },
 };
 
-const UserRoleSelect = (props) => {
-  const [role, setRole] = useState(props.role);
-  // const [roleName, setRoleName] = useState("Select Role");
+const UserRoleSelect = () => {
+  const [roleSelect, setRoleSelect] = useState("");
   const [allowedUserRoles, setAllowedUserRoles] = useState([]);
 
   useEffect(() => {
@@ -33,7 +32,6 @@ const UserRoleSelect = (props) => {
     } else {
       const loggedInUserObj = userRolesAllowedByRole[loggedInUsersRole];
       const roleNamesAllowed = [...loggedInUserObj.roles];
-      // const userRoleList = userRolesAllowedByRole.userRoles;
       const allowRoles = [];
 
       roleNamesAllowed.forEach((role) => {
@@ -45,29 +43,14 @@ const UserRoleSelect = (props) => {
         }
       });
 
-      // debugger;
-
       setAllowedUserRoles([...allowRoles]);
     }
   }, []);
 
-  const handleChange = (e) => {
-    console.log(e.target.options);
-    const selectedRole = e.target.options[e.target.options.selectedIndex].value;
-    console.log(selectedRole);
-
-    // if (e.target.value === "Select Role") {
-    //   setRoleName(e.target.value);
-    // } else {
-    //   setRole(e.target.value);
-    //   // setRoleName(selectedUserRole.name);
-    // }
-  };
-
   return (
     <div>
-      <select onChange={handleChange}>
-        <option value="Select Role">Select Role</option>
+      <select onChange={(e) => setRoleSelect(e.target.value)}>
+        <option value="">Select Role</option>
 
         {allowedUserRoles.map((role) => {
           return (
@@ -77,7 +60,8 @@ const UserRoleSelect = (props) => {
           );
         })}
       </select>
-      <input type="hidden" name="role" value={role} />
+
+      <input type="hidden" name="role" value={roleSelect} />
     </div>
   );
 };
