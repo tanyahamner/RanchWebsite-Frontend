@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState } from "react";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import Cookies from "js-cookie";
@@ -11,6 +11,7 @@ import { successfulToast } from "../util/toastNotifications";
 import SecurityWrapper from "../util/securityWrapper";
 import asyncAPICall from "../util/apiWrapper";
 import logout from "../util/logout";
+import useAbortEffect from "../hooks/useAbortEffect";
 
 export default function GetOrganization(props) {
   const [organization, setOrganization] = useState(null);
@@ -21,49 +22,58 @@ export default function GetOrganization(props) {
   const [oldTitle, setOldTitle] = useState("");
   const [switchStyle, setSwitchStyle] = useState("slider round");
   const [disableButtons, setDisableButtons] = useState(false);
-  const [users, setUsers] = useState([])
-  useEffect(() => {
-    let org_id = props.match.params.org_id;
-    if (!validateUUID(org_id)) {
-      props.history.push("/notfound");
-    }
+  const [users, setUsers] = useState([]);
 
-    let user_org_id = Cookies.get("org_id");
-    // /user/get/organization/<org_id>
-    let auth_ok = asyncAPICall(
-      `/organization/get/${org_id}`,
-      "GET",
-      null,
-      null,
-      (data) => {
-        setOrganization(data);
-        setOrgName(data.name);
-        setOrgId(org_id);
-        setUserOrgId(user_org_id);
-        setTitle(data.name);
-        setOldTitle(data.name);
+  useAbortEffect(
+    (signal) => {
+      let org_id = props.match.params.org_id;
 
-        let disableButtons = data.org_id === data.user_org_id ? true : false;
+      if (!validateUUID(org_id)) {
+        props.history.push("/notfound");
+      }
 
-        if (disableButtons) {
-          setSwitchStyle("slider round disable-switch");
-        }
-        setDisableButtons(disableButtons);
-      },
-      null,
-      props
-    );
+      let user_org_id = Cookies.get("org_id");
+      // /user/get/organization/<org_id>
+      let auth_ok = asyncAPICall(
+        `/organization/get/${org_id}`,
+        "GET",
+        null,
+        null,
+        (data) => {
+          setOrganization(data);
+          setOrgName(data.name);
+          setOrgId(org_id);
+          setUserOrgId(user_org_id);
+          setTitle(data.name);
+          setOldTitle(data.name);
 
-    asyncAPICall(`/user/get/organization/${org_id}`, "GET", null, null, 
-      data => setUsers(data),
-      err => console.error("Get Org Users Error: ", err),
-      true
-    )
+          let disableButtons = data.org_id === data.user_org_id ? true : false;
 
-    if (!auth_ok) {
-      logout(props);
-    }
-  }, [props]);
+          if (disableButtons) {
+            setSwitchStyle("slider round disable-switch");
+          }
+          setDisableButtons(disableButtons);
+        },
+        (err) => console.error("Organization effect error: ", err),
+        signal
+      );
+
+      asyncAPICall(
+        `/user/get/organization/${org_id}`,
+        "GET",
+        null,
+        null,
+        (data) => setUsers(data),
+        (err) => console.error("Get Org Users Error: ", err),
+        signal
+      );
+
+      if (!auth_ok) {
+        logout(props);
+      }
+    },
+    [props]
+  );
 
   const organizationActivateToast = () => {
     if (organization.active) {
@@ -183,7 +193,7 @@ export default function GetOrganization(props) {
                 columns="first_name,last_name,email,phone,active"
                 org_name={orgName}
                 org_id={props.match.params.org_id}
-                userList ={users}
+                userList={users}
               />
             </div>
           </Paper>
