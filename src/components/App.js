@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
-import "../styles/App.scss";
+import "../styles/app.scss";
 import LoginPage from "./pages/auth/LoginPage";
 import LoginContainer from "./navigation/LoginContainer";
 import DefaultContainer from "./navigation/DefaultContainer";
