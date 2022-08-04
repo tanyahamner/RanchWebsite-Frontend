@@ -4,6 +4,6 @@ body {
 }
 
 .body-container {
-  margin-top: 10%;
-  margin-left: 0px;
+  @include flex-center;
+  margin-top: 5%;
 }

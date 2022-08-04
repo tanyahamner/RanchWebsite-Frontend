@@ -1,15 +1,17 @@
 @import "./forms.scss";
 
 button {
+  border: none;
   padding-left: 20px;
   padding-right: 20px;
   text-decoration: none;
   border-radius: 4px;
   font-size: 0.9em;
-  margin-right: 10px;
+  // margin-right: 10px;
   margin-top: 10px;
   margin-bottom: 10px;
   cursor: pointer;
+  transition: 0.2s ease-in-out;
 }
 
 h2 {
@@ -32,15 +34,10 @@ h2 {
   }
 }
 
-// .delete-button:hover {
-// }
-
-// .delete-button:disabled {
-// }
-
 .confirm-button {
   background-color: $second-lightest;
   color: white;
+  height: 35px;
 
   &:hover {
     background-color: $second-darkest;
@@ -52,13 +49,6 @@ h2 {
   }
 }
 
-// .confirm-button:hover {
-// }
-
-// .wrapper .confirm-button:disabled {
-
-// }
-
 .cancel-button {
   background-color: $light-grey;
   color: black;
@@ -68,17 +58,14 @@ h2 {
   }
 }
 
-// .cancel-button:hover {
-// }
-
 .button-icon {
   margin-right: 10px;
   margin-bottom: 1px;
 }
 
-.body-container {
-  margin: 30px 50px;
-}
+// .body-container {
+//   margin: 30px 50px;
+// }
 
 div.rdt_Table a {
   text-decoration: none;
@@ -129,7 +116,7 @@ a.no-decoration {
     // color: white;
     // border: 6px solid $darkest;
     // border-radius: 15px;
-    // width:100%;
+    // width: 100%;
     // padding-top: 25px;
 
     label {
@@ -174,7 +161,7 @@ a.no-decoration {
 
 .list-page {
   margin-left: 0px;
-  margin-top: 10%;
+  margin-top: 5%;
   margin-right: 100px;
 
   .button-and-search {

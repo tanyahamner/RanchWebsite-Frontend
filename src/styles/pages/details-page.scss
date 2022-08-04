@@ -11,8 +11,7 @@
 
   .get-detail-wrapper {
     .back-button {
-      display: flex;
-      justify-content: flex-start;
+      @include flex-center;
       margin-bottom: 30px;
     }
 
