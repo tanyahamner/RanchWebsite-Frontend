@@ -81,6 +81,7 @@ const UserForm = (props) => {
         null,
         null,
         (data) => {
+          console.log(data);
           if (!data.user_id) {
             console.log("ERROR: user not found");
           } else {

@@ -58,7 +58,7 @@ const OrganizationSelect = (props) => {
         logout();
       }
     }
-  }, []);
+  }, [organizations, props]);
 
   return (
     <div className="org-select-container">
