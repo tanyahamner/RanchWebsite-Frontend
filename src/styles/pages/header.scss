@@ -45,13 +45,21 @@
       display: flex;
       align-items: center;
 
+      svg {
+        position: absolute;
+        right: 13.5%;
+        opacity: 0.5;
+      }
+
       input {
         height: 26px;
         width: 240px;
         border-radius: 6px;
         margin-right: 0px;
-        border: 1px solid $light-grey;
+        border: none;
+        outline: none;
         padding-left: 10px;
+        box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.75);
       }
 
       button.search-button {

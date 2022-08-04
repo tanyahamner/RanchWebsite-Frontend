@@ -81,7 +81,7 @@ const ProfileEdit = (props) => {
   }, []);
 
   return (
-    <div className="wrapper">
+    <div className="form-container">
       <div className="form-field-wrapper">
         <div className="form-wrapper">
           <h2>Edit My Profile</h2>

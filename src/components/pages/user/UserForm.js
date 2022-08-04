@@ -86,7 +86,7 @@ const UserForm = (props) => {
           } else {
             setUserId(data.user_id);
             setOrgId(data.org_id);
-            setOrgName(data.organization.name);
+            setOrgName(data.organization?.name);
             setFirstName(data.first_name);
             setLastName(data.last_name);
             setEmail(data.email);
@@ -126,7 +126,7 @@ const UserForm = (props) => {
   }
 
   return (
-    <div className="wrapper">
+    <div className="form-container">
       <div className="form-field-wrapper">
         <div className="form-wrapper">
           <h2>{title}</h2>
@@ -134,7 +134,7 @@ const UserForm = (props) => {
 
           <form className="form" onSubmit={handleSubmit}>
             <SecurityWrapper roles="super-admin">
-              <label htmlFor="org_name" className="drop-down-label">
+              <label htmlFor="org_name" className="drop-down-label org-label">
                 Organization
               </label>
               <OrganizationSelect
@@ -142,13 +142,17 @@ const UserForm = (props) => {
                 org_id={org_id}
                 org_name={org_name}
               />
+
               <input type="hidden" name="org_id" value={org_id} />
             </SecurityWrapper>
 
             <SecurityWrapper restrict_roles="super-admin">
               {editing ? (
                 <>
-                  <label htmlFor="org_name" className="drop-down-label">
+                  <label
+                    htmlFor="org_name"
+                    className="drop-down-label org-label"
+                  >
                     Organization
                   </label>
 
@@ -160,7 +164,7 @@ const UserForm = (props) => {
               <input type="hidden" name="org_id" value={orgIdCookie} />
             </SecurityWrapper>
 
-            <label htmlFor="role" className="drop-down-label">
+            <label htmlFor="role" className="drop-down-label role-label">
               Role
             </label>
             <UserRoleSelect />

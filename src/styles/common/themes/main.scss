@@ -88,10 +88,6 @@ div.rdt_Table a.table-link {
   margin-left: 100px;
 }
 
-.list-wrapper {
-  margin-left: 100px;
-}
-
 p.address {
   font-size: 1.2em;
 }
@@ -129,9 +125,9 @@ a.no-decoration {
       margin-right: 10px;
     }
 
-    label.drop-down-label {
-      margin-top: 18px;
-    }
+    // label.drop-down-label {
+    //   margin-top: 18px;
+    // }
 
     input {
       // background-color: $lightest;
@@ -160,23 +156,6 @@ a.no-decoration {
 
   i {
     margin: -5px 5px;
-  }
-}
-
-.list-page {
-  margin-left: 0px;
-  margin-top: 5%;
-  margin-right: 100px;
-
-  .button-and-search {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-    justify-content: space-between;
-
-    a {
-      text-decoration: none;
-    }
   }
 }
 

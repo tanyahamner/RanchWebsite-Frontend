@@ -11,7 +11,7 @@ export default function UserListPage(props) {
   }
 
   return (
-    <div className="list-wrapper">
+    <div className="list-container">
       <SecurityWrapper roles="super-admin,admin">
         <UserList {...props} authToken={authToken} />
       </SecurityWrapper>

@@ -48,7 +48,7 @@ const UserRoleSelect = () => {
   }, []);
 
   return (
-    <div>
+    <div className="role-select-container">
       <select onChange={(e) => setRoleSelect(e.target.value)}>
         <option value="">Select Role</option>
 

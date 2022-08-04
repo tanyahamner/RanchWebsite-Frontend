@@ -45,17 +45,7 @@ const OrganizationSelect = (props) => {
               active: option.active,
             };
           });
-          // let options = [{ name: "Select an Organization", value: "" }];
 
-          // data.forEach((element) => {
-          //   options.push({
-          //     name: element.name,
-          //     value: element.org_id,
-          //     active: element.active,
-          //   });
-          // });
-
-          // setOrganizations(options);
           setOrganizations(options);
           console.log(organizations);
           setLoaded(true);
@@ -70,16 +60,16 @@ const OrganizationSelect = (props) => {
     }
   }, []);
 
-  // console.log(organizations);
-
   return (
-    <select onChange={handleChange}>
-      {/* {loaded && mapOrganizations()} */}
-      <option value="Select Organization">Select Organization</option>
-      {/* <option value="DevPipeline">DevPipeline</option> */}
-      {mapOrganizations()}
-      {/* {allowedUserRoles} */}
-    </select>
+    <div className="org-select-container">
+      <select onChange={handleChange}>
+        {/* {loaded && mapOrganizations()} */}
+        <option value="Select Organization">Select Organization</option>
+        {/* <option value="DevPipeline">DevPipeline</option> */}
+        {mapOrganizations()}
+        {/* {allowedUserRoles} */}
+      </select>
+    </div>
   );
 };
 

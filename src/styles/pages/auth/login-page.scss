@@ -34,10 +34,17 @@
         .password-wrapper {
           input {
             height: 32px;
-            width: 72%;
-            border: solid thin rgb(191, 193, 197);
+            width: 71%;
+            border: solid thin rgba(191, 193, 197, 0.75);
             border-radius: 4px;
             margin: 0;
+            padding-left: 7px;
+            outline: none;
+
+            &:hover,
+            &:focus {
+              border: solid thin rgba(0, 0, 0, 0.75);
+            }
           }
         }
 
@@ -50,6 +57,11 @@
 
           .no-decoration {
             color: $second-lightest;
+            transition: 0.2s ease-in-out;
+
+            &:hover {
+              color: $second-darkest;
+            }
           }
         }
 

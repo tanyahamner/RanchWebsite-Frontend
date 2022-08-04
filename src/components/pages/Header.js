@@ -44,7 +44,7 @@ const Header = (props) => {
         <form onSubmit={getSearchResults}>
           <div className="search-bar-wrapper">
             <input
-              type="search"
+              type="text"
               placeholder="Search"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -59,7 +59,13 @@ const Header = (props) => {
                 icon="fa-solid fa-magnifying-glass"
                 color="black"
               />
-            ) : null}
+            ) : (
+              <FontAwesomeIcon
+                icon="fa-solid fa-x"
+                color="black"
+                onClick={() => setSearchTerm("")}
+              />
+            )}
           </div>
         </form>
 

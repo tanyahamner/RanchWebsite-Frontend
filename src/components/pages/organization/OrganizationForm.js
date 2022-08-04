@@ -76,7 +76,7 @@ const OrganizationForm = (props) => {
   }, [editing]);
 
   return (
-    <div className="wrapper">
+    <div className="form-container">
       <div className="form-field-wrapper">
         <div className="form-wrapper">
           <h2>{title}</h2>

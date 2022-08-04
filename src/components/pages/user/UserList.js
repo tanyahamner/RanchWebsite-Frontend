@@ -170,7 +170,7 @@ const UserList = (props) => {
   }, [props.userList, loadResults]);
 
   return (
-    <div className="list-wrapper list-page">
+    <div className="user-list-container list-page">
       <div className="button-and-search">
         <SecurityWrapper restrict_roles="user">
           {!props.showAddButton || props.showAddButton === false ? (
