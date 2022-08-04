@@ -12,6 +12,11 @@ body {
 .user-filter {
   height: 30px;
   width: 195px;
-  opacity: 0.75;
   outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+
+  &:hover,
+  &:focus {
+    border: 1px solid rgba(0, 0, 0, 1);
+  }
 }
