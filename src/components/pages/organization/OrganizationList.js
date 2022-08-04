@@ -144,7 +144,6 @@ const OrganizationList = (props) => {
           <Link to="/organization-form">
             <button className="confirm-button">
               <FontAwesomeIcon icon="fas fa-plus" /> Add New Organization
-              {/* <i className="fas fa-plus button-icon"></i> Add New Organization */}
             </button>
           </Link>
         ) : null}
@@ -152,6 +151,7 @@ const OrganizationList = (props) => {
         {!props.showFilter || props.showFilter === false ? (
           <input
             id="search"
+            className="org-filter"
             type="text"
             placeholder="Filter results..."
             value={filterText}

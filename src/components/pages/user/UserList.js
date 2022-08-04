@@ -179,7 +179,6 @@ const UserList = (props) => {
               onClick={() => props.history.push(linkToAddUser)}
               className="confirm-button"
             >
-              {/* <i className="fas fa-plus button-icon"></i>Add New User */}
               <FontAwesomeIcon icon="fas fa-plus" className="button-icon" />
               Add New User
             </button>
@@ -189,6 +188,7 @@ const UserList = (props) => {
         {!props.showFilter || props.showFilter === false ? (
           <input
             id="search"
+            className="user-filter"
             type="text"
             placeholder="Filter results..."
             value={filterText}

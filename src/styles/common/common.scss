@@ -7,3 +7,11 @@ body {
   @include flex-center;
   margin-top: 5%;
 }
+
+.org-filter,
+.user-filter {
+  height: 30px;
+  width: 195px;
+  opacity: 0.75;
+  outline: none;
+}
