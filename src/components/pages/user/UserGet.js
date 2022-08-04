@@ -61,11 +61,7 @@ const GetUser = (props) => {
   return (
     <div className="get-wrapper">
       <div className="get-detail-wrapper">
-        <button
-          className="confirm-button back-button"
-          onClick={() => props.history.goBack()}
-        >
-          {/* <i className="fas fa-chevron-left button-icon"></i> Back */}
+        <button className="back-button" onClick={() => props.history.goBack()}>
           <FontAwesomeIcon icon="fas fa-chevron-left" className="button-Icon" />
           Back
         </button>

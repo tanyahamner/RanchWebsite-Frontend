@@ -34,7 +34,8 @@ h2 {
   }
 }
 
-.confirm-button {
+.confirm-button,
+.back-button {
   background-color: $second-lightest;
   color: white;
   height: 35px;
@@ -49,6 +50,14 @@ h2 {
   }
 }
 
+.back-button {
+  gap: 15%;
+
+  .button-icon {
+    margin-right: 0;
+  }
+}
+
 .cancel-button {
   background-color: $light-grey;
   color: black;
@@ -60,12 +69,7 @@ h2 {
 
 .button-icon {
   margin-right: 10px;
-  margin-bottom: 1px;
 }
-
-// .body-container {
-//   margin: 30px 50px;
-// }
 
 div.rdt_Table a {
   text-decoration: none;

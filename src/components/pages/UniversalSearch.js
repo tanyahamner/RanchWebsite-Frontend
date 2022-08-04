@@ -104,8 +104,8 @@ export default function UniversalSearch(props) {
         <Loading
           content="Searching...."
           styles={{
+            marginRight: "0",
             height: "50%",
-            width: "80%",
             backgroundColor: "white",
           }}
         />

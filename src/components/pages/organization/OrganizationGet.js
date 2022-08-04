@@ -103,10 +103,7 @@ export default function GetOrganization(props) {
   return (
     <div className="get-wrapper">
       <div className="get-detail-wrapper">
-        <button
-          className="confirm-button back-button"
-          onClick={() => props.history.goBack()}
-        >
+        <button className="back-button" onClick={() => props.history.goBack()}>
           <FontAwesomeIcon icon="fas fa-chevron-left" className="button-icon" />
           Back
         </button>
