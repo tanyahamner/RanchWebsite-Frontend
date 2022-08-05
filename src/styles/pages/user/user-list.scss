@@ -1,0 +1,19 @@
+.list-container {
+  @include flex-center;
+  width: 100vw;
+
+  .user-list-container {
+    width: 80%;
+  }
+}
+
+.list-page {
+  margin-left: 0px;
+  margin-top: 5%;
+
+  .button-and-search {
+    a {
+      text-decoration: none;
+    }
+  }
+}

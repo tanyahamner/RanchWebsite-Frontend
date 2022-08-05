@@ -1,0 +1,42 @@
+.search-data-wrapper {
+  height: 100vh;
+  width: 100vw;
+  margin-left: 120px;
+
+  .search-title {
+    margin-left: 160px;
+  }
+
+  .organizations {
+    margin-right: 300px;
+    margin-left: 150px;
+  }
+
+  .users {
+    margin-right: 300px;
+    margin-left: 150px;
+  }
+
+  .displays {
+    margin-right: 300px;
+    margin-left: 150px;
+  }
+
+  .dashboards {
+    margin-right: 300px;
+    margin-left: 150px;
+  }
+
+  .widget {
+    margin-right: 300px;
+    margin-left: 150px;
+  }
+
+  .no-results {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // margin-left: -250px;
+    font-weight: 400;
+  }
+}
