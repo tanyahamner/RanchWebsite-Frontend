@@ -14,13 +14,12 @@ const LoginPage = (props) => {
   const [from, setFrom] = useState("");
 
   useEffect(() => {
-      setFrom(props.from || "/home")
-      logout()
-    }, [props.from]);
+    setFrom(props.from || "/home");
+    logout();
+  }, [props.from]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const form_body = new FormData(e.target);
 
     awaitAPICall(
@@ -30,7 +29,6 @@ const LoginPage = (props) => {
       (response) => {
         if (response.ok) {
           return response.json();
-
         } else if (response.status === 401) {
           const error_msg = "Invalid Email/Password";
 
@@ -64,6 +62,7 @@ const LoginPage = (props) => {
         }
       },
       null,
+      null,
       false
     );
   };
@@ -75,7 +74,7 @@ const LoginPage = (props) => {
         <Paper className="form-wrapper" elevation={3}>
           <h2>Please log in</h2>
           <div className="error-message">{errorMsg}</div>
-          <form className="form" onSubmit={handleSubmit} method="POST">
+          <form className="form" onSubmit={handleSubmit}>
             <label htmlFor="email">Email</label>
             <TextField
               id="email"
