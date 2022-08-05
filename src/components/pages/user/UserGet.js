@@ -8,7 +8,7 @@ import SecurityWrapper from "../../auth/SecurityWrapper";
 import asyncAPICall from "../../../util/apiWrapper";
 import logout from "../../../util/logout";
 
-const GetUser = (props) => {
+const UserGet = (props) => {
   const [user, setUser] = useState({});
   const [cannotChangeActiveState, setCannotChangeActiveState] = useState(false);
 
@@ -96,7 +96,6 @@ const GetUser = (props) => {
 
               <div className="middle-section">
                 <div className="icon-and-details">
-                  {/* <i className="fas fa-user"></i> */}
                   <FontAwesomeIcon icon="fas fa-user" />
 
                   <div>
@@ -105,6 +104,7 @@ const GetUser = (props) => {
                       to={`/organization/${user.org_id}`}
                     >
                       <h3>
+                        {/* Org name does not exist within user, make new api call to grab the correct data */}
                         {user.organization ? user.organization.name : "unknown"}
                       </h3>
                     </Link>
@@ -143,4 +143,4 @@ const GetUser = (props) => {
   );
 };
 
-export default GetUser;
+export default UserGet;

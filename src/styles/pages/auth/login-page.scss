@@ -40,6 +40,7 @@
             margin: 0;
             padding-left: 7px;
             outline: none;
+            transition: 0.2s ease-in-out;
 
             &:hover,
             &:focus {
@@ -57,7 +58,7 @@
 
           .no-decoration {
             color: $second-lightest;
-            transition: 0.2s ease-in-out;
+            transition: 0.3s ease-in-out;
 
             &:hover {
               color: $second-darkest;

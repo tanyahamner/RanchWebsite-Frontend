@@ -147,7 +147,6 @@ export default function GetOrganization(props) {
               </div>
               <div className="middle-section">
                 <div className="icon-and-details">
-                  {/* <i className="far fa-building"></i> */}
                   <FontAwesomeIcon icon="fas fa-building" />
 
                   <div>
