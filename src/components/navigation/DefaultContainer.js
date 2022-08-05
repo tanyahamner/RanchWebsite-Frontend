@@ -48,7 +48,11 @@ const DefaultContainer = (props) => {
             setMe(data);
           }
         },
-        (err) => console.error("Error in Get Me Effect: ", err),
+        (err) => {
+          if (!signal.aborted) {
+            console.error("Error in Get Me Effect: ", err);
+          }
+        },
         signal
       );
     },
