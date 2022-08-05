@@ -110,7 +110,7 @@ const UserGet = (props) => {
                     >
                       <h3>
                         {/* Org name does not exist within user, make new api call to grab the correct data */}
-                        {user.organization ? user.organization : "unknown"}
+                        {user.organization?.name || "unknown"}
                       </h3>
                     </Link>
 

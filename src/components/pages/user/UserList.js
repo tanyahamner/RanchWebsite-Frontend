@@ -45,7 +45,7 @@ const columns = {
   },
   org_name: {
     name: "Org",
-    selector: "organization",
+    selector: "organization.name",
     sortable: true,
   },
   role: {

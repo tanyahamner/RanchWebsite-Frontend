@@ -9,15 +9,16 @@ const OrganizationSelect = (props) => {
   const [loaded, setLoaded] = useState(false);
 
   const handleChange = (e) => {
-    if (e.target.value && typeof e.target.value !== "string") {
-      props.handleOrgValues(e.target.value);
-    }
+    props.handleOrgValues(e.target.value);
   };
 
   const mapOrganizations = () => {
-    return organizations.map((org, idx) => {
+    return organizations.map((org) => {
       return (
-        <option key={idx} value={org}>
+        <option
+          key={org.value}
+          value={JSON.stringify({ org_id: org.value, org_name: org.name })}
+        >
           {org.name}
         </option>
       );
@@ -37,7 +38,7 @@ const OrganizationSelect = (props) => {
           const options = data.map((option) => {
             return {
               name: option.name,
-              value: option.value,
+              value: option.org_id,
               active: option.active,
             };
           });
@@ -45,15 +46,14 @@ const OrganizationSelect = (props) => {
           setOrganizations(options);
           setLoaded(true);
         },
-        null,
-        props
+        (err) => console.error("Error in Get Organization Effect: ", err)
       );
 
       if (!auth_ok) {
         logout();
       }
     }
-  }, [props]);
+  }, []);
 
   return (
     <div className="org-select-container">

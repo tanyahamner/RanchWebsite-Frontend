@@ -19,7 +19,7 @@ const UserForm = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
-  const [role, setRole] = useState("");
+  // const [role, setRole] = useState("");
   // const [active, setActive] = useState(1);
   const [editing, setEditing] = useState(false);
   const [newUser, setNewUser] = useState(false);
@@ -27,8 +27,10 @@ const UserForm = (props) => {
   const [title, setTitle] = useState("");
 
   const handleOrgValues = (org) => {
-    setOrgId(org.value);
-    setOrgName(org.name);
+    const parsed = JSON.parse(org);
+
+    setOrgId(parsed.org_id);
+    setOrgName(parsed.org_name);
   };
 
   const handleSubmit = (e) => {
@@ -85,20 +87,24 @@ const UserForm = (props) => {
               console.log("ERROR: user not found");
             } else {
               setUserId(data.user_id);
-              setOrgId(data.org_id);
-              setOrgName(data.organization.name);
+              setOrgId(data.organization?.org_id || "");
+              setOrgName(data.organization?.name || "");
               setFirstName(data.first_name);
               setLastName(data.last_name);
               setEmail(data.email);
               setPassword(data.password);
               setPhone(data.phone);
-              setRole(data.role);
+              // setRole(data.role);
               // setActive(data.active);
               setEditing(true);
               setErrorMsg("");
             }
           },
-          (err) => console.error("Error in Get User Effect: ", err),
+          (err) => {
+            if (!signal.aborted) {
+              console.error("Error in Get User Effect: ", err);
+            }
+          },
           signal
         );
 
@@ -110,9 +116,9 @@ const UserForm = (props) => {
         // logged in user's organization name and set the hidden value of org_id to the org_id
         // of the logged in user
         setNewUser(true);
-        setOrgId(org_id);
+        setOrgId(org_id || "");
         setOrgName(org_name);
-        setRole("user");
+        // setRole("user");
       }
     },
     [props]
@@ -227,7 +233,7 @@ const UserForm = (props) => {
               type="phone"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              phone={phone}
+              autoComplete="tel"
             />
 
             <button
