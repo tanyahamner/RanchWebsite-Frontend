@@ -20,7 +20,6 @@ const LoginPage = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("handleSubmit");
     const form_body = new FormData(e.target);
 
     awaitAPICall(
