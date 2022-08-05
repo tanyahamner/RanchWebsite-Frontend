@@ -39,7 +39,12 @@ export default function UniversalSearch(props) {
             setUsers(data.users);
             setIsSearching(false);
           },
-          (err) => console.error("loadResults Error: ", err),
+          (err) => {
+            if (!signal.aborted) {
+              console.error("loadResults Error: ", err);
+              setIsSearching(false);
+            }
+          },
           signal
         );
       }
