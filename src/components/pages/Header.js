@@ -49,7 +49,6 @@ const Header = (props) => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               style={{
-                height: "30px",
                 lineHeight: "normal",
               }}
             />
@@ -63,6 +62,7 @@ const Header = (props) => {
               <FontAwesomeIcon
                 icon="fa-solid fa-x"
                 color="black"
+                className="icon-x"
                 onClick={() => setSearchTerm("")}
               />
             )}
