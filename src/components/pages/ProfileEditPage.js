@@ -3,6 +3,7 @@ import Cookies from "js-cookie";
 
 import asyncAPICall from "../../util/apiWrapper";
 import logout from "../../util/logout";
+import useAbortEffect from "../../hooks/useAbortEffect";
 
 const ProfileEdit = (props) => {
   const [user_id, setUserId] = useState("");
@@ -16,39 +17,43 @@ const ProfileEdit = (props) => {
   const [role, setRole] = useState("");
   // const [active, setActive] = useState(1)
 
-  useEffect(() => {
-    let user_id = props.match.params.user_id;
+  useAbortEffect(
+    (signal) => {
+      let user_id = props.match.params.user_id;
 
-    if (user_id) {
-      let auth_ok = asyncAPICall(
-        `/user/get/${user_id}`,
-        "GET",
-        null,
-        null,
-        (data) => {
-          if (!data.user_id) {
-            console.log("ERROR: user not found");
-          } else {
-            setUserId(data.user_id);
-            setOrgId(data.org_id);
-            // setOrgName(data.organization.name)
-            setFirstName(data.first_name);
-            setLastName(data.last_name);
-            setEmail(data.email);
-            // setPassword(data.password)
-            setPhone(data.phone);
-            setRole(data.role);
-            // setActive(data.active)
-          }
-        },
-        null,
-        props
-      );
-      if (!auth_ok) {
-        logout(props);
+      if (user_id) {
+        let auth_ok = asyncAPICall(
+          `/user/get/${user_id}`,
+          "GET",
+          null,
+          null,
+          (data) => {
+            if (!data.user_id) {
+              console.log("ERROR: user not found");
+            } else {
+              setUserId(data.user_id);
+              setOrgId(data.org_id);
+              // setOrgName(data.organization.name)
+              setFirstName(data.first_name);
+              setLastName(data.last_name);
+              setEmail(data.email);
+              // setPassword(data.password)
+              setPhone(data.phone);
+              setRole(data.role);
+              // setActive(data.active)
+            }
+          },
+          (err) => console.error("Error in Get User Effect: ", err),
+          signal
+        );
+
+        if (!auth_ok) {
+          logout(props);
+        }
       }
-    }
-  }, [props]);
+    },
+    [props]
+  );
 
   const handleSubmit = (e) => {
     let auth_token = Cookies.get("auth_token");
@@ -62,15 +67,12 @@ const ProfileEdit = (props) => {
     asyncAPICall(
       `/user/update`,
       "POST",
-      JSON.stringify(Object.fromEntries(form_body)),
+      Object.fromEntries(form_body),
       null,
       (data) => {
         props.history.push(`/user/${user_id}`);
       },
-      (error) => console.log("Update User Error: ", error),
-      true,
-      null,
-      true
+      (error) => console.log("Update User Error: ", error)
     );
   };
 

@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import DataTable from "react-data-table-component";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,7 +7,9 @@ import ActiveBadge from "../../custom-components/ActiveBadge";
 import { formatPhone } from "../../../util/stringUtils";
 import SecurityWrapper from "../../auth/SecurityWrapper";
 import asyncAPICall from "../../../util/apiWrapper";
-import logout from "../../../util/logout";
+import logout from "../../../util/logout.js";
+import useDeepEffect from "../../../hooks/useDeepEffect.js";
+import useAbortEffect from "../../../hooks/useAbortEffect.js";
 
 const columns = {
   first_name: {
@@ -43,7 +45,7 @@ const columns = {
   },
   org_name: {
     name: "Org",
-    selector: "organization.name",
+    selector: "organization",
     sortable: true,
   },
   role: {
@@ -84,35 +86,43 @@ const UserList = (props) => {
   const [filteredList, setFilteredList] = useState([]);
   const [linkToAddUser, setLinkToAddUser] = useState("/user-add/");
 
-  const loadResults = useCallback(() => {
-    if (props.userList) {
-      setFilterText("");
-      setFilteredList(props.filteredList || props.userList);
-    } else {
-      let fetchUrl = "/user/get";
-      if (props.org_id) {
-        fetchUrl = `/user/get/organization/${props.org_id}`;
-      }
+  const loadResults = useCallback(
+    (signal) => {
+      if (props.userList) {
+        setFilterText("");
+        setFilteredList(props.filteredList || props.userList);
+      } else {
+        let fetchUrl = "/user/get";
 
-      const auth_ok = asyncAPICall(
-        fetchUrl,
-        "GET",
-        null,
-        null,
-        (data) => {
-          setList(data);
-          setFilterText("");
-          // setFilteredList(data);
-        },
-        null,
-        props
-      );
+        if (props.org_id) {
+          fetchUrl = `/user/get/organization/${props.org_id}`;
+        }
 
-      if (!auth_ok) {
-        logout(props);
+        const auth_ok = asyncAPICall(
+          fetchUrl,
+          "GET",
+          null,
+          null,
+          (data) => {
+            setList(data);
+            setFilterText("");
+            setFilteredList(data);
+          },
+          (err) => {
+            if (!signal.aborted) {
+              console.error("Error in Get Users Effect: ", err);
+            }
+          },
+          signal
+        );
+
+        if (!auth_ok) {
+          logout(props);
+        }
       }
-    }
-  }, [props]);
+    },
+    [props]
+  );
 
   const handleFilter = (e) => {
     let newFilterText = e.target.value;
@@ -136,7 +146,7 @@ const UserList = (props) => {
     setFilteredList(filteredList);
   };
 
-  useEffect(() => {
+  useDeepEffect(() => {
     const org_id = props.org_id || "";
     const org_name = props.org_name || "";
     let selectedColumns;
@@ -165,9 +175,12 @@ const UserList = (props) => {
     }
   }, [props.columns, props.org_id, props.org_name]);
 
-  useEffect(() => {
-    loadResults();
-  }, [props.userList, loadResults]);
+  useAbortEffect(
+    (signal) => {
+      loadResults(signal);
+    },
+    [props.userList, loadResults]
+  );
 
   return (
     <div className="user-list-container list-page">

@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 
+import OrganizationSelect from "../organization/OrganizationSelect";
 import UserRoleSelect from "./UserRoleSelect";
 import SecurityWrapper from "../../auth/SecurityWrapper";
 import asyncAPICall from "../../../util/apiWrapper";
 import logout from "../../../util/logout";
-import OrganizationSelect from "../organization/OrganizationSelect";
+import useAbortEffect from "../../../hooks/useAbortEffect";
 
 const orgIdCookie = Cookies.get("org_id");
 
@@ -59,9 +60,7 @@ const UserForm = (props) => {
         if (!error_msg) {
           props.history.push(`/users`);
         }
-      },
-      null,
-      props
+      }
     );
 
     if (!auth_ok) {
@@ -69,51 +68,55 @@ const UserForm = (props) => {
     }
   };
 
-  useEffect(() => {
-    let user_id = props.match.params.user_id;
-    let org_id = props.match.params.org_id;
-    let org_name = props.match.params.org_name;
+  useAbortEffect(
+    (signal) => {
+      let user_id = props.match.params.user_id;
+      let org_id = props.match.params.org_id;
+      let org_name = props.match.params.org_name;
 
-    if (user_id) {
-      let auth_ok = asyncAPICall(
-        `/user/get/${user_id}`,
-        "GET",
-        null,
-        null,
-        (data) => {
-          if (!data.user_id) {
-            console.log("ERROR: user not found");
-          } else {
-            setUserId(data.user_id);
-            setOrgId(data.org_id);
-            setOrgName(data.organization?.name);
-            setFirstName(data.first_name);
-            setLastName(data.last_name);
-            setEmail(data.email);
-            setPassword(data.password);
-            setPhone(data.phone);
-            setRole(data.role);
-            // setActive(data.active);
-            setEditing(true);
-            setErrorMsg("");
-          }
-        },
-        null,
-        props
-      );
-      if (!auth_ok) {
-        logout(props);
+      if (user_id) {
+        let auth_ok = asyncAPICall(
+          `/user/get/${user_id}`,
+          "GET",
+          null,
+          null,
+          (data) => {
+            if (!data.user_id) {
+              console.log("ERROR: user not found");
+            } else {
+              setUserId(data.user_id);
+              setOrgId(data.org_id);
+              setOrgName(data.organization.name);
+              setFirstName(data.first_name);
+              setLastName(data.last_name);
+              setEmail(data.email);
+              setPassword(data.password);
+              setPhone(data.phone);
+              setRole(data.role);
+              // setActive(data.active);
+              setEditing(true);
+              setErrorMsg("");
+            }
+          },
+          (err) => console.error("Error in Get User Effect: ", err),
+          signal
+        );
+
+        if (!auth_ok) {
+          logout(props);
+        }
+      } else {
+        // This is a new user. If the logged in user is an 'admin', then we need to display the
+        // logged in user's organization name and set the hidden value of org_id to the org_id
+        // of the logged in user
+        setNewUser(true);
+        setOrgId(org_id);
+        setOrgName(org_name);
+        setRole("user");
       }
-    } else {
-      // This is a new user. If the logged in user is an 'admin', then we need to display the
-      // logged in user's organization name and set the hidden value of org_id to the org_id
-      // of the logged in user
-      setNewUser(true);
-      setOrgId(org_id);
-      setOrgName(org_name);
-      setRole("user");
-    }
-  }, [props]);
+    },
+    [props]
+  );
 
   useEffect(() => {
     const title = editing ? "Edit User" : "Add User";

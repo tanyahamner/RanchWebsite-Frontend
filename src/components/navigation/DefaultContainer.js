@@ -13,8 +13,11 @@ import UserForm from "../pages/user/UserForm";
 import Loading from "../../util/Loading";
 import ProfileEditPage from "../pages/ProfileEditPage";
 import UniversalSearch from "../pages/UniversalSearch";
+
 import logout from "../../util/logout";
 import awaitAPICall from "../../util/apiWrapper";
+import useAbortEffect from "../../hooks/useAbortEffect";
+import useDeepEffect from "../../hooks/useDeepEffect";
 
 export const MeContext = createContext();
 
@@ -33,22 +36,26 @@ const DefaultContainer = (props) => {
     }
   });
 
-  useEffect(() => {
-    awaitAPICall(
-      "/user/get/me",
-      "GET",
-      null,
-      null,
-      (data) => {
-        if (data) {
-          setMe(data);
-        }
-      },
-      null
-    );
-  }, [isLoading]);
+  useAbortEffect(
+    (signal) => {
+      awaitAPICall(
+        "/user/get/me",
+        "GET",
+        null,
+        null,
+        (data) => {
+          if (data) {
+            setMe(data);
+          }
+        },
+        (err) => console.error("Error in Get Me Effect: ", err),
+        signal
+      );
+    },
+    [isLoading]
+  );
 
-  useEffect(() => {
+  useDeepEffect(() => {
     if (me?.user_id) {
       setIsLoading(false);
     }
@@ -68,32 +75,52 @@ const DefaultContainer = (props) => {
               {...props}
               searchTerm={searchTerm}
               setSearchTerm={setSearchTerm}
-              // authToken={props.authToken}
-              // setAuthToken={props.setAuthToken}
             />
           )}
         />
-
         <div className="body-container">
-          <Route path="/home" component={Home} />
-
+          <Route path="/home" component={Home}></Route>
+          <Route exact path="/user/:user_id" component={User} />
           <Route path="/users" component={UserListPage} />
-          <Route path="/user-add/" component={UserForm} />
-          <Route path="/user/:user_id" component={User} />
-          <Route path="/user/edit/:user_id" component={UserForm} />
-          <Route path="/user-add/:org_id/:org_name" component={UserForm} />
+          <Route
+            name="user-edit"
+            path="/user/edit/:user_id"
+            component={UserForm}
+          />
+          <Route
+            name="user-add"
+            exact
+            path="/user-add/:org_id/:org_name"
+            component={UserForm}
+          />
+          <Route name="user-add" exact path="/user-add/" component={UserForm} />
 
           <Route path="/organizations" component={OrganizationListPage} />
-          <Route path="/organization/:org_id" component={Organization} />
-          <Route exact path="/organization-form" component={OrganizationForm} />
           <Route
+            name="organization-detail"
+            path="/organization/:org_id"
+            component={Organization}
+          />
+          <Route
+            name="organization-form"
             path="/organization-form/:org_id"
             component={OrganizationForm}
           />
-
-          <Route path="/profile/edit/:user_id" component={ProfileEditPage} />
+          <Route
+            name="organization-add"
+            exact
+            path="/organization-form/"
+            component={OrganizationForm}
+          />
 
           <Route
+            name="profile-edit"
+            path="/profile/edit/:user_id"
+            component={ProfileEditPage}
+          />
+
+          <Route
+            name="universal-search"
             path="/universal-search"
             render={(props) => {
               return (

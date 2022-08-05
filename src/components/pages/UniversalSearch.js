@@ -5,8 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import UserList from "./user/UserList";
 import OrganizationList from "./organization/OrganizationList";
 import asyncAPICall from "../../util/apiWrapper";
-import useDebounce from "../hooks/useDebounce";
+import useDebounce from "../../hooks/useDebounce";
 import Loading from "../../util/Loading";
+import useAbortEffect from "../../hooks/useAbortEffect";
 // import logout from './util/logout';
 
 export default function UniversalSearch(props) {
@@ -17,33 +18,34 @@ export default function UniversalSearch(props) {
   const [users, setUsers] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
 
-  const loadResults = useCallback(() => {
-    const auth_token = Cookies.get("auth_token");
-    if (auth_token) {
-      asyncAPICall(
-        `/search/${searchDebounce}`,
-        "GET",
-        null,
-        null,
-        (data) => {
-          for (let result in data) {
-            if (data[result].length) {
-              results.current = true;
-              break;
+  const loadResults = useCallback(
+    (signal) => {
+      const auth_token = Cookies.get("auth_token");
+      if (auth_token) {
+        asyncAPICall(
+          `/search/${searchDebounce}`,
+          "GET",
+          null,
+          null,
+          (data) => {
+            for (let result in data) {
+              if (data[result].length) {
+                results.current = true;
+                break;
+              }
             }
-          }
 
-          setOrganizations(data.organizations);
-          setUsers(data.users);
-        },
-        (err) => {
-          console.error("loadResults Error: ", err);
-        }
-      );
-
-      setIsSearching(false);
-    }
-  }, [searchDebounce]);
+            setOrganizations(data.organizations);
+            setUsers(data.users);
+            setIsSearching(false);
+          },
+          (err) => console.error("loadResults Error: ", err),
+          signal
+        );
+      }
+    },
+    [searchDebounce]
+  );
 
   const renderOrganizations = () => {
     if (organizations.length) {
@@ -78,16 +80,19 @@ export default function UniversalSearch(props) {
     else setIsSearching(true);
   }, [props.searchTerm]);
 
-  useEffect(() => {
-    results.current = false;
-    if (searchDebounce) {
-      loadResults(searchDebounce);
-    } else {
-      setOrganizations([]);
-      setUsers([]);
-      setIsSearching(false);
-    }
-  }, [searchDebounce, loadResults]);
+  useAbortEffect(
+    (signal) => {
+      results.current = false;
+      if (searchDebounce) {
+        loadResults(signal);
+      } else {
+        setOrganizations([]);
+        setUsers([]);
+        setIsSearching(false);
+      }
+    },
+    [searchDebounce, loadResults]
+  );
 
   return (
     <div className="search-data-wrapper">
@@ -117,7 +122,6 @@ export default function UniversalSearch(props) {
       ) : (
         <h4 className="no-results">There are no records to display</h4>
       )}
-
       <div className="vertical-spacing">
         {/* REFACTOR FOR A SPACE */}
         <br />

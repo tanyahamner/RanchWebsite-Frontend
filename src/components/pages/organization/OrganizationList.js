@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import DataTable from "react-data-table-component";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,7 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ActiveBadge from "../../custom-components/ActiveBadge";
 import { formatPhone } from "../../../util/stringUtils";
 import asyncAPICall from "../../../util/apiWrapper";
-import logout from "../../../util/logout";
+import logout from "../../../util/logout.js";
+import useAbortEffect from "../../../hooks/useAbortEffect.js";
+import useDeepEffect from "../../../hooks/useDeepEffect.js";
 
 const columns = {
   name: {
@@ -69,32 +71,36 @@ const OrganizationList = (props) => {
   const [filterText, setFilterText] = useState("");
   const [filteredList, setFilteredList] = useState([]);
 
-  const loadResults = useCallback(() => {
-    if (props.orgList) {
-      setList(props.orgList);
-      setFilterText("");
-      setFilteredList(props.orgList);
-    } else {
-      let auth_ok = asyncAPICall(
-        "/organization/get",
-        "GET",
-        null,
-        null,
-        (data) => {
-          setList(data);
-          setFilterText("");
-          setFilteredList(data);
-        },
-        null,
-        props
-      );
-      if (!auth_ok) {
-        logout(props);
-      }
-    }
-  }, [props]);
+  const loadResults = useCallback(
+    (signal) => {
+      if (props.orgList) {
+        setList(props.orgList);
+        setFilterText("");
+        setFilteredList(props.orgList);
+      } else {
+        let auth_ok = asyncAPICall(
+          "/organization/get",
+          "GET",
+          null,
+          null,
+          (data) => {
+            setList(data);
+            setFilterText("");
+            setFilteredList(data);
+          },
+          (err) => console.error("Organization get error: ", err),
+          signal
+        );
 
-  useEffect(() => {
+        if (!auth_ok) {
+          logout(props);
+        }
+      }
+    },
+    [props]
+  );
+
+  useDeepEffect(() => {
     let selected;
 
     if (props.columns) {
@@ -115,9 +121,12 @@ const OrganizationList = (props) => {
     setSelectedColumns(selected);
   }, [props.columns]);
 
-  useEffect(() => {
-    loadResults();
-  }, [props.orgList, loadResults]);
+  useAbortEffect(
+    (signal) => {
+      loadResults(signal);
+    },
+    [props.orgList, loadResults]
+  );
 
   const handleFilter = (e) => {
     let newFilterText = e.target.value;

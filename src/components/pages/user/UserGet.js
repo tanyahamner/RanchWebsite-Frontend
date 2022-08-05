@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -7,6 +7,7 @@ import { formatPhone, validateUUID } from "../../../util/stringUtils";
 import SecurityWrapper from "../../auth/SecurityWrapper";
 import asyncAPICall from "../../../util/apiWrapper";
 import logout from "../../../util/logout";
+import useAbortEffect from "../../../hooks/useAbortEffect";
 
 const UserGet = (props) => {
   const [user, setUser] = useState({});
@@ -34,29 +35,33 @@ const UserGet = (props) => {
     props.history.push(path);
   };
 
-  useEffect(() => {
-    const user_id = props.match.params.user_id;
+  useAbortEffect(
+    (signal) => {
+      const user_id = props.match.params.user_id;
 
-    if (!validateUUID(user_id)) {
-      props.history.push("/notfound");
-    }
+      if (!validateUUID(user_id)) {
+        props.history.push("/notfound");
+      }
 
-    let auth_ok = asyncAPICall(
-      `/user/get/${user_id}`,
-      "GET",
-      null,
-      null,
-      (data) => {
-        setUser(data);
-        setCannotChangeActiveState(false);
-      },
-      null,
-      props
-    );
-    if (!auth_ok) {
-      logout(props);
-    }
-  }, [props]);
+      let auth_ok = asyncAPICall(
+        `/user/get/${user_id}`,
+        "GET",
+        null,
+        null,
+        (data) => {
+          setUser(data);
+          setCannotChangeActiveState(false);
+        },
+        (err) => console.error("Get User effect error: ", err),
+        signal
+      );
+
+      if (!auth_ok) {
+        logout(props);
+      }
+    },
+    [props]
+  );
 
   return (
     <div className="get-wrapper">
@@ -105,7 +110,7 @@ const UserGet = (props) => {
                     >
                       <h3>
                         {/* Org name does not exist within user, make new api call to grab the correct data */}
-                        {user.organization ? user.organization.name : "unknown"}
+                        {user.organization ? user.organization : "unknown"}
                       </h3>
                     </Link>
 

@@ -1,8 +1,8 @@
-import { useEffect } from "react";
 import Cookies from "js-cookie";
+import useDeepEffect from "../../hooks/useDeepEffect";
 
 const Home = (props) => {
-  useEffect(() => {
+  useDeepEffect(() => {
     let auth_token = Cookies.get("auth_token");
 
     if (!auth_token) {

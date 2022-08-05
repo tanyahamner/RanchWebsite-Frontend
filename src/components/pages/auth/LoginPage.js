@@ -17,7 +17,6 @@ const LoginPage = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     const form_body = new FormData(e.target);
 
     awaitAPICall(
@@ -59,6 +58,7 @@ const LoginPage = (props) => {
           props.history.push(from);
         }
       },
+      null,
       null,
       false
     );
