@@ -84,7 +84,7 @@ const UserList = (props) => {
   const [list, setList] = useState([]);
   const [filterText, setFilterText] = useState("");
   const [filteredList, setFilteredList] = useState([]);
-  const [linkToAddUser, setLinkToAddUser] = useState("/user-add/");
+  const [linkToAddUser, setLinkToAddUser] = useState("/user-add");
 
   const loadResults = useCallback(
     (signal) => {

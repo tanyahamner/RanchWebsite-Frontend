@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import Logo from "../../static/images/logo.svg";
 import SecurityWrapper from "../auth/SecurityWrapper";
-import ProfileMenu from "../navigation/ProfileMenu";
-import { MeContext } from "../navigation/DefaultContainer";
+import ProfileMenu from "./ProfileMenu";
+import { MeContext } from "../routing/DefaultContainer";
 
 const Header = (props) => {
   const [menuOpen, setMenuOpen] = useState(false);
