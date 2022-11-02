@@ -10,7 +10,6 @@ export default function loginContainer(props) {
   return (
     <>
       <Route
-        exact
         path="/login"
         render={(routeProps) => (
           <LoginPage
