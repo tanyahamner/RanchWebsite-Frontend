@@ -81,7 +81,7 @@ const DefaultContainer = (props) => {
         <Route path="/users" component={UserListPage} />
         <Route exact path="/user-add" component={UserForm} />
         <Route path="/user-add/:org_id/:org_name" component={UserForm} />
-        <Route exact path="/user/:user_id" component={User} />
+        <Route path="/user/:user_id" component={User} />
         <Route path="/user/edit/:user_id" component={UserForm} />
         <Route path="/profile/edit/:user_id" component={ProfileEditPage} />
 

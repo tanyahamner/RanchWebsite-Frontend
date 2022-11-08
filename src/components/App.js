@@ -19,10 +19,10 @@ function App() {
         <Switch>
           <Route
             path="/login"
-            render={(props) => {
+            render={(routeProps) => {
               return (
                 <LoginContainer
-                  {...props}
+                  {...routeProps}
                   authToken={authToken}
                   setAuthToken={setAuthToken}
                 />
@@ -33,9 +33,9 @@ function App() {
           <Redirect exact from="/" to="/login" />
 
           <Route
-            render={(props) => (
+            render={(routeProps) => (
               <DefaultContainer
-                {...props}
+                {...routeProps}
                 authToken={authToken}
                 setAuthToken={setAuthToken}
               />
