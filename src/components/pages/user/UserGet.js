@@ -26,8 +26,7 @@ const UserGet = (props) => {
       },
       (error) => {
         console.log("Unable to deactivate your own user", error);
-      },
-      props
+      }
     );
   };
 
