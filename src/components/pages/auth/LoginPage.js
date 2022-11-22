@@ -1,3 +1,4 @@
+// TODO: Cookie cleanup. Wire up props.from
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";

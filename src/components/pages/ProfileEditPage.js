@@ -120,7 +120,6 @@ const ProfileEdit = (props) => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              autoComplete="email"
             />
 
             <label htmlFor="phone">Phone</label>

@@ -206,7 +206,6 @@ const UserForm = (props) => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              autoComplete="email"
             />
 
             {newUser ? (
@@ -219,7 +218,6 @@ const UserForm = (props) => {
                   type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  autoComplete="current-password"
                 />
               </>
             ) : (
@@ -233,7 +231,6 @@ const UserForm = (props) => {
               type="phone"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              autoComplete="tel"
             />
 
             <button

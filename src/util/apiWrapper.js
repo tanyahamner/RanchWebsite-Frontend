@@ -27,13 +27,12 @@ export default function asyncAPICall(
 ) {
   let auth_token = Cookies.get("auth_token");
 
-  if (!require_auth_token) {
-    auth_token = "not_required";
-  } else {
+  if (require_auth_token) {
     if (!auth_token || auth_token === "") {
       console.log("Auth Token Required");
       return false;
     }
+
     let expiration = Cookies.get("auth_expires");
     if (Date.parse(expiration) < Date.now()) {
       // We have an expired token, so, break
