@@ -1,9 +1,8 @@
 import Cookies from "js-cookie";
 
-// Usage:
-// <SecurityWrapper roles="super-admin" user_role="admin">
-//    <TagsToDisplayIfSuperAdmin />
-// </SecurityWrapper>
+// Usage: <SecurityWrapper roles="super-admin" user_role="admin">
+//   <TagsToDisplayIfSuperAdmin />
+// </SecurityWrapper>;
 
 export default function SecurityWrapper({ roles, restrict_roles, children }) {
   const userRole = Cookies.get("user_role");

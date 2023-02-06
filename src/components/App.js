@@ -6,6 +6,11 @@ import LoginContainer from "./routing/LoginContainer";
 import DefaultContainer from "./routing/DefaultContainer";
 import solidIcons from "../util/fontawesome-icons/solidIcons";
 import brandIcons from "../util/fontawesome-icons/brandIcons";
+import Navbar from "./navigation/Header";
+import AboutUs from "./pages/AboutUs";
+import Home from "./pages/Home";
+import Trailer from "./pages/Trailer";
+// import SignupPage from "./pages/signup/signupPage";
 
 solidIcons();
 brandIcons();
@@ -16,7 +21,13 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        <Navbar />
+
         <Switch>
+          {/* <Route path="/register" component={SignupPage} /> */}
+          <Route path="/home" component={Home} />
+          <Route path="/about_us" component={AboutUs} />
+          <Route path="/trailer" component={Trailer} />
           <Route
             path="/login"
             render={(routeProps) => {
@@ -30,7 +41,7 @@ function App() {
             }}
           />
 
-          <Redirect exact from="/" to="/login" />
+          <Redirect exact from="/" to="/home" />
 
           <Route
             render={(routeProps) => (
@@ -48,3 +59,35 @@ function App() {
 }
 
 export default App;
+
+{
+  /* 
+ import { BrowserRouter as Router, Route } from "react-router-dom";
+import NavBar from "./components/navheadfoot/NavBar";
+import NavBar from "./navigation/Header";
+import LoginContainer from "./routing/LoginContainer";
+ import DefaultContainer from "./routing/DefaultContainer";
+ import UserProvider from "./routing/UserProvider";
+ import roleSelect from "./routing/UserProvider";
+ function App() { */
+}
+//   return (
+//     <div className="App">
+//       <Router>
+//         <UserProvider>
+//           <NavBar />
+
+//           <Route path="/" component={LoginContainer} />
+
+//           <roleSelect withRedirect>
+//             <Route path="/" component={DefaultContainer} />
+//           </roleSelect>
+
+//           {/* <Footer /> */}
+//         </UserProvider>
+//       </Router>
+//     </div>
+//   );
+// }
+
+// export default App;

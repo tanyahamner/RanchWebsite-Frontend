@@ -142,7 +142,7 @@ const UserForm = (props) => {
           <div className="error-message">{error_msg}</div>
 
           <form className="form" onSubmit={handleSubmit}>
-            <SecurityWrapper roles="super-admin">
+            <SecurityWrapper roles="super-admin, admin">
               <label htmlFor="org_name" className="drop-down-label org-label">
                 Organization
               </label>
@@ -155,7 +155,7 @@ const UserForm = (props) => {
               <input type="hidden" name="org_id" value={org_id} />
             </SecurityWrapper>
 
-            <SecurityWrapper restrict_roles="super-admin">
+            <SecurityWrapper restrict_roles="super-admin, admin">
               {editing ? (
                 <>
                   <label

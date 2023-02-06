@@ -127,7 +127,7 @@ export default function GetOrganization(props) {
                   data={organization}
                 />
 
-                <SecurityWrapper roles="super-admin">
+                <SecurityWrapper roles="super-admin, admin">
                   <div className="switch-wrapper">
                     Active:
                     <label className="switch">
@@ -146,7 +146,7 @@ export default function GetOrganization(props) {
                   </div>
                 </SecurityWrapper>
 
-                <SecurityWrapper restrict_roles="super-admin">
+                <SecurityWrapper restrict_roles="super-admin, admin">
                   <h2>Active</h2>
                 </SecurityWrapper>
               </div>

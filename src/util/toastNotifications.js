@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import "../styles/util/toastNotifications.scss";
+// import "../styles/util/toastNotifications.scss";
 
 toast.configure();
 
