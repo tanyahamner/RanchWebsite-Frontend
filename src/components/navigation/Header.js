@@ -109,8 +109,17 @@ function Navbar(props) {
                 About Us
               </Link>
             </li>
-
             <li className="nav-item">
+              <Link to="/meat" className="nav-links" onClick={closeMobileMenu}>
+                Meat
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/map" className="nav-links" onClick={closeMobileMenu}>
+                Map
+              </Link>
+            </li>
+            {/* <li className="nav-item">
               <Link
                 // to="/about_us"
                 title={user && user.name}
@@ -119,14 +128,14 @@ function Navbar(props) {
               >
                 LogOut
               </Link>
-            </li>
+            </li> */}
 
             <li className="nav-item">
               <Link to="/login" className="nav-links" onClick={closeMobileMenu}>
                 Log In
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link
                 to="/sign-up"
                 className="nav-links-mobile"
@@ -134,7 +143,7 @@ function Navbar(props) {
               >
                 Sign Up
               </Link>
-            </li>
+            </li> */}
             {/* 
             <li className="nav-item">
               <Link

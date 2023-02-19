@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import "../../../styles/pages/orgtables.scss";
 
 import asyncAPICall from "../../../util/apiWrapper";
 import logout from "../../../util/logout";
@@ -75,7 +76,7 @@ const OrganizationForm = (props) => {
   );
 
   useEffect(() => {
-    const title = editing ? "Edit Organization" : "Add Organization";
+    const title = editing ? "Edit Organization" : "Add Company";
 
     setTitle(title);
   }, [editing]);
@@ -86,8 +87,8 @@ const OrganizationForm = (props) => {
         <div className="form-wrapper">
           <h2>{title}</h2>
 
-          <form className="form organization-form" onSubmit={handleSubmit}>
-            <label htmlFor="name">Organization Name *</label>
+          <form className="form-organization-form" onSubmit={handleSubmit}>
+            <label htmlFor="name">Company Name *</label>
             <input
               required
               id="name"

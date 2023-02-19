@@ -13,17 +13,21 @@
 @import "./pages/header.scss";
 // @import "./pages/details-page.scss";
 @import "./pages/auth/login-page.scss";
-// @import "./pages/universal-search.scss";
-// @import "./pages/user/user-list.scss";
+@import "./pages/orgtables.scss";
+@import "./pages/usertable.scss"; // @import "./pages/universal-search.scss";
+@import "./pages/user/user-list.scss";
 // @import "./pages/user/user-form.scss";
 // @import "./pages/organization/organization-list.scss";
-
 // @import "./custom-components/active-badge.scss";
 // @import "./custom-components/edit-title.scss";
-
 // @import "./modals/modal.scss";
-
 @import "./pages/Button.scss";
 @import "./pages/HeroSection.scss";
 @import "./pages/Cards.scss";
 @import "./pages/HamnerCards.scss";
+@import "./pages/MeatCards.scss";
+@import "./pages/organization/org-get.scss";
+@import "./pages/organization/org-select-container.scss";
+@import "./util/comments.scss";
+@import "./pages/lambcard.scss";
+@import "./pages/heromap.scss";

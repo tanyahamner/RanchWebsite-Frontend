@@ -29,6 +29,9 @@ import RegistrationListPage from "../pages/registration/RegistrationListPage";
 import PastureForm from "../pages/pasture/PastureForm";
 import PastureGet from "../pages/pasture/PastureGet";
 import PastureListPage from "../pages/pasture/PastureListPage";
+import Comments from "../../util/comments";
+import Meat from "../pages/meat/meat";
+
 // import Trailer from "../pages/Trailer";
 // import AboutUs from "../pages/AboutUs";
 export const MeContext = createContext();
@@ -93,8 +96,8 @@ const DefaultContainer = (props) => {
         <Route path="/about_us" component={AboutUs} /> */}
 
         <Route path="/users" component={UserListPage} />
-        <Route exact path="/user-add" component={UserForm} />
-        <Route path="/user-add/:org_id/:org_name" component={UserForm} />
+        <Route exact path="/user_add" component={UserForm} />
+        <Route path="/user_add/:org_id/:org_name" component={UserForm} />
         <Route exact path="/user/:user_id" component={User} />
         <Route path="/user/edit/:user_id" component={UserForm} />
         <Route path="/profile/edit/:user_id" component={ProfileEditPage} />
@@ -144,6 +147,8 @@ const DefaultContainer = (props) => {
           render={(routeProps) => <PastureForm {...routeProps} editing />}
         />
         <Route path="/profile/edit/:pasture_id" component={ProfileEditPage} />
+        <Route path="/comments" component={Comments} />
+        <Route path="/meat" component={Meat} />
 
         <Route
           path="/universal-search"

@@ -17,7 +17,7 @@ function Cards() {
               src="images/IMG_2908.jpg"
               text="Interested in eating our lamb?"
               label="Meat"
-              path="/about_us"
+              path="/meat"
             />
             <CardItem
               src="images/IMG_6580.JPG"

@@ -10,6 +10,8 @@ import Navbar from "./navigation/Header";
 import AboutUs from "./pages/AboutUs";
 import Home from "./pages/Home";
 import Trailer from "./pages/Trailer";
+// import MapContainer from "../util/map/map";
+import HeroMap from "../util/map/heromap";
 // import SignupPage from "./pages/signup/signupPage";
 
 solidIcons();
@@ -28,6 +30,7 @@ function App() {
           <Route path="/home" component={Home} />
           <Route path="/about_us" component={AboutUs} />
           <Route path="/trailer" component={Trailer} />
+          <Route path="/map" component={HeroMap} />
           <Route
             path="/login"
             render={(routeProps) => {

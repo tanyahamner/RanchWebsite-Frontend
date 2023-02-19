@@ -106,17 +106,20 @@ export default function GetOrganization(props) {
   }
 
   return (
-    <div className="get-wrapper">
+    <div className="companyprofile-get-wrapper">
       <div className="get-detail-wrapper">
-        <button className="back-button" onClick={() => props.history.goBack()}>
+        <button
+          className="companyprofile-back-button"
+          onClick={() => props.history.goBack()}
+        >
           <FontAwesomeIcon icon="fas fa-chevron-left" className="button-icon" />
           Back
         </button>
 
-        <div className="detail-wrapper wrapper">
-          <div className="form-wrapper">
-            <div className="details">
-              <div className="top-section">
+        <div className="companyprofile-detail-wrapper-wrapper">
+          <div className="companyprofile-form-wrapper">
+            <div className="companyprofile-details">
+              <div className="companyprofile-top-section">
                 <EditTitle
                   title_name={title}
                   set_title={setTitle}
@@ -128,20 +131,24 @@ export default function GetOrganization(props) {
                 />
 
                 <SecurityWrapper roles="super-admin, admin">
-                  <div className="switch-wrapper">
+                  <div className="companyprofile-switch-wrapper">
                     Active:
-                    <label className="switch">
-                      <input
-                        type="checkbox"
-                        disabled={disableButtons ? true : false}
-                        onClick={() => handleActivation()}
-                        defaultChecked={organization.active}
-                      />
+                    <label className="companyprofile-switch">
+                      <div className="box">
+                        <input
+                          type="checkbox"
+                          disabled={disableButtons ? true : false}
+                          onClick={() => handleActivation()}
+                          defaultChecked={organization.active}
+                        />
+                      </div>
+                      {/* <div className="onoff">
+                        <span className={switchStyle}>
+                          <span>On </span>
 
-                      <span className={switchStyle}>
-                        <span>On</span>
-                        <span>Off</span>
-                      </span>
+                          <span> Off</span>
+                        </span>
+                      </div> */}
                     </label>
                   </div>
                 </SecurityWrapper>
@@ -150,9 +157,9 @@ export default function GetOrganization(props) {
                   <h2>Active</h2>
                 </SecurityWrapper>
               </div>
-              <div className="middle-section">
-                <div className="icon-and-details">
-                  <FontAwesomeIcon icon="fas fa-building" />
+              <div className="companyprofile-middle-section">
+                <div className="companyprofile-icon-and-details">
+                  {/* <FontAwesomeIcon icon="fas fa-building" /> */}
 
                   <div>
                     <p className="address">
@@ -167,23 +174,29 @@ export default function GetOrganization(props) {
 
                 <div className="flex-row">
                   <SecurityWrapper restrict_roles="user">
-                    <button
-                      className="confirm-button"
-                      onClick={() =>
-                        redirectTo(`/organization-form/${organization.org_id}`)
-                      }
-                    >
-                      Edit
-                    </button>
-
-                    <SecurityWrapper restrict_roles="admin">
-                      <ConfirmDelete
-                        disabled={orgId === userOrgId ? true : false}
-                        objectType="organization"
-                        id={organization.org_id}
-                        redirectTo={redirectTo}
-                      />
-                    </SecurityWrapper>
+                    <div className="edit-button-getprofile">
+                      <button
+                        className="companypro-confirm-button"
+                        onClick={() =>
+                          redirectTo(
+                            `/organization-form/${organization.org_id}`
+                          )
+                        }
+                      >
+                        Edit
+                      </button>
+                    </div>
+                    <div className="deletebutton">
+                      <SecurityWrapper restrict_roles="admin">
+                        <ConfirmDelete
+                          disabled={orgId === userOrgId ? true : false}
+                          objectType="organization"
+                          id={organization.org_id}
+                          redirectTo={redirectTo}
+                          className="deletebutton2"
+                        />
+                      </SecurityWrapper>
+                    </div>
                   </SecurityWrapper>
                 </div>
               </div>
@@ -191,7 +204,7 @@ export default function GetOrganization(props) {
 
             <br />
 
-            <div className="user-list">
+            <div className="companyprofile-user-list">
               <UserList
                 {...props}
                 disableAddUser={!organization.active}
