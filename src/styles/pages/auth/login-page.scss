@@ -17,9 +17,9 @@
       flex-direction: column;
       align-items: center;
 
-      h2 {
-        color: $second-lightest;
-      }
+      // h2 {
+      //   color: $second-lightest;
+      // }
 
       .login-form {
         width: 100%;
@@ -57,27 +57,27 @@
           margin: 2% 0;
 
           .no-decoration {
-            color: $second-lightest;
+            // color: $second-lightest;
             transition: 0.3s ease-in-out;
 
-            &:hover {
-              color: $second-darkest;
-            }
+            // &:hover {
+            //   color: $second-darkest;
+            // }
           }
         }
 
         .login-button {
           color: white;
-          background-color: $second-lightest;
+          // background-color: $second-lightest;
           height: 39px;
           width: 74%;
           margin-right: 0px;
           transition: 0.3s ease-in-out;
           border: 1px solid transparent;
 
-          &:hover {
-            background-color: $second-darkest;
-          }
+          // &:hover {
+          //   background-color: $second-darkest;
+          // }
         }
       }
     }

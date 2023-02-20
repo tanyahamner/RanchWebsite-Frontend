@@ -10,6 +10,9 @@ import logout from "../../../util/logout.js";
 import useAbortEffect from "../../../hooks/useAbortEffect.js";
 import useDeepEffect from "../../../hooks/useDeepEffect.js";
 
+{
+  /* <div className="table-info"> */
+}
 const columns = {
   name: {
     name: "Name",
@@ -58,12 +61,13 @@ const columns = {
     sortable: false,
     cell: (row) => (
       <Link to={{ pathname: `/organization-form/${row.org_id}` }}>
-        <button className="confirm-button">Edit</button>
+        <button className="edit-confirm-button">Edit</button>
       </Link>
     ),
     width: "150px",
   },
 };
+// </div>
 
 const OrganizationList = (props) => {
   const [selectedColumns, setSelectedColumns] = useState([]);
@@ -151,36 +155,34 @@ const OrganizationList = (props) => {
       <div className="button-and-search">
         {!props.showAddButton || props.showAddButton === false ? (
           <Link to="/organization-form">
-            <button className="confirm-button">
-              <FontAwesomeIcon icon="fas fa-plus" /> Add New Organization
+            <button className="add-confirm-button">
+              <FontAwesomeIcon icon="fas fa-plus" /> Add New Company
             </button>
           </Link>
         ) : null}
-
-        {!props.showFilter || props.showFilter === false ? (
-          <input
-            id="search"
-            className="org-filter"
-            type="text"
-            placeholder="Filter results..."
-            value={filterText}
-            onChange={handleFilter}
-          />
-        ) : null}
+        <div className="filter">
+          {!props.showFilter || props.showFilter === false ? (
+            <input
+              id="search"
+              className="org-filter"
+              type="text"
+              placeholder="Filter results..."
+              value={filterText}
+              onChange={handleFilter}
+            />
+          ) : null}
+        </div>
       </div>
 
-      <div className="seperator" />
-
-      {/* Refactor Datatable to be our own */}
-      <DataTable
-        columns={selectedColumns}
-        data={filteredList}
-        title={
-          <span>
-            <FontAwesomeIcon icon="fas fa-building" /> Organizations
-          </span>
-        }
-      />
+      <div className="seperator">
+        {/* Refactor Datatable to be our own */}
+        <DataTable
+          className="info"
+          columns={selectedColumns}
+          data={filteredList}
+          title={<span>Companies</span>}
+        />
+      </div>
     </div>
   );
 };

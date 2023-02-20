@@ -1,18 +1,31 @@
-.list-container {
-  @include flex-center;
-  width: 100vw;
-
-  .user-list-container {
-    width: 80%;
-  }
+.user-list-container-list-page {
+  width: 100%;
+}
+.user-filter-list {
+  width: 100%;
+  margin-left: 65%;
+  margin-top: -2%;
+  height: 31px;
+}
+.user-filter-listb {
+  background-color: rgb(24, 58, 85);
+  padding-left: 1%;
+  color: rgb(231, 212, 188);
+  font-weight: bold;
+  width: 15%;
+}
+.user-add-confirm-button {
+  background-color: rgb(24, 58, 85);
+  color: bisque;
+  height: 30px;
+  margin-left: 85%;
+  margin-top: 1%;
+  width: 10%;
 }
 
-.list-page {
-  margin-left: 0px;
-
-  .button-and-search {
-    a {
-      text-decoration: none;
-    }
-  }
+.user-button-icon {
+  padding-right: 1%;
+}
+.user-edit-confirm-button {
+  width: 180%;
 }

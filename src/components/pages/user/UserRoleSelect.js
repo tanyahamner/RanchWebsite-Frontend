@@ -17,6 +17,11 @@ const userRolesAllowedByRole = {
     name: "User",
     value: "user",
   },
+  // standard_user: {
+  //   roles: ["standard_user"],
+  //   name: "Standard User",
+  //   value: "standard_user",
+  // },
 };
 
 const UserRoleSelect = () => {

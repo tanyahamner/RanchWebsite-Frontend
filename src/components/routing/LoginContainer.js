@@ -1,5 +1,5 @@
 import { Route } from "react-router-dom";
-
+import "../../styles/pages/auth/login-page.scss";
 import ForgotPassword from "../auth/forgotPassword/ForgotPasswordPage";
 import EmailSent from "../auth/forgotPassword/EmailSentPage";
 import TempPassword from "../auth/forgotPassword/TempPassword";
